@@ -2,7 +2,8 @@
 import os
 import numpy as np
 import scipy.misc
-import dicom
+# import dicom
+from pydicom import dcmread 
 import cv2
 from parameters import *
 from data_config import *
@@ -71,8 +72,8 @@ def genebmp(dirName):
     lunglist = [name for name in os.listdir(lung_dir) if ".dcm" in name.lower()]
     for filename in fileList:
         #if ".dcm" in filename.lower():  # check whether the file's DICOM
-        FilesDCM =(os.path.join(dirName,filename))  
-        ds = dicom.read_file(FilesDCM)
+        FilesDCM =(os.path.join(dirName,filename)) 
+        ds = dcmread(FilesDCM)
         dsr= ds.pixel_array          
         dsr= dsr-dsr.min()
         c=float(imageDepth)/dsr.max()
@@ -87,7 +88,8 @@ def genebmp(dirName):
             endnumslice=filename.find('.dcm')                   
             imgcore=filename[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
             bmpfile=os.path.join(bmp_dir,imgcore)
-            dsrresize1= scipy.misc.imresize(dsr,fxs,interp='bicubic',mode=None) 
+            dim=tuple(np.int32((np.int64(dsr.shape)*fxs)))
+            dsrresize1= cv2.resize(dsr,dim,interpolation=cv2.INTER_NEAREST)
             namescan=os.path.join(sroidir,imgcore)                   
             textw='n: '+f+' scan: '+str(scanNumber)
             tablscan=cv2.cvtColor(dsrresize1,cv2.COLOR_GRAY2BGR)
@@ -108,7 +110,7 @@ def genebmp(dirName):
     for lungfile in lunglist:
         #if ".dcm" in lungfile.lower():  # check whether the file's DICOM
         lungDCM =os.path.join(lung_dir,lungfile)  
-        dslung = dicom.read_file(lungDCM)
+        dslung = dcmread(lungDCM)
         dsrlung= dslung.pixel_array  
 
         dsrlung= dsrlung-dsrlung.min()
@@ -127,7 +129,8 @@ def genebmp(dirName):
         endnumslice=lungfile.find('.dcm')                   
         lungcore=lungfile[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
         lungcoref=os.path.join(lung_bmp_dir,lungcore)
-        lungresize= scipy.misc.imresize(dsrlung,fxslung,interp='bicubic',mode=None)            
+        dim=tuple(np.int32((np.int64(dsrlung.shape)*fxslung)))
+        lungresize= cv2.resize(dsrlung,dim,interpolation=cv2.INTER_NEAREST)            
         lungresize = cv2.blur(lungresize,(5,5))                 
         np.putmask(lungresize,lungresize>0,100)
         scipy.misc.imsave(lungcoref,lungresize)

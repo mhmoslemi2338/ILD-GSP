@@ -5,3 +5,7 @@ TOPPATCH_16_set0_gci/
 *.java
 genePatchFromScan.py
 DB_README.md
+
+/__pycache__/
+__pycache__/
+__*
