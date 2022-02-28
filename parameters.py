@@ -12,8 +12,7 @@ usedclassif0 = [
     'air_trapping',
     'cysts',
     'bronchiectasis',
-    'emphysema'
-
+    'emphysema',
     'bronchial_wall_thickening',
     'early_fibrosis',
     'increased_attenuation'
@@ -33,16 +32,15 @@ classif0 ={
     'reticulation':6,
     'air_trapping':7,
     'cysts':8,
-    'bronchiectasis':9,
-    
-        'bronchial_wall_thickening':10,
-        'early_fibrosis':11,
-        'emphysema':12,
-        'increased_attenuation':13,
-        'macronodules':14,
-        'pcp':15,
-        'peripheral_micronodules':16,
-        'tuberculosis':17
+    'bronchiectasis':9,    
+    'bronchial_wall_thickening':10,
+    'early_fibrosis':11,
+    'emphysema':12,
+    'increased_attenuation':13,
+    'macronodules':14,
+    'pcp':15,
+    'peripheral_micronodules':16,
+    'tuberculosis':17
     }
 ##----------------------------------------------------------------
 usedclassif1 = [
@@ -106,7 +104,6 @@ lightgreen=(125,237,125)
 orange=(255,153,102)
 
 
-
 classifc ={
 'back_ground':darkgreen,
 'consolidation':red,
@@ -118,44 +115,39 @@ classifc ={
 'reticulation':purple,
 'air_trapping':pink,
 'cysts':lightgreen,
- 'bronchiectasis':orange,
- 
- 'bronchial_wall_thickening':white,
- 'early_fibrosis':white,
- 'emphysema':white,
- 'increased_attenuation':white,
- 'macronodules':white,
- 'pcp':white,
- 'peripheral_micronodules':white,
- 'tuberculosis':white
+'bronchiectasis':orange,
+'bronchial_wall_thickening':white,
+'early_fibrosis':white,
+'emphysema':white,
+'increased_attenuation':white,
+'macronodules':white,
+'pcp':white,
+'peripheral_micronodules':white,
+'tuberculosis':white
  }
 
 
 #########################################################
 if pset==0:
     #'consolidation', 'HC','ground_glass', 'micronodules', 'reticulation'
-    #patch size in pixels 32 * 32
-    dimpavx =16
-    dimpavy = 16
+    dimpavx =32
+    dimpavy = 32
     usedclassif = usedclassif0
     classif =classif0 
 elif pset==1:
     #'consolidation', 'ground_glass',
-    #patch size in pixels 32 * 32
     dimpavx =28 
     dimpavy = 28
     usedclassif = usedclassif1
     classif =classif1   
 elif pset==2:
     #picklefile   'HC', 'micronodules'
-    #patch size in pixels 32 * 32
     dimpavx =16 
     dimpavy = 16
     usedclassif = usedclassif2
     classif =classif2 
 elif pset==3: 
     #'air_trapping'
-    #patch size in pixels 32 * 32
     dimpavx =82 #or 20
     dimpavy = 82
     usedclassif = usedclassif3
@@ -164,17 +156,4 @@ else:
     print('eRROR :', pset, 'not allowed')
 
 ########################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
 

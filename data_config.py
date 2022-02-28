@@ -16,7 +16,7 @@ globalHistInternal=False #use internal for global histogram when True otherwise 
 thrpatch = 0.8
 #labelEnh=('consolidation','reticulation,air_trapping','bronchiectasis','cysts')
 labelEnh=()
-imageDepth=2**16 #number of bits used on dicom images (2 **n)
+imageDepth=2**8-1#number of bits used on dicom images (2 **n)
 # average pxixel spacing
 avgPixelSpacing=0.734
 
