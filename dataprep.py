@@ -1,7 +1,6 @@
 """generate patches from DICOM database equalization"""
 import os
 import numpy as np
-import scipy.misc
 # import dicom
 from pydicom import dcmread 
 import cv2
@@ -83,29 +82,29 @@ def genebmp(dirName):
         else:
             dsr=dsr.astype('uint16')
             #resize the dicom to have always the same pixel/mm
-            fxs=float(ds.PixelSpacing[0])/avgPixelSpacing   
-            scanNumber=int(ds.InstanceNumber)
-            endnumslice=filename.find('.dcm')                   
-            imgcore=filename[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
-            bmpfile=os.path.join(bmp_dir,imgcore)
-            dim=tuple(np.int32((np.int64(dsr.shape)*fxs)))
-            dsrresize1= cv2.resize(dsr,dim,interpolation=cv2.INTER_NEAREST)
-            namescan=os.path.join(sroidir,imgcore)                   
-            textw='n: '+f+' scan: '+str(scanNumber)
-            tablscan=cv2.cvtColor(dsrresize1,cv2.COLOR_GRAY2BGR)
-            scipy.misc.imsave(namescan, tablscan)
-            tagviews(namescan,textw,0,20)  
-            if globalHist:
-                if globalHistInternal:
-                    dsrresize = normi(dsrresize1) 
-                else:
-                    dsrresize = cv2.equalizeHist(dsrresize1) 
+        fxs=float(ds.PixelSpacing[0])/avgPixelSpacing   
+        scanNumber=int(ds.InstanceNumber)
+        endnumslice=filename.find('.dcm')                   
+        imgcore=filename[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
+        bmpfile=os.path.join(bmp_dir,imgcore)
+        dim=tuple(np.int32((np.int64(dsr.shape)*fxs)))
+        dsrresize1= cv2.resize(dsr,dim,interpolation=cv2.INTER_NEAREST)
+        namescan=os.path.join(sroidir,imgcore)                   
+        textw='n: '+f+' scan: '+str(scanNumber)
+        tablscan=cv2.cvtColor(dsrresize1,cv2.COLOR_GRAY2BGR)
+        cv2.imwrite(namescan, tablscan)
+        tagviews(namescan,textw,0,20)  
+        if globalHist:
+            if globalHistInternal:
+                dsrresize = normi(dsrresize1) 
             else:
-                dsrresize=dsrresize1
-                
-            scipy.misc.imsave(bmpfile,dsrresize)
-            dimtabx=dsrresize.shape[0]
-            dimtaby=dimtabx
+                dsrresize = cv2.equalizeHist(dsrresize1) 
+        else:
+            dsrresize=dsrresize1
+            
+        cv2.imwrite(bmpfile,dsrresize)
+        dimtabx=dsrresize.shape[0]
+        dimtaby=dimtabx
 
     for lungfile in lunglist:
         #if ".dcm" in lungfile.lower():  # check whether the file's DICOM
@@ -133,9 +132,11 @@ def genebmp(dirName):
         lungresize= cv2.resize(dsrlung,dim,interpolation=cv2.INTER_NEAREST)            
         lungresize = cv2.blur(lungresize,(5,5))                 
         np.putmask(lungresize,lungresize>0,100)
-        scipy.misc.imsave(lungcoref,lungresize)
+        cv2.imwrite(lungcoref,lungresize)
         bgdirflm=os.path.join(bgdirf,lungcore)
-        scipy.misc.imsave(bgdirflm,lungresize)
+        cv2.imwrite(bgdirflm,lungresize)
+    return [dimtabx,dimtaby]
+    
 
     
 def reptfulle(tabc,dx,dy):
@@ -216,7 +217,7 @@ def pavbg(namedirtopcf,dx,dy,px,py):
                                     else:
                                         tabi2 = cv2.equalizeHist(imgray)  
                                       
-                                    scipy.misc.imsave(patchNormpath+nampa, tabi2)
+                                    cv2.imwrite(patchNormpath+nampa, tabi2)
                                 
                                     x=0
                                     #we draw the rectange
@@ -235,7 +236,7 @@ def pavbg(namedirtopcf,dx,dy,px,py):
                         i+=1
                 
               tabpw =tabfc+tabp
-              scipy.misc.imsave(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'.jpg', tabpw) 
+              cv2.imwrite(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'.jpg', tabpw) 
               mfl=open(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'_1.txt',"w")
               mfl.write('#number of patches: '+str(nbp)+'\n')
               mfl.close()
@@ -355,7 +356,7 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,\
                                 tabi2 = normi(imgray) 
                             else:
                                 tabi2 = cv2.equalizeHist(imgray)  
-                            scipy.misc.imsave(patchNormpath+nampa, tabi2)
+                            cv2.imwrite(patchNormpath+nampa, tabi2)
                             strpac=strpac+str(i)+' '+str(j)+'\n'
                             x=0
                             #we draw the rectange
@@ -385,7 +386,7 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,\
     mfl=open(jpegpath+'/'+f+'_'+iln+'.txt',"w")
     mfl.write('#number of patches: '+str(nbp)+'\n'+strpac)
     mfl.close()
-    scipy.misc.imsave(jpegpath+'/'+f+'_'+iln+'.jpg', tabp)
+    cv2.imwrite(jpegpath+'/'+f+'_'+iln+'.jpg', tabp)
     if len(errorliststring) >0:
         for l in errorliststring:
             errorfile.write(l)
@@ -535,7 +536,7 @@ for f in listdirc:
     if posp==-1 and posu==-1:
         contenudir = os.listdir(namedirtopcf)
         fif=False
-        genebmp(namedirtopcf)
+        [dimtabx,dimtaby]=genebmp(namedirtopcf)
 
         for f1 in contenudir:
             if f1.find('.txt') >0 and (f1.find('CT')==0 or f1.find('Tho')==0):
