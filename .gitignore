@@ -14,3 +14,4 @@ DB_README.md
 *.pyc
 .vs*
 tmp*
+genePatchFromScan_original.py

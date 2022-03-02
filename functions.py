@@ -5,6 +5,7 @@ from data_config import *
 from parameters import *
 from PIL import Image, ImageDraw
 import numpy as np
+import cv2
 
 def remove_folder(path):
     """to remove folder if exists"""
@@ -12,7 +13,7 @@ def remove_folder(path):
         shutil.rmtree(path)
 
 
-def fidclass(numero,classif):
+def fidclass(numero):
     """return class from number"""
     found=False
     for cle, valeur in classif.items():     
@@ -24,7 +25,7 @@ def fidclass(numero,classif):
 
 
 ##----------------------------------------
-def tagview(fig,label,x,y,classif):
+def tagview(fig,label,x,y):
     """write text in image according to label and color"""
     imgn=Image.open(fig)
     draw = ImageDraw.Draw(imgn)
@@ -137,7 +138,7 @@ def cleanup():
         if os.path.isdir(row):
             if row_splt[1]=='':
                 continue
-            if (row_splt[-1] in ['bmp','bgdir','patchfile','scan_bmp','sroi']):
+            if (row_splt[-1] in ['bmp','bgdir','patchfile','scan_bmp','sroi','roi_mask','lung_mask_bmp']):
                 pathes.append(row)
     for row in pathes:
         shutil.rmtree(row)
@@ -153,3 +154,14 @@ def find_dst_names():
         if tmp!='':
             listdirc.append(tmp)
     return listdirc
+
+
+##--------------------------------------------------------
+
+def reptfulle(tabc,dx,dy):
+    imgi = np.zeros((dx,dy,3), np.uint8)
+    cv2.polylines(imgi,[tabc],True,(1,1,1)) 
+    cv2.fillPoly(imgi,[tabc],(1,1,1))
+    tabzi = np.array(imgi)
+    tabz = tabzi[:, :,1]   
+    return tabz, imgi

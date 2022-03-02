@@ -14,7 +14,9 @@ try:
     shutil.rmtree(toppatch+extendir)
 except: pass
 manage_txt_files()
-manage_HRCT_pilot(mode='expand')
+try:
+    manage_HRCT_pilot(mode='expand')
+except: pass
 
 cwd=os.getcwd()
 (cwdtop,tail)=os.path.split(cwd)
@@ -58,8 +60,7 @@ def genebmp(dirName):
     remove_folder(bgdirf)    
     os.mkdir(bgdirf)
     lung_dir = os.path.join(dirName, lungmask)
-    lung_bmp_dir = os.path.join(lung_dir,lungmaskbmp)
-    
+    lung_bmp_dir = os.path.join(lung_dir,lungmaskbmp) 
     remove_folder(lung_bmp_dir)
     os.mkdir(lung_bmp_dir)
    
@@ -67,73 +68,90 @@ def genebmp(dirName):
     fileList = [name for name in os.listdir(dirName) if ".dcm" in name.lower()]
     lunglist = [name for name in os.listdir(lung_dir) if ".dcm" in name.lower()]
     for filename in fileList:
-        #if ".dcm" in filename.lower():  # check whether the file's DICOM
-        FilesDCM =(os.path.join(dirName,filename)) 
-        ds = dcmread(FilesDCM)
-        dsr= ds.pixel_array          
-        dsr= dsr-dsr.min()
-        c=float(imageDepth)/dsr.max()
-        dsr=dsr*c
-        if imageDepth <256:
-            dsr=dsr.astype('uint8')
-        else:
-            dsr=dsr.astype('uint16')
-            #resize the dicom to have always the same pixel/mm
-        fxs=float(ds.PixelSpacing[0])/avgPixelSpacing   
-        scanNumber=int(ds.InstanceNumber)
-        endnumslice=filename.find('.dcm')                   
-        imgcore=filename[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
-        bmpfile=os.path.join(bmp_dir,imgcore)
-        dim=tuple(np.int32((np.int64(dsr.shape)*fxs)))
-        dsrresize1= cv2.resize(dsr,dim,interpolation=cv2.INTER_NEAREST)
-        namescan=os.path.join(sroidir,imgcore)                   
-        textw='n: '+f+' scan: '+str(scanNumber)
-        tablscan=cv2.cvtColor(dsrresize1,cv2.COLOR_GRAY2BGR)
-        cv2.imwrite(namescan, tablscan)
-        tagviews(namescan,textw,0,20)  
-        if globalHist:
-            if globalHistInternal:
-                dsrresize = normi(dsrresize1) 
+#        if ".dcm" in filename.lower():  # check whether the file's DICOM
+            FilesDCM =(os.path.join(dirName,filename))  
+#           
+            ds = dcmread(FilesDCM)
+            dsr= ds.pixel_array          
+            dsr= dsr-dsr.min()
+            c=float(imageDepth)/dsr.max()
+            dsr=dsr*c
+            if imageDepth <256:
+                dsr=dsr.astype('uint8')
             else:
-                dsrresize = cv2.equalizeHist(dsrresize1) 
-        else:
-            dsrresize=dsrresize1
-            
-        cv2.imwrite(bmpfile,dsrresize)
-        dimtabx=dsrresize.shape[0]
-        dimtaby=dimtabx
+                dsr=dsr.astype('uint16')
+            #resize the dicom to have always the same pixel/mm
+            fxs=float(ds.PixelSpacing[0])/avgPixelSpacing                        
+            scanNumber=int(ds.InstanceNumber)
+            endnumslice=filename.find('.dcm')                   
+            imgcore=filename[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
+            bmpfile=os.path.join(bmp_dir,imgcore)
+           
+           
+            # # # # # # dsrresize1= scipy.misc.imresize(dsr,fxs,interp='bicubic',mode=None) 
+
+            dim=tuple(np.int32((np.int64(dsr.shape)*fxs)))
+            dsrresize1= cv2.resize(dsr,dim)
+
+
+
+            namescan=os.path.join(sroidir,imgcore)                   
+            textw='n: '+f+' scan: '+str(scanNumber)
+            tablscan=cv2.cvtColor(dsrresize1,cv2.COLOR_GRAY2BGR)
+            # # # # scipy.misc.imsave(namescan, tablscan)
+            cv2.imwrite(namescan, tablscan)
+            tagviews(namescan,textw,0,20)  
+            if globalHist:
+                if globalHistInternal:
+                    dsrresize = normi(dsrresize1) 
+                else:
+                    dsrresize = cv2.equalizeHist(dsrresize1) 
+            else:
+                dsrresize=dsrresize1
+            # # # # scipy.misc.imsave(bmpfile,dsrresize)
+            cv2.imwrite(bmpfile,dsrresize)
+            dimtabx=dsrresize.shape[0]
+            dimtaby=dimtabx
 
     for lungfile in lunglist:
-        #if ".dcm" in lungfile.lower():  # check whether the file's DICOM
-        lungDCM =os.path.join(lung_dir,lungfile)  
-        dslung = dcmread(lungDCM)
-        dsrlung= dslung.pixel_array  
+                # if ".dcm" in lungfile.lower():  # check whether the file's DICOM
+                 lungDCM =os.path.join(lung_dir,lungfile)  
+                 dslung = dcmread(lungDCM)
+                 dsrlung= dslung.pixel_array   
+                 dsrlung= dsrlung-dsrlung.min()
+                 if dsrlung.max()>0:
+                     c=float(imageDepth)/dsrlung.max()
+                 else:
+                     c=0
+                 dsrlung=dsrlung*c
+                 if imageDepth <256:
+                     dsrlung=dsrlung.astype('uint8')
+                 else:
+                     dsrlung=dsrlung.astype('uint16')
+                 fxslung=float(dslung.PixelSpacing[0])/avgPixelSpacing 
+                 scanNumber=int(dslung.InstanceNumber)
+                 endnumslice=lungfile.find('.dcm')                   
+                 lungcore=lungfile[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
+                 lungcoref=os.path.join(lung_bmp_dir,lungcore)
+                 
+                # # # # # #  lungresize= scipy.misc.imresize(dsrlung,fxslung,interp='bicubic',mode=None)    
 
-        dsrlung= dsrlung-dsrlung.min()
-        if dsrlung.max()>0:
-            c=float(imageDepth)/dsrlung.max()
-        else:
-            c=0
-        dsrlung=dsrlung*c
-        if imageDepth <256:
-            dsrlung=dsrlung.astype('uint8')
-        else:
-            dsrlung=dsrlung.astype('uint16')
-        
-        fxslung=float(dslung.PixelSpacing[0])/avgPixelSpacing 
-        scanNumber=int(dslung.InstanceNumber)
-        endnumslice=lungfile.find('.dcm')                   
-        lungcore=lungfile[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
-        lungcoref=os.path.join(lung_bmp_dir,lungcore)
-        dim=tuple(np.int32((np.int64(dsrlung.shape)*fxslung)))
-        lungresize= cv2.resize(dsrlung,dim,interpolation=cv2.INTER_NEAREST)            
-        lungresize = cv2.blur(lungresize,(5,5))                 
-        np.putmask(lungresize,lungresize>0,100)
-        cv2.imwrite(lungcoref,lungresize)
-        bgdirflm=os.path.join(bgdirf,lungcore)
-        cv2.imwrite(bgdirflm,lungresize)
-    return [dimtabx,dimtaby]
-    
+                 dim=tuple(np.int32((np.int64(dsrlung.shape)*fxslung)))
+                 lungresize= cv2.resize(dsrlung,dim)  
+
+
+                 lungresize = cv2.blur(lungresize,(5,5))                 
+                 np.putmask(lungresize,lungresize>0,100)
+                # # # # # #  scipy.misc.imsave(lungcoref,lungresize)
+                 cv2.imwrite(lungcoref,lungresize)
+                 bgdirflm=os.path.join(bgdirf,lungcore)              
+                # # # # # #  scipy.misc.imsave(bgdirflm,lungresize)
+                 cv2.imwrite(bgdirflm,lungresize)
+
+
+
+
+
 
     
 def reptfulle(tabc,dx,dy):
@@ -326,7 +344,7 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,\
                     cv2.imwrite(namebg,outy)
                     break
                     
-            tagview(namescan,label,0,100,classif)
+            tagview(namescan,label,0,100)
             if slicenumber not in listsliceok:
                 listsliceok.append(slicenumber )
             i=xmin
@@ -354,7 +372,6 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,\
                                 print(errortext)
                         else:
                             nbp+=1
-                            nampa='/'+label+'/'+loca+'/'+f+'_'+iln+'_'+str(nbp)+'.'+typei 
 
                             try:
                                 _=int(f)
@@ -525,6 +542,8 @@ def fileext(namefile,curdir,patchpath):
 listdirc=find_dst_names()
 npat=0
 for f in listdirc:
+    # if not (f in ['101','36','37','38']):
+        # continue
     print('work on:',f)
     nbpf=0
     listsliceok=[]
@@ -543,7 +562,7 @@ for f in listdirc:
     if posp==-1 and posu==-1:
         contenudir = os.listdir(namedirtopcf)
         fif=False
-        [dimtabx,dimtaby]=genebmp(namedirtopcf)
+        genebmp(namedirtopcf)
 
         for f1 in contenudir:
             if f1.find('.txt') >0 and (f1.find('CT')==0 or f1.find('Tho')==0):
@@ -635,7 +654,7 @@ ofilepwt.close()
 #################################################################
 
 #data statistics on paches
-dirlabel=os.walk( patchpath).next()[1]
+dirlabel=os.listdir(patchpath)
 #file for data pn patches
 eftpt=os.path.join(patchtoppath,'totalnbpat.txt')
 filepwt = open(eftpt, 'w')
@@ -721,3 +740,4 @@ errorfile.close()
 manage_HRCT_pilot(mode='shrink')
 cleanup()
 print('completed')
+
