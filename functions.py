@@ -1,3 +1,4 @@
+import glob
 import os
 import shutil
 from data_config import *
@@ -62,3 +63,19 @@ def normi(img):
     else:
         tabi2=tabi2.astype('uint16')
     return tabi2
+
+
+#----------------------------
+
+def extact_path_windows():
+    pathes=[]
+    for row in glob.glob('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/ILD_DB/ILD_DB_lungMasks/**', recursive=True):
+        row_splt=row.split('/')
+        if os.path.isdir(row):
+            if row_splt[1]=='':
+                continue
+            if not (row_splt[-1] in['lung_mask','lung_mask_bmp','roi_mask','HRCT_pilot','bmp','bgdir','patchfile','scan_bmp','sroi']):
+                if not (row_splt[-1] in ['142','154','184','53','57','8','HRCT_pilot']):
+                    pathes.append(row)
+    return pathes
+

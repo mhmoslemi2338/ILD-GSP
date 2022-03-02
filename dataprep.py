@@ -1,7 +1,7 @@
 """generate patches from DICOM database equalization"""
 import os
 import numpy as np
-# import dicom
+import shutil
 from pydicom import dcmread 
 import cv2
 from parameters import *
@@ -10,6 +10,9 @@ from functions import *
 
 #########################################################
 #full path names
+try:
+    shutil.rmtree(toppatch+extendir)
+except: pass
 cwd=os.getcwd()
 (cwdtop,tail)=os.path.split(cwd)
 #path for HUG dicom patient parent directory
@@ -37,7 +40,18 @@ eferror=os.path.join(patchtoppath,'genepatcherrortop.txt')
 errorfile = open(eferror, 'w')
 eflabel=os.path.join(patchtoppath,'lislabel.txt')
 mflabel=open(eflabel,"w")
+##### copy txt files
+all_path=extact_path_windows()
+for row in all_path:
+    src=row.replace(subdir[1],subdir[3])
+    try:
+        txt_src=glob.glob(os.path.join(src,'*.txt'))[0]
+        txt_dst=txt_src.replace(subdir[3],subdir[1])
+        shutil.copy(txt_src,txt_dst)
+    except:
+        pass
 #########################################################
+
 
 
 def rsliceNum(s,c,e):
@@ -209,7 +223,11 @@ def pavbg(namedirtopcf,dx,dy,px,py):
                                      max_val=0  
                                  if imagemax!=None and min_val!=max_val:               
                                     nbp+=1
-                                    nampa='/'+labelbg+'/'+locabg+'/'+f+'_'+str(slicenumber)+'_'+str(nbp)+'.'+typei 
+                                    try:
+                                        _=int(f)
+                                        nampa='/'+labelbg+'/'+locabg+'/'+f+'_'+str(slicenumber)+'_'+str(nbp)+'.'+typei 
+                                    except:
+                                        nampa='/'+labelbg+'/'+locabg+'/'+f.replace('/','_')+'_'+str(slicenumber)+'_'+str(nbp)+'.'+typei 
                                     crorig.save(patchpath+nampa)
                                     imgray =np.array(crorig)
                                     if normiInternal:
@@ -236,8 +254,14 @@ def pavbg(namedirtopcf,dx,dy,px,py):
                         i+=1
                 
               tabpw =tabfc+tabp
-              cv2.imwrite(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'.jpg', tabpw) 
-              mfl=open(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'_1.txt',"w")
+              try:
+                _=int(f)
+                cv2.imwrite(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'.jpg', tabpw) 
+                mfl=open(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'_1.txt',"w")
+              except:
+                cv2.imwrite(jpegpath+'/'+f.replace('/','_')+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'.jpg', tabpw) 
+                mfl=open(jpegpath+'/'+f.replace('/','_')+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'_1.txt',"w")
+
               mfl.write('#number of patches: '+str(nbp)+'\n')
               mfl.close()
               break
@@ -349,6 +373,11 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,\
                             nbp+=1
                             nampa='/'+label+'/'+loca+'/'+f+'_'+iln+'_'+str(nbp)+'.'+typei 
 
+                            try:
+                                _=int(f)
+                                nampa='/'+labelbg+'/'+locabg+'/'+f+'_'+str(slicenumber)+'_'+str(nbp)+'.'+typei 
+                            except:
+                                nampa='/'+labelbg+'/'+locabg+'/'+f.replace('/','_')+'_'+str(slicenumber)+'_'+str(nbp)+'.'+typei 
                             crorig.save(patchpath+nampa) 
                             #normalize patches and put in patches_norm
                             imgray =np.array(crorig)
@@ -383,10 +412,10 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,\
         errorfile.write('ERROR image not found '+namedirtopcf+'/'+bmpname+'/'+str(slicenumber)+'\n')
 
     tabp =tab+tabp
-    mfl=open(jpegpath+'/'+f+'_'+iln+'.txt',"w")
-    mfl.write('#number of patches: '+str(nbp)+'\n'+strpac)
-    mfl.close()
-    cv2.imwrite(jpegpath+'/'+f+'_'+iln+'.jpg', tabp)
+    # mfl=open(jpegpath+'/'+f+'_'+iln+'.txt',"w")
+    # mfl.write('#number of patches: '+str(nbp)+'\n'+strpac)
+    # mfl.close()
+    # cv2.imwrite(jpegpath+'/'+f+'_'+iln+'.jpg', tabp)
     if len(errorliststring) >0:
         for l in errorliststring:
             errorfile.write(l)
@@ -411,8 +440,8 @@ def fileext(namefile,curdir,patchpath):
     ofi = open(namefile, 'r')
     t = ofi.read()
     ofi.close()
-    nslice = t.count('slice')
-    numbercon = t.count('contour')
+    # nslice = t.count('slice')
+    # numbercon = t.count('contour')
     nset=0
     spapos=t.find('SpacingX')
     coefposend=t.find('\n',spapos)
@@ -504,17 +533,33 @@ def fileext(namefile,curdir,patchpath):
         labpos=t.find('label',labpos+1)
     return(listlabel,coefi)
 
-listdirc= (os.listdir(namedirtopc))
+# listdirc= (os.listdir(namedirtopc))
+
+
+listdirc=[]
+listdirc_tmp=extact_path_windows()
+for row in listdirc_tmp:
+    tmp=row.replace('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/ILD_DB/ILD_DB_lungMasks/','')
+    if tmp!='':
+        listdirc.append(tmp)
+
+
 
 
 moslemi=['142','154','184','53','57','8','HRCT_pilot']
 
+
 npat=0
 for f in listdirc:
     #f = 35
-    if f in moslemi:
+    flag=0
+    for row in moslemi:
+        if row==f.split('/')[0] : 
+            print(f)
+            flag=1
+    if flag==0 :
         continue
-    
+
     print('work on:',f)
 
     nbpf=0
@@ -527,8 +572,6 @@ for f in listdirc:
         sroidir=os.path.join(namedirtopcf,sroi)
         remove_folder(sroidir)
         os.mkdir(sroidir)
-
-    
 
     remove_folder(namedirtopcf+'/patchfile')
     os.mkdir(namedirtopcf+'/patchfile')
@@ -598,7 +641,12 @@ for f in listdirc:
                 nbpf=nbpf+nbp
                 #create patches for back-ground
         pavbg(namedirtopcf,dimtabx,dimtaby,dimpavx,dimpavy)
-    ofilepw = open(jpegpath+'/nbpat_'+f+'.txt', 'w')
+
+    try:
+        _=int(f)
+        ofilepw = open(jpegpath+'/nbpat_'+f+'.txt', 'w')
+    except:
+        ofilepw = open(jpegpath+'/nbpat_'+f.replace('/','_')+'.txt', 'w')        
     ofilepw.write('number of patches: '+str(nbpf))
     ofilepw.close()
     

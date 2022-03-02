@@ -157,3 +157,9 @@ else:
 
 ########################################################################
 
+
+subdir=['ILD-cells',                    ## 0
+        'ILD_DB_lungMasks',             ## 1
+        'ILD_DB_talismanTestSuite',     ## 2
+        'ILD_DB_txtROIs',               ## 3
+        'ILD_DB_volumeROIs']            ## 4

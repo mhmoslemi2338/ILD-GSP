@@ -4,7 +4,7 @@ from PIL import ImageFont
 namedirHUG = 'ILD_DB'       
 subHUG='ILD_DB_lungMasks'
 
-toppatch= 'TOPPATCH2'  
+toppatch= 'TOPPATCH'  
 #extension for output dir
 extendir='16_set0_gci'
 

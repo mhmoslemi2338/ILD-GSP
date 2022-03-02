@@ -1,4 +1,6 @@
 /ILD_DB*/
+/matlab/
+matlab/
 TOPPATCH_16_set0_gci/
 TOPPATCH*/
 /ILD-*/
@@ -11,3 +13,4 @@ DB_README.md
 .vscode/
 *.pyc
 .vs*
+tmp*
