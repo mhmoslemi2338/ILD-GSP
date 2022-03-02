@@ -65,7 +65,7 @@ def normi(img):
     return tabi2
 
 
-#----------------------------
+#---------------------------------------------
 
 def extact_path_windows():
     pathes=[]
@@ -79,3 +79,77 @@ def extact_path_windows():
                     pathes.append(row)
     return pathes
 
+
+#----------------------------------------------
+
+def manage_HRCT_pilot(mode):
+    master_path=os.getcwd()
+    path_hrct_pilot='ILD_DB_lungMasks/HRCT_pilot'
+    path=os.path.join(master_path,path_hrct_pilot)
+    if mode=="expand":
+        for row in os.listdir(path):
+            src=os.path.join(path,row)
+            shutil.move(src,src.replace('HRCT_pilot/',''))
+        os.rmdir(path)
+    elif mode=="shrink":
+        HRCT_pilot =[200,201,203,204,205,206,207,208,209,210,211]
+        try:
+            os.mkdir(path)
+        except: pass
+        for row in HRCT_pilot:
+            dst=os.path.join(path,str(row))
+            src=dst.replace('HRCT_pilot/','')
+            shutil.move(src,dst)
+    else:
+        print('ERROR : mode not supported!')
+
+#--------------------------------------------------------
+
+def manage_txt_files():
+    all_path=extact_path_windows()
+    for row in all_path:
+        src=row.replace(subdir[1],subdir[3])
+        try:
+            txt_src=glob.glob(os.path.join(src,'*.txt'))[0]
+            txt_dst=txt_src.replace(subdir[3],subdir[1])
+            shutil.copy(txt_src,txt_dst)
+        except:
+            pass
+    return
+
+#-----------------------------------------------------------
+
+def rsliceNum(s,c,e):
+    endnumslice=s.find(e)
+    posend=endnumslice
+    while s.find(c,posend)==-1:
+        posend-=1
+    debnumslice=posend+1
+    return int((s[debnumslice:endnumslice])) 
+
+
+#------------------------------------------------------------
+
+def cleanup():
+    pathes=[]
+    for row in glob.glob('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/ILD_DB/ILD_DB_lungMasks/**', recursive=True):
+        row_splt=row.split('/')
+        if os.path.isdir(row):
+            if row_splt[1]=='':
+                continue
+            if (row_splt[-1] in ['bmp','bgdir','patchfile','scan_bmp','sroi']):
+                pathes.append(row)
+    for row in pathes:
+        shutil.rmtree(row)
+    return
+
+#-----------------------------------------------------------------
+
+def find_dst_names():
+    listdirc=[]
+    listdirc_tmp=extact_path_windows()
+    for row in listdirc_tmp:
+        tmp=row.replace('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/ILD_DB/ILD_DB_lungMasks/','')
+        if tmp!='':
+            listdirc.append(tmp)
+    return listdirc

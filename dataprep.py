@@ -13,6 +13,9 @@ from functions import *
 try:
     shutil.rmtree(toppatch+extendir)
 except: pass
+manage_txt_files()
+manage_HRCT_pilot(mode='expand')
+
 cwd=os.getcwd()
 (cwdtop,tail)=os.path.split(cwd)
 #path for HUG dicom patient parent directory
@@ -40,27 +43,7 @@ eferror=os.path.join(patchtoppath,'genepatcherrortop.txt')
 errorfile = open(eferror, 'w')
 eflabel=os.path.join(patchtoppath,'lislabel.txt')
 mflabel=open(eflabel,"w")
-##### copy txt files
-all_path=extact_path_windows()
-for row in all_path:
-    src=row.replace(subdir[1],subdir[3])
-    try:
-        txt_src=glob.glob(os.path.join(src,'*.txt'))[0]
-        txt_dst=txt_src.replace(subdir[3],subdir[1])
-        shutil.copy(txt_src,txt_dst)
-    except:
-        pass
 #########################################################
-
-
-
-def rsliceNum(s,c,e):
-    endnumslice=s.find(e)
-    posend=endnumslice
-    while s.find(c,posend)==-1:
-        posend-=1
-    debnumslice=posend+1
-    return int((s[debnumslice:endnumslice])) 
 
 
 def genebmp(dirName):
@@ -412,10 +395,15 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,\
         errorfile.write('ERROR image not found '+namedirtopcf+'/'+bmpname+'/'+str(slicenumber)+'\n')
 
     tabp =tab+tabp
-    # mfl=open(jpegpath+'/'+f+'_'+iln+'.txt',"w")
-    # mfl.write('#number of patches: '+str(nbp)+'\n'+strpac)
-    # mfl.close()
-    # cv2.imwrite(jpegpath+'/'+f+'_'+iln+'.jpg', tabp)
+    try:
+        _=int(f)
+        f_tmp=f
+    except: 
+        f_tmp=f.replace('/','_')
+    mfl=open(jpegpath+'/'+f_tmp+'_'+iln+'.txt',"w")
+    mfl.write('#number of patches: '+str(nbp)+'\n'+strpac)
+    mfl.close()
+    cv2.imwrite(jpegpath+'/'+f_tmp+'_'+iln+'.jpg', tabp)
     if len(errorliststring) >0:
         for l in errorliststring:
             errorfile.write(l)
@@ -534,34 +522,10 @@ def fileext(namefile,curdir,patchpath):
     return(listlabel,coefi)
 
 # listdirc= (os.listdir(namedirtopc))
-
-
-listdirc=[]
-listdirc_tmp=extact_path_windows()
-for row in listdirc_tmp:
-    tmp=row.replace('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/ILD_DB/ILD_DB_lungMasks/','')
-    if tmp!='':
-        listdirc.append(tmp)
-
-
-
-
-moslemi=['142','154','184','53','57','8','HRCT_pilot']
-
-
+listdirc=find_dst_names()
 npat=0
 for f in listdirc:
-    #f = 35
-    flag=0
-    for row in moslemi:
-        if row==f.split('/')[0] : 
-            print(f)
-            flag=1
-    if flag==0 :
-        continue
-
     print('work on:',f)
-
     nbpf=0
     listsliceok=[]
     posp=f.find('.',0)
@@ -604,7 +568,6 @@ for f in listdirc:
             ilcore=l[0:il1-j-1]
             if ilcore not in listcore:
                 listcore.append(ilcore)
-        #pathl=final/ILD_DB_txtROIs/35/patchfile/slice_2_micronodulesdiffuse_1.txt
         for c in listcore:
             ftab=True
             tabzc = np.zeros((dimtabx, dimtaby), dtype='i')
@@ -755,4 +718,6 @@ mflabel.close()
 ##########################################################
 errorfile.write('completed')
 errorfile.close()
+manage_HRCT_pilot(mode='shrink')
+cleanup()
 print('completed')
