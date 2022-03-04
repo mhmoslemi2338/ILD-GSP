@@ -4,6 +4,8 @@ matlab/
 TOPPATCH_16_set0_gci/
 TOPPATCH*/
 /ILD-*/
+/_/
+_/
 *.m
 *.java
 genePatchFromScan.py
@@ -14,4 +16,8 @@ DB_README.md
 *.pyc
 .vs*
 tmp*
-genePatchFromScan_original.py
+*.pckl
+TOKEN.txt
+*.ipynb
+*.xlsx
+TEST/

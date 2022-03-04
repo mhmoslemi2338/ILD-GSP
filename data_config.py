@@ -1,10 +1,10 @@
 from PIL import ImageFont
 
 #global directory for scan file
-namedirHUG = 'ILD_DB'       
+namedirHUG = 'Implementation'       
 subHUG='ILD_DB_lungMasks'
 
-toppatch= 'TOPPATCH2'  
+toppatch= 'TOPPATCH3'  
 #extension for output dir
 extendir='16_set0_gci'
 

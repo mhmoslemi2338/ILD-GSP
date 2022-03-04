@@ -70,7 +70,7 @@ def normi(img):
 
 def extact_path_windows():
     pathes=[]
-    for row in glob.glob('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/ILD_DB/ILD_DB_lungMasks/**', recursive=True):
+    for row in glob.glob('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/Implementation/ILD_DB_lungMasks/**', recursive=True):
         row_splt=row.split('/')
         if os.path.isdir(row):
             if row_splt[1]=='':
@@ -133,7 +133,7 @@ def rsliceNum(s,c,e):
 
 def cleanup():
     pathes=[]
-    for row in glob.glob('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/ILD_DB/ILD_DB_lungMasks/**', recursive=True):
+    for row in glob.glob('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/Implementation/ILD_DB_lungMasks/**', recursive=True):
         row_splt=row.split('/')
         if os.path.isdir(row):
             if row_splt[1]=='':
@@ -150,7 +150,7 @@ def find_dst_names():
     listdirc=[]
     listdirc_tmp=extact_path_windows()
     for row in listdirc_tmp:
-        tmp=row.replace('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/ILD_DB/ILD_DB_lungMasks/','')
+        tmp=row.replace('/mnt/c/Users/Mohammad/Desktop/Bsc prj/code/Implementation/ILD_DB_lungMasks/','')
         if tmp!='':
             listdirc.append(tmp)
     return listdirc
