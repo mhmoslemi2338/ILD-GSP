@@ -291,3 +291,29 @@ def make_log(patchtoppath,jpegpath,listslice):
                     mflabel.write(l+' '+str(listlabel[l])+'\n')
             mflabel.write('---------------------'+'\n')
     mflabel.close()
+
+
+##############################################################
+
+def subfile_handler(files,mode):
+    target=['142','154','184','53','57','8','HRCT_pilot']
+    if mode=='start':
+        for row in target:
+            master_path=os.getcwd()
+            path_now=os.path.join(master_path,'ILD_DB_lungMasks',row)
+            for row2 in os.listdir(path_now):
+                src=os.path.join(path_now,row2)
+                dst=src.replace(row+'/',row+'_')
+                files.append([src,dst])
+                shutil.move(src,dst)
+            os.rmdir(path_now)
+        return files
+    elif mode=='end':
+        for row in files:
+            try: os.mkdir(row.rsplit("/",1)[0])
+            except: pass
+            shutil.move(row[1],row[0])
+    else:
+        print('ERROR : mode not supported!')
+
+

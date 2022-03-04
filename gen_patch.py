@@ -1,8 +1,7 @@
 import glob
 import os
 import numpy as np
-import scipy.misc
-import dicom
+from pydicom import dcmread 
 from PIL import Image
 import cv2
 from param_gen_patch import *
@@ -10,6 +9,7 @@ import tifffile as tiff
 
 #######################################################
 remove_folder(patchesdirnametop)
+expanded_files=subfile_handler([],'start')
 
 cwd=os.getcwd()
 (cwdtop,tail)=os.path.split(cwd)
@@ -53,7 +53,7 @@ def genebmp(dirName):
     for filename in fileList:
         FilesDCM =(os.path.join(dirName,filename))  
 
-        ds = dicom.read_file(FilesDCM)
+        ds = dcmread(FilesDCM)
         dsr= ds.pixel_array          
         dsr= dsr-dsr.min()
         c=float(imageDepth)/dsr.max()
@@ -66,10 +66,12 @@ def genebmp(dirName):
         endnumslice=filename.find('.dcm')                   
         imgcore=filename[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
         bmpfile=os.path.join(bmp_dir,imgcore)
-        dsrresize1= scipy.misc.imresize(dsr,fxs,interp='bicubic',mode=None) 
+        mydim=tuple(np.int64((np.array(dsr.shape)*fxs)))
+        dsrresize1= cv2.resize(dsr,mydim)
+
         namescan=os.path.join(sroidir,imgcore)                   
         textw='n: '+f+' scan: '+str(scanNumber)
-
+        
         tablscan=cv2.cvtColor(dsrresize1,cv2.COLOR_GRAY2BGR)
         tiff.imsave(namescan, tablscan)
         tagviews(namescan,textw,0,20)  
@@ -81,7 +83,7 @@ def genebmp(dirName):
 
     for lungfile in lunglist:
         lungDCM =os.path.join(lung_dir,lungfile)  
-        dslung = dicom.read_file(lungDCM)
+        dslung = dcmread(lungDCM)
         dsrlung= dslung.pixel_array             
         dsrlung= dsrlung-dsrlung.min()
 
@@ -96,7 +98,9 @@ def genebmp(dirName):
         endnumslice=lungfile.find('.dcm')                   
         lungcore=lungfile[0:endnumslice]+'_'+str(scanNumber)+'.'+typei          
         lungcoref=os.path.join(lung_bmp_dir,lungcore)
-        lungresize= scipy.misc.imresize(dsrlung,fxslung,interp='bicubic',mode=None)            
+        mydim=tuple(np.int64((np.array(dsrlung.shape)*fxslung)))
+        lungresize= cv2.resize(dsrlung,mydim)
+
         lungresize = cv2.blur(lungresize,(5,5))                 
         np.putmask(lungresize,lungresize>0,100)
 
@@ -326,7 +330,7 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,iln,f,label,l
             break
     
     if not found:
-        print('***********************  ERROR image not found  ***********************'+namedirtopcf+'/'+bmpname+'/'+str(slicenumber))            
+        print('\n***********************  ERROR image not found  ***********************\n'+namedirtopcf+'/'+bmpname+'/'+str(slicenumber))            
             
     tabp =tab+tabp
     mfl=open(jpegpath+'/'+f+'_'+iln+'.txt',"w")
@@ -476,7 +480,7 @@ for f in listdirc[0:2]:
                 labell,coefi =fileext(pathf1,namedirtopcf,patchpath)
                 break
         if not fif:
-            print('***********   ERROR: no ROI txt content file    ***************', f)
+            print('\n***********   ERROR: no ROI txt content file  ***************\n', f)
 
         listslice= os.listdir(namedirtopcf+'/patchfile') 
         listcore =[]
@@ -519,10 +523,8 @@ for f in listdirc[0:2]:
                     iln=l[0:il]
 
             if label in usedclassif:
-                print('c :',c, label,loca)
                 print('creates patches from:',iln, 'in:', f)
                 nbp,tabz1=pavs (imgc,tabzc,dimtabx,dimtaby,dimpavx,dimpavy,namedirtopcf,jpegpath, patchpath,thrpatch,iln,f,label,loca,typei)
-                print('end create patches')
                 nbpf=nbpf+nbp
         #create patches for back-ground
         pavbg(namedirtopcf,dimtabx,dimtaby,dimpavx,dimpavy)
@@ -531,7 +533,7 @@ for f in listdirc[0:2]:
     ofilepw.close()
     
     
-    #### organize and delet extra files
+    #### organize and delete extra files
     remove_folder(os.path.join(namedirtopcf, bgdir))
     remove_folder(os.path.join(namedirtopcf, bmpname))
     remove_folder(os.path.join(namedirtopcf, lungmask, typei))
@@ -548,4 +550,5 @@ for row in glob.iglob(os.path.join(jpegpath, '*.txt')): os.remove(row)
 #################### data statistics and log on paches ###########################
 
 make_log(patchtoppath,jpegpath,listslice)
+subfile_handler(expanded_files,'end')
 print('completed')

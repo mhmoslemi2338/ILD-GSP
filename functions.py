@@ -104,6 +104,10 @@ def manage_HRCT_pilot(mode):
     else:
         print('ERROR : mode not supported!')
 
+
+
+moslemi=['142','154','184','53','57','8']
+
 #--------------------------------------------------------
 
 def manage_txt_files():
