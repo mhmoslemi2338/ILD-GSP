@@ -301,12 +301,14 @@ def subfile_handler(files,mode):
         for row in target:
             master_path=os.getcwd()
             path_now=os.path.join(master_path,'ILD_DB_lungMasks',row)
-            for row2 in os.listdir(path_now):
-                src=os.path.join(path_now,row2)
-                dst=src.replace(row+'/',row+'_')
-                files.append([src,dst])
-                shutil.move(src,dst)
-            os.rmdir(path_now)
+            try:
+                for row2 in os.listdir(path_now):
+                    src=os.path.join(path_now,row2)
+                    dst=src.replace(row+'/',row+'_')
+                    files.append([src,dst])
+                    shutil.move(src,dst)
+                os.rmdir(path_now)
+            except: pass
         return files
     elif mode=='end':
         for row in files:

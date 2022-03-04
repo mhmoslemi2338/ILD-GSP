@@ -10,6 +10,7 @@ import tifffile as tiff
 #######################################################
 remove_folder(patchesdirnametop)
 expanded_files=subfile_handler([],'start')
+# manage_txt_files()
 
 cwd=os.getcwd()
 (cwdtop,tail)=os.path.split(cwd)

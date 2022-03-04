@@ -81,6 +81,17 @@ def extact_path_windows():
     return pathes
 
 
+def manage_txt_files():
+    all_path=extact_path_windows()
+    for row in all_path:
+        src=row.replace(subdir[1],subdir[3])
+        try:
+            txt_src=glob.glob(os.path.join(src,'*.txt'))[0]
+            txt_dst=txt_src.replace(subdir[3],subdir[1])
+            shutil.copy(txt_src,txt_dst)
+        except:
+            pass
+    return
 #----------------------------------------------
 
 def manage_HRCT_pilot(mode):
@@ -110,17 +121,7 @@ moslemi=['142','154','184','53','57','8']
 
 #--------------------------------------------------------
 
-def manage_txt_files():
-    all_path=extact_path_windows()
-    for row in all_path:
-        src=row.replace(subdir[1],subdir[3])
-        try:
-            txt_src=glob.glob(os.path.join(src,'*.txt'))[0]
-            txt_dst=txt_src.replace(subdir[3],subdir[1])
-            shutil.copy(txt_src,txt_dst)
-        except:
-            pass
-    return
+
 
 #-----------------------------------------------------------
 
