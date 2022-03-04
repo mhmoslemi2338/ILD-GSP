@@ -38,6 +38,7 @@ bmpname='scan_bmp'
 lungmask='lung_mask'
 lungmaskbmp='bmp'
 sroi='sroi'
+SROIS='SROIS'
 bgdir='bgdir'
 bgdirw='bgdirw'
 ##############################################################################################################

@@ -1,6 +1,6 @@
+import glob
 import os
 import numpy as np
-import shutil
 import scipy.misc
 import dicom
 from PIL import Image
@@ -20,17 +20,18 @@ patchtoppath=os.path.join(path_HUG,patchesdirnametop)
 patchpath=os.path.join(patchtoppath,patchesdirname)
 patchNormpath=os.path.join(patchtoppath,patchesNormdirname)
 jpegpath=os.path.join(patchtoppath,imagedirname)
+SROIpatch=os.path.join(patchtoppath,SROIS)
 
 if not os.path.isdir(patchtoppath): os.mkdir(patchtoppath)   
 if raw_patch:
     if not os.path.isdir(patchpath): os.mkdir(patchpath)   
 if not os.path.isdir(patchNormpath): os.mkdir(patchNormpath)  
 if not os.path.isdir(jpegpath): os.mkdir(jpegpath)   
+if not os.path.isdir(SROIpatch): os.mkdir(SROIpatch)   
 #######################################################
 
 def genebmp(dirName):
     """generate patches from dicom files and sroi"""
-    # print ('generate  bmp files from dicom files in :',f)
     global constPixelSpacing, dimtabx,dimtaby
     #directory for patches
     bmp_dir = os.path.join(dirName, bmpname)
@@ -83,11 +84,10 @@ def genebmp(dirName):
         dslung = dicom.read_file(lungDCM)
         dsrlung= dslung.pixel_array             
         dsrlung= dsrlung-dsrlung.min()
-       
+
+        c=0
         if dsrlung.max()>0:
             c=float(imageDepth)/dsrlung.max()
-        else:
-            c=0
         dsrlung=dsrlung*c
         dsrlung=dsrlung.astype('uint16')
 
@@ -207,8 +207,6 @@ def pavbg(namedirtopcf,dx,dy,px,py):
   
 def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,iln,f,label,loca,typei):
     """ generate patches from ROI"""
-    # if label == 'fibrosis':
-    #     label='HC'
     vis=contour2(imgi,label,dimtabx,dimtaby)         
     bgdirf = os.path.join(namedirtopcf, bgdir)    
     patchpathc=os.path.join(namedirtopcf,bmpname)
@@ -341,15 +339,11 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,iln,f,label,l
 def fileext(namefile,curdir,patchpath):
     listlabel=[labelbg+'_'+locabg]
     plab=os.path.join(patchpath,labelbg)
-    # ploc=os.path.join(plab,locabg) 
     plabNorm=os.path.join(patchNormpath,labelbg)
-    # plocNorm=os.path.join(plabNorm,locabg) 
 
     if raw_patch:
         if not os.path.exists(plab): os.mkdir(plab)
     if not os.path.exists(plabNorm): os.mkdir(plabNorm)
-    # if not os.path.exists(ploc): os.mkdir(ploc)
-    # if not os.path.exists(plocNorm): os.mkdir(plocNorm)
 
     ofi = open(namefile, 'r')
     t = ofi.read()
@@ -379,21 +373,15 @@ def fileext(namefile,curdir,patchpath):
             loca=loca.replace('/','_')
         if label not in listlabel:
             plab=os.path.join(patchpath,label)
-            # ploc=os.path.join(plab,loca) 
             plabNorm=os.path.join(patchNormpath,label)
 
-            # plocNorm=os.path.join(plabNorm,loca) 
             listlabel.append(label+'_'+loca)     
             listlabeld=os.listdir(patchNormpath)
             if label not in listlabeld:
                 if raw_patch:
                     os.mkdir(plab)
                 os.mkdir(plabNorm)
-            # listlocad=os.listdir(plab)
-            # if loca not in listlocad:
-            #     os.mkdir(ploc)
-            #     os.mkdir(plocNorm)
-                    
+
         condslap=True
         slapos=t.find('slice',labpos)
 
@@ -524,7 +512,6 @@ for f in listdirc[0:2]:
                     tabccfi=tabcff/avgPixelSpacing
                     tabc=tabccfi.astype(int)
 
-                    # print('generate tables from:',l,'in:', f)
                     tabz,imgi= reptfulle(tabc,dimtabx,dimtaby)                
                     imgc=imgc+imgi                    
                     tabzc=tabz+tabzc
@@ -544,14 +531,21 @@ for f in listdirc[0:2]:
     ofilepw.close()
     
     
+    #### organize and delet extra files
     remove_folder(os.path.join(namedirtopcf, bgdir))
     remove_folder(os.path.join(namedirtopcf, bmpname))
     remove_folder(os.path.join(namedirtopcf, lungmask, typei))
     remove_folder(os.path.join(namedirtopcf, 'patchfile'))
+    src_sroi=os.path.join(namedirtopcf, sroi)
+    if not os.path.isdir(os.path.join(SROIpatch,f)): os.mkdir(os.path.join(SROIpatch,f))  
+    dst_sroi=os.path.join(namedirtopcf, SROIpatch,f)
+    for row in os.listdir(src_sroi):
+        shutil.move(os.path.join(src_sroi,row),os.path.join(dst_sroi,row))
+    remove_folder(src_sroi)
+for row in glob.iglob(os.path.join(jpegpath, '*.txt')): os.remove(row) 
 
 
 #################### data statistics and log on paches ###########################
 
-# make_statistics(patchtoppath,patchpath,jpegpath)
 make_log(patchtoppath,jpegpath,listslice)
 print('completed')
