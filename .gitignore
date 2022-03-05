@@ -21,4 +21,4 @@ TOKEN.txt
 *.ipynb
 *.xlsx
 TEST/
-OUTPUT_PATCHES/
+OUTPUT_PATCH*/

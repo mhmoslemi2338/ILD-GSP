@@ -297,6 +297,7 @@ def make_log(patchtoppath,jpegpath,listslice):
 
 ##############################################################
 
+
 def subfile_handler(files,mode):
     target=['142','154','184','53','57','8','HRCT_pilot']
     if mode=='start':
@@ -304,20 +305,27 @@ def subfile_handler(files,mode):
             master_path=os.getcwd()
             path_now=os.path.join(master_path,'ILD_DB_lungMasks',row)
             try:
-                for row2 in os.listdir(path_now):
+                for idx,row2 in enumerate(os.listdir(path_now),start=1):
                     src=os.path.join(path_now,row2)
-                    dst=src.replace(row+'/',row+'_')
+                    dst=src.rsplit("/",1)[0]+2*str(0)+str(idx)
+                    if row=='HRCT_pilot':
+                        dst=dst.replace(row,'200')
                     files.append([src,dst])
+
                     shutil.move(src,dst)
+                    shutil.move(src.replace(subHUG,subHUG_txt),dst.replace(subHUG,subHUG_txt))
                 os.rmdir(path_now)
+                os.rmdir(path_now.replace(subHUG,subHUG_txt))
             except: pass
         return files
     elif mode=='end':
         for row in files:
             try: 
                 os.mkdir(row.rsplit("/",1)[0])
+                os.mkdir((row.rsplit("/",1)[0]).replace(subHUG,subHUG_txt))
             except: pass
             shutil.move(row[1],row[0])
+            shutil.move((row[1]).replace(subHUG,subHUG_txt),(row[0]).replace(subHUG,subHUG_txt))
     else:
         print('ERROR : mode not supported!')
 
