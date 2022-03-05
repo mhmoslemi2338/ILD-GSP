@@ -4,7 +4,8 @@ import numpy as np
 from pydicom import dcmread 
 from PIL import Image
 import cv2
-from param_gen_patch import *
+from parameters import *
+from functions import *
 import tifffile as tiff
 
 #######################################################

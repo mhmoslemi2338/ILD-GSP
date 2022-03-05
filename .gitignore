@@ -6,10 +6,10 @@ TOPPATCH*/
 /ILD-*/
 /_/
 _/
+_TEST/
 *.m
 *.java
 genePatchFromScan.py
-DB_README.md
 /_*/
 /.vscode/
 .vscode/
@@ -18,7 +18,6 @@ DB_README.md
 tmp*
 *.pckl
 TOKEN.txt
-*.ipynb
 *.xlsx
 TEST/
 OUTPUT_PATCH*/
