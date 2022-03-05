@@ -9,10 +9,12 @@ import shutil
 #######################################################
 namedirHUG = 'Implementation'
 subHUG='ILD_DB_lungMasks'
+subHUG_txt='ILD_DB_txtROIs'
 
-toppatch= 'TOPPATCH4'  
-extendir='16_set0_gci'
+toppatch= 'OUTPUT'  
+extendir='PATCHES'
 raw_patch=False
+make_back_ground=False
 
 #patch overlapp tolerance
 thrpatch = 0.8
@@ -312,7 +314,8 @@ def subfile_handler(files,mode):
         return files
     elif mode=='end':
         for row in files:
-            try: os.mkdir(row.rsplit("/",1)[0])
+            try: 
+                os.mkdir(row.rsplit("/",1)[0])
             except: pass
             shutil.move(row[1],row[0])
     else:

@@ -10,7 +10,6 @@ import tifffile as tiff
 #######################################################
 remove_folder(patchesdirnametop)
 expanded_files=subfile_handler([],'start')
-# manage_txt_files()
 
 cwd=os.getcwd()
 (cwdtop,tail)=os.path.split(cwd)
@@ -348,7 +347,8 @@ def fileext(namefile,curdir,patchpath):
 
     if raw_patch:
         if not os.path.exists(plab): os.mkdir(plab)
-    if not os.path.exists(plabNorm): os.mkdir(plabNorm)
+    if make_back_ground:
+        if not os.path.exists(plabNorm): os.mkdir(plabNorm)
 
     ofi = open(namefile, 'r')
     t = ofi.read()
@@ -445,14 +445,10 @@ def fileext(namefile,curdir,patchpath):
 ##############################################################################################################
 ##############################################################################################################
 
-moslemi=['142','154','184','53','57','8','HRCT_pilot']
 
 listdirc= os.listdir(namedirtopc)
 npat=0
-for f in listdirc[0:2]:
-    if f in moslemi:
-        continue
-
+for f in listdirc:
     print('work on:',f)
     nbpf=0
     listsliceok=[]
@@ -468,16 +464,16 @@ for f in listdirc[0:2]:
     remove_folder(namedirtopcf+'/patchfile')
     os.mkdir(namedirtopcf+'/patchfile')
     if posp==-1 and posu==-1:
-        contenudir = os.listdir(namedirtopcf)
         fif=False
         genebmp(namedirtopcf)
-
+        contenudir=os.listdir(namedirtopcf.replace(subHUG,subHUG_txt))       
         for f1 in contenudir:
             if f1.find('.txt') >0 and (f1.find('CT')==0 or (f1.find('Tho')==0)):
                 npat+=1
                 fif=True
                 fileList =f1
-                pathf1=namedirtopcf+'/'+fileList            
+                pathf1=namedirtopcf+'/'+fileList  
+                pathf1=pathf1.replace(subHUG,subHUG_txt)
                 labell,coefi =fileext(pathf1,namedirtopcf,patchpath)
                 break
         if not fif:
@@ -528,7 +524,8 @@ for f in listdirc[0:2]:
                 nbp,tabz1=pavs (imgc,tabzc,dimtabx,dimtaby,dimpavx,dimpavy,namedirtopcf,jpegpath, patchpath,thrpatch,iln,f,label,loca,typei)
                 nbpf=nbpf+nbp
         #create patches for back-ground
-        pavbg(namedirtopcf,dimtabx,dimtaby,dimpavx,dimpavy)
+        if make_back_ground:
+            pavbg(namedirtopcf,dimtabx,dimtaby,dimpavx,dimpavy)
     ofilepw = open(jpegpath+'/nbpat_'+f+'.txt', 'w')
     ofilepw.write('number of patches: '+str(nbpf))
     ofilepw.close()
@@ -545,11 +542,10 @@ for f in listdirc[0:2]:
     for row in os.listdir(src_sroi):
         shutil.move(os.path.join(src_sroi,row),os.path.join(dst_sroi,row))
     remove_folder(src_sroi)
-for row in glob.iglob(os.path.join(jpegpath, '*.txt')): os.remove(row) 
 
 
 #################### data statistics and log on paches ###########################
-
 make_log(patchtoppath,jpegpath,listslice)
+for row in glob.iglob(os.path.join(jpegpath, '*.txt')): os.remove(row) 
 subfile_handler(expanded_files,'end')
 print('completed')
