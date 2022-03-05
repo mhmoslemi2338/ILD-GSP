@@ -20,4 +20,5 @@ tmp*
 TOKEN.txt
 *.xlsx
 TEST/
-OUTPUT_PATCH*/
+*/patches_jpeg/
+*/SROIS/
