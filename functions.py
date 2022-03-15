@@ -208,8 +208,10 @@ def subfile_handler(files,mode):
                 os.mkdir(row.rsplit("/",1)[0])
                 os.mkdir((row.rsplit("/",1)[0]).replace(subHUG,subHUG_txt))
             except: pass
-            shutil.move(row[1],row[0])
-            shutil.move((row[1]).replace(subHUG,subHUG_txt),(row[0]).replace(subHUG,subHUG_txt))
+            try:
+                shutil.move(row[1],row[0])
+                shutil.move((row[1]).replace(subHUG,subHUG_txt),(row[0]).replace(subHUG,subHUG_txt))
+            except: pass
     else:
         print('ERROR : mode not supported!')
 

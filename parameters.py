@@ -7,7 +7,7 @@ subHUG='ILD_DB_lungMasks'
 subHUG_txt='ILD_DB_txtROIs'
 
 toppatch= 'OUTPUT'  
-extendir='PATCHES'
+extendir='PATCHES2'
 raw_patch=False
 make_back_ground=False
 
@@ -116,3 +116,33 @@ classifc ={
     'pcp':white,
     'peripheral_micronodules':white,
     'tuberculosis':white}
+
+
+
+
+expanded_files2=[
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/142/CT-INSPIRIUM-2951', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/142001'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/142/CT-INSPIRIUM-2950', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/142002'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/154/CT-INSPIRIUM-6409', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/154001'], 
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/154/CT-INSPIRIUM-6410', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/154002'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/184/CT-INSPIRIUM-5841', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/184001'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/184/CT-INSPIRIUM-5842', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/184002'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/53/CT-INSPIRIUM-7605', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/53001'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/53/CT-INSPIRIUM-1841', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/53002'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/57/CT-INSPIRIUM-3550', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/57001'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/57/CT-series-5652', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/57002'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/57/CT--0002', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/57003'], 
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/8/CT-INSPIRIUM-8873', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/8001'], 
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/8/CT-INSPIRIUM-8871', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/8002'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/211', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200001'], 
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/210', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200002'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/204', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200003'], 
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/203', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200004'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/205', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200005'], 
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/209', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200006'], 
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/200', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200007'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/207', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200008'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/206', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/200009'],
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/201', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/2000010'], 
+['/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/HRCT_pilot/208', '/Users/mohammad/Desktop/Bsc prj/Implementation/ILD_DB_lungMasks/2000011']]
+

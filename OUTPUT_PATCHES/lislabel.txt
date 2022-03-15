@@ -1,411 +1,411 @@
 label  _  localisation
 ======================
-101 number of patches:  15
-fibrosis_non-relevant 15
+177 number of patches:  483
+reticulation_non-relevant 483
 ---------------------
-105 number of patches:  5
-bronchial_wall_thickening_non-relevant 0
-consolidation_non-relevant 4
-ground_glass_non-relevant 1
+163 number of patches:  54
+ground_glass_apical 54
 ---------------------
-107 number of patches:  291
-reticulation_basal 289
+8002 number of patches:  208
+ground_glass_apical 19
+fibrosis_basal 189
+bronchiectasis_basal 0
+---------------------
+162 number of patches:  2
 ground_glass_non-relevant 2
 ---------------------
-108 number of patches:  5
-ground_glass_peripheral_sub_pleural 2
-reticulation_basal 3
+160 number of patches:  294
+emphysema_non-relevant 42
+fibrosis_diffuse 252
 ---------------------
-109 number of patches:  485
-ground_glass_basal 485
+174 number of patches:  0
+peripheral_micronodules_peripheral_sub_pleural 0
 ---------------------
-112 number of patches:  105
-consolidation_diffuse 79
-ground_glass_diffuse 26
+8001 number of patches:  318
+fibrosis_diffuse 318
+bronchiectasis_non-relevant 0
 ---------------------
-116 number of patches:  88
-consolidation_non-relevant 0
-ground_glass_non-relevant 88
+17 number of patches:  130
+emphysema_non-relevant 97
+fibrosis_non-relevant 33
 ---------------------
-118 number of patches:  46
-fibrosis_non-relevant 25
-cysts_peripheral_sub_pleural 0
-consolidation_peripheral_sub_pleural 0
-ground_glass_non-relevant 21
+175 number of patches:  12
+fibrosis_peripheral_sub_pleural 12
 ---------------------
-119 number of patches:  1
-peripheral_micronodules_peripheral_sub_pleural 1
+7 number of patches:  3630
+micronodules_non-relevant 3630
+---------------------
+149 number of patches:  117
+micronodules_peripheral_sub_pleural 117
+---------------------
+165 number of patches:  4
+early_fibrosis_basal 4
+---------------------
+171 number of patches:  200
+consolidation_apical 0
+ground_glass_non-relevant 200
+---------------------
+159 number of patches:  60
+micronodules_peripheral_sub_pleural 60
+---------------------
+3 number of patches:  78
+fibrosis_perihilar 78
 ---------------------
 12 number of patches:  5
 bronchiectasis_non-relevant 0
 ground_glass_non-relevant 5
 ---------------------
-120 number of patches:  6
-fibrosis_basal 6
----------------------
-121 number of patches:  161
-fibrosis_basal 161
----------------------
-122 number of patches:  752
-micronodules_diffuse 752
----------------------
-123 number of patches:  96
-cysts_non-relevant 96
-ground_glass_non-relevant 0
----------------------
-124 number of patches:  6
-micronodules_peripheral_sub_pleural 6
-peripheral_micronodules_peripheral_sub_pleural 0
----------------------
-126 number of patches:  839
-micronodules_diffuse 839
----------------------
-127 number of patches:  6
-consolidation_diffuse 3
-ground_glass_non-relevant 3
----------------------
-128 number of patches:  1
-reticulation_basal 1
----------------------
-129 number of patches:  25
-peripheral_micronodules_peripheral_sub_pleural 25
----------------------
-130 number of patches:  0
-peripheral_micronodules_peripheral_sub_pleural 0
----------------------
-131 number of patches:  4
-micronodules_peripheral_sub_pleural 4
----------------------
-132 number of patches:  185
-micronodules_peripheral_sub_pleural 185
----------------------
-134 number of patches:  10
-ground_glass_peripheral_sub_pleural 6
-consolidation_peripheral_sub_pleural 4
----------------------
-135 number of patches:  64
-ground_glass_peripheral_sub_pleural 64
-consolidation_peripheral_sub_pleural 0
----------------------
-136 number of patches:  86
-fibrosis_basal 86
----------------------
-137 number of patches:  26
-peripheral_micronodules_peripheral_sub_pleural 26
----------------------
-138 number of patches:  865
-healthy_non-relevant 865
----------------------
-140 number of patches:  21
-micronodules_non-relevant 21
----------------------
-142001 number of patches:  0
-fibrosis_peripheral_sub_pleural 0
-ground_glass_non-relevant 0
----------------------
-142002 number of patches:  125
-ground_glass_peripheral_sub_pleural 0
-fibrosis_basal 125
-bronchiectasis_non-relevant 0
----------------------
-143 number of patches:  18
-consolidation_non-relevant 1
-ground_glass_non-relevant 17
----------------------
-144 number of patches:  42
-fibrosis_basal 42
----------------------
-147 number of patches:  232
-healthy_non-relevant 229
-consolidation_apical 3
----------------------
-149 number of patches:  117
-micronodules_peripheral_sub_pleural 117
----------------------
-150 number of patches:  95
-reticulation_apical 95
-consolidation_peripheral_sub_pleural 0
-ground_glass_non-relevant 0
----------------------
-152 number of patches:  67
-ground_glass_diffuse 15
-air_trapping_diffuse 52
----------------------
-153 number of patches:  64
-ground_glass_diffuse 64
----------------------
-154001 number of patches:  6
-ground_glass_diffuse 6
----------------------
-154002 number of patches:  11
-ground_glass_diffuse 11
----------------------
-155 number of patches:  27
-consolidation_diffuse 0
-ground_glass_diffuse 1
-reticulation_basal 26
----------------------
-157 number of patches:  131
-consolidation_diffuse 0
-ground_glass_diffuse 1
-reticulation_basal 130
----------------------
 158 number of patches:  150
 ground_glass_non-relevant 150
----------------------
-159 number of patches:  60
-micronodules_peripheral_sub_pleural 60
----------------------
-160 number of patches:  294
-fibrosis_diffuse 252
-emphysema_non-relevant 42
----------------------
-162 number of patches:  2
-ground_glass_non-relevant 2
----------------------
-163 number of patches:  54
-ground_glass_apical 54
 ---------------------
 164 number of patches:  1327
 healthy_non-relevant 1327
 ---------------------
-165 number of patches:  4
-early_fibrosis_basal 4
+172 number of patches:  78
+peripheral_micronodules_peripheral_sub_pleural 0
+cysts_basal 0
+ground_glass_non-relevant 77
+micronodules_peripheral_sub_pleural 1
 ---------------------
 166 number of patches:  362
 ground_glass_non-relevant 362
----------------------
-167 number of patches:  98
-fibrosis_basal 87
-emphysema_peripheral_sub_pleural 11
----------------------
-168 number of patches:  279
-fibrosis_peripheral_sub_pleural 3
-emphysema_non-relevant 276
----------------------
-169 number of patches:  1355
-healthy_non-relevant 1355
----------------------
-17 number of patches:  130
-fibrosis_non-relevant 33
-emphysema_non-relevant 97
----------------------
-171 number of patches:  200
-ground_glass_non-relevant 200
-consolidation_apical 0
----------------------
-172 number of patches:  78
-micronodules_peripheral_sub_pleural 1
-cysts_basal 0
-peripheral_micronodules_peripheral_sub_pleural 0
-ground_glass_non-relevant 77
----------------------
-173 number of patches:  0
----------------------
-174 number of patches:  0
-peripheral_micronodules_peripheral_sub_pleural 0
----------------------
-175 number of patches:  12
-fibrosis_peripheral_sub_pleural 12
----------------------
-177 number of patches:  483
-reticulation_non-relevant 483
----------------------
-179 number of patches:  226
-reticulation_non-relevant 226
----------------------
-180 number of patches:  144
-ground_glass_diffuse 144
----------------------
-181 number of patches:  381
-consolidation_diffuse 19
-reticulation_peripheral_sub_pleural 362
----------------------
-182 number of patches:  82
-micronodules_peripheral_sub_pleural 82
----------------------
-183 number of patches:  26
-micronodules_peripheral_sub_pleural 26
----------------------
-184001 number of patches:  357
-fibrosis_diffuse 357
----------------------
-184002 number of patches:  67
-fibrosis_diffuse 67
----------------------
-185 number of patches:  354
-fibrosis_diffuse 354
----------------------
-19 number of patches:  49
-fibrosis_basal 49
----------------------
-200001 number of patches:  143
-healthy_non-relevant 143
----------------------
-2000010 number of patches:  772
-emphysema_non-relevant 772
----------------------
-2000011 number of patches:  752
-micronodules_non-relevant 752
----------------------
-200002 number of patches:  180
-micronodules_non-relevant 180
----------------------
-200003 number of patches:  81
-fibrosis_basal 53
-healthy_non-relevant 28
----------------------
-200004 number of patches:  652
-healthy_non-relevant 598
-bronchiectasis_non-relevant 54
----------------------
-200005 number of patches:  68
-healthy_non-relevant 51
-emphysema_non-relevant 17
----------------------
-200006 number of patches:  1307
-healthy_non-relevant 1307
----------------------
-200007 number of patches:  483
-healthy_non-relevant 67
-bronchiectasis_non-relevant 57
-emphysema_non-relevant 359
----------------------
-200008 number of patches:  717
-healthy_non-relevant 592
-bronchiectasis_non-relevant 15
-emphysema_non-relevant 110
----------------------
-200009 number of patches:  581
-healthy_non-relevant 581
----------------------
-21 number of patches:  0
-bronchiectasis_apical 0
----------------------
-23 number of patches:  401
-ground_glass_non-relevant 401
----------------------
-3 number of patches:  78
-fibrosis_perihilar 78
----------------------
-34 number of patches:  0
----------------------
-35 number of patches:  3994
-micronodules_diffuse 3994
----------------------
-36 number of patches:  500
-micronodules_non-relevant 500
----------------------
-37 number of patches:  367
-micronodules_non-relevant 367
 ---------------------
 38 number of patches:  0
 ---------------------
 39 number of patches:  113
 micronodules_non-relevant 113
 ---------------------
-41 number of patches:  198
-tuberculosis_non-relevant 198
+167 number of patches:  98
+emphysema_peripheral_sub_pleural 11
+fibrosis_basal 87
 ---------------------
-45 number of patches:  51
-ground_glass_non-relevant 51
+173 number of patches:  0
 ---------------------
-46 number of patches:  28
-bronchiectasis_peripheral_sub_pleural 0
-reticulation_peripheral_sub_pleural 28
----------------------
-47 number of patches:  369
-ground_glass_basal 67
-healthy_apical 302
----------------------
-48 number of patches:  163
-ground_glass_non-relevant 163
----------------------
-51 number of patches:  82
-fibrosis_basal 3
-healthy_non-relevant 79
----------------------
-53001 number of patches:  223
-fibrosis_basal 223
----------------------
-53002 number of patches:  60
-fibrosis_basal 60
----------------------
-56 number of patches:  274
-fibrosis_non-relevant 274
----------------------
-57001 number of patches:  9
-fibrosis_non-relevant 9
----------------------
-57002 number of patches:  0
-bronchiectasis_non-relevant 0
----------------------
-57003 number of patches:  5
-fibrosis_apical 3
-ground_glass_non-relevant 2
----------------------
-62 number of patches:  8
-fibrosis_non-relevant 8
----------------------
-65 number of patches:  326
-ground_glass_diffuse 326
----------------------
-66 number of patches:  0
----------------------
-7 number of patches:  3630
-micronodules_non-relevant 3630
----------------------
-70 number of patches:  0
----------------------
-74 number of patches:  186
-fibrosis_diffuse 186
+128 number of patches:  1
+reticulation_basal 1
 ---------------------
 76 number of patches:  142
 fibrosis_non-relevant 142
 ---------------------
-77 number of patches:  55
-fibrosis_basal 55
----------------------
-78 number of patches:  103
-fibrosis_non-relevant 103
----------------------
-80 number of patches:  1367
-fibrosis_non-relevant 1367
----------------------
-8001 number of patches:  208
-ground_glass_apical 19
-bronchiectasis_basal 0
-fibrosis_basal 189
----------------------
-8002 number of patches:  318
-fibrosis_diffuse 318
-bronchiectasis_non-relevant 0
----------------------
-81 number of patches:  43
-fibrosis_non-relevant 43
----------------------
-82 number of patches:  136
-fibrosis_basal 136
----------------------
-83 number of patches:  150
-ground_glass_basal 150
----------------------
-84 number of patches:  375
-healthy_non-relevant 304
-fibrosis_basal 71
+62 number of patches:  8
+fibrosis_non-relevant 8
 ---------------------
 89 number of patches:  72
 fibrosis_diffuse 62
 fibrosis_perihilar 10
 ---------------------
-90 number of patches:  64
-fibrosis_perihilar 64
-bronchiectasis_non-relevant 0
+77 number of patches:  55
+fibrosis_basal 55
 ---------------------
-92 number of patches:  299
-fibrosis_peripheral_sub_pleural 2
-emphysema_non-relevant 297
+101 number of patches:  15
+fibrosis_non-relevant 15
+---------------------
+129 number of patches:  25
+peripheral_micronodules_peripheral_sub_pleural 25
+---------------------
+200008 number of patches:  483
+emphysema_non-relevant 359
+bronchiectasis_non-relevant 57
+healthy_non-relevant 67
+---------------------
+2000010 number of patches:  180
+micronodules_non-relevant 180
+---------------------
+2000011 number of patches:  717
+emphysema_non-relevant 110
+healthy_non-relevant 592
+bronchiectasis_non-relevant 15
+---------------------
+200009 number of patches:  1307
+healthy_non-relevant 1307
+---------------------
+74 number of patches:  186
+fibrosis_diffuse 186
+---------------------
+48 number of patches:  163
+ground_glass_non-relevant 163
+---------------------
+116 number of patches:  88
+ground_glass_non-relevant 88
+consolidation_non-relevant 0
+---------------------
+112 number of patches:  105
+ground_glass_diffuse 26
+consolidation_diffuse 79
+---------------------
+70 number of patches:  0
+---------------------
+65 number of patches:  326
+ground_glass_diffuse 326
+---------------------
+184001 number of patches:  357
+fibrosis_diffuse 357
+---------------------
+107 number of patches:  291
+ground_glass_non-relevant 2
+reticulation_basal 289
+---------------------
+105 number of patches:  5
+bronchial_wall_thickening_non-relevant 0
+ground_glass_non-relevant 1
+consolidation_non-relevant 4
+---------------------
+66 number of patches:  0
+---------------------
+184002 number of patches:  67
+fibrosis_diffuse 67
+---------------------
+138 number of patches:  865
+healthy_non-relevant 865
+---------------------
+109 number of patches:  485
+ground_glass_basal 485
+---------------------
+135 number of patches:  64
+ground_glass_peripheral_sub_pleural 64
+consolidation_peripheral_sub_pleural 0
+---------------------
+121 number of patches:  161
+fibrosis_basal 161
 ---------------------
 94 number of patches:  118
 fibrosis_non-relevant 118
+---------------------
+80 number of patches:  1367
+fibrosis_non-relevant 1367
+---------------------
+200002 number of patches:  772
+emphysema_non-relevant 772
+---------------------
+200003 number of patches:  652
+healthy_non-relevant 598
+bronchiectasis_non-relevant 54
+---------------------
+81 number of patches:  43
+fibrosis_non-relevant 43
+---------------------
+56 number of patches:  274
+fibrosis_non-relevant 274
+---------------------
+120 number of patches:  6
+fibrosis_basal 6
+---------------------
+134 number of patches:  10
+consolidation_peripheral_sub_pleural 4
+ground_glass_peripheral_sub_pleural 6
+---------------------
+108 number of patches:  5
+reticulation_basal 3
+ground_glass_peripheral_sub_pleural 2
+---------------------
+122 number of patches:  752
+micronodules_diffuse 752
+---------------------
+136 number of patches:  86
+fibrosis_basal 86
+---------------------
+83 number of patches:  150
+ground_glass_basal 150
+---------------------
+200001 number of patches:  752
+micronodules_non-relevant 752
+---------------------
+82 number of patches:  136
+fibrosis_basal 136
+---------------------
+41 number of patches:  198
+tuberculosis_non-relevant 198
+---------------------
+137 number of patches:  26
+peripheral_micronodules_peripheral_sub_pleural 26
+---------------------
+123 number of patches:  96
+cysts_non-relevant 96
+ground_glass_non-relevant 0
+---------------------
+127 number of patches:  6
+consolidation_diffuse 3
+ground_glass_non-relevant 3
+---------------------
+154002 number of patches:  11
+ground_glass_diffuse 11
+---------------------
+45 number of patches:  51
+ground_glass_non-relevant 51
+---------------------
+51 number of patches:  82
+healthy_non-relevant 79
+fibrosis_basal 3
+---------------------
+92 number of patches:  299
+emphysema_non-relevant 297
+fibrosis_peripheral_sub_pleural 2
+---------------------
+200004 number of patches:  81
+fibrosis_basal 53
+healthy_non-relevant 28
+---------------------
+200005 number of patches:  68
+healthy_non-relevant 51
+emphysema_non-relevant 17
+---------------------
+53001 number of patches:  60
+fibrosis_basal 60
+---------------------
+78 number of patches:  103
+fibrosis_non-relevant 103
+---------------------
+132 number of patches:  185
+micronodules_peripheral_sub_pleural 185
+---------------------
+126 number of patches:  839
+micronodules_diffuse 839
+---------------------
+130 number of patches:  0
+peripheral_micronodules_peripheral_sub_pleural 0
+---------------------
+124 number of patches:  6
+micronodules_peripheral_sub_pleural 6
+peripheral_micronodules_peripheral_sub_pleural 0
+---------------------
+154001 number of patches:  6
+ground_glass_diffuse 6
+---------------------
+118 number of patches:  46
+fibrosis_non-relevant 25
+cysts_peripheral_sub_pleural 0
+ground_glass_non-relevant 21
+consolidation_peripheral_sub_pleural 0
+---------------------
+46 number of patches:  28
+reticulation_peripheral_sub_pleural 28
+bronchiectasis_peripheral_sub_pleural 0
+---------------------
+200007 number of patches:  143
+healthy_non-relevant 143
+---------------------
+200006 number of patches:  581
+healthy_non-relevant 581
+---------------------
+53002 number of patches:  223
+fibrosis_basal 223
+---------------------
+84 number of patches:  375
+healthy_non-relevant 304
+fibrosis_basal 71
+---------------------
+90 number of patches:  64
+bronchiectasis_non-relevant 0
+fibrosis_perihilar 64
+---------------------
+47 number of patches:  369
+ground_glass_basal 67
+healthy_apical 302
+---------------------
+119 number of patches:  1
+peripheral_micronodules_peripheral_sub_pleural 1
+---------------------
+131 number of patches:  4
+micronodules_peripheral_sub_pleural 4
+---------------------
+57001 number of patches:  0
+bronchiectasis_non-relevant 0
+---------------------
+181 number of patches:  381
+consolidation_diffuse 19
+reticulation_peripheral_sub_pleural 362
+---------------------
+34 number of patches:  0
+---------------------
+142002 number of patches:  0
+ground_glass_non-relevant 0
+fibrosis_peripheral_sub_pleural 0
+---------------------
+21 number of patches:  0
+bronchiectasis_apical 0
+---------------------
+35 number of patches:  3994
+micronodules_diffuse 3994
+---------------------
+180 number of patches:  144
+ground_glass_diffuse 144
+---------------------
+143 number of patches:  18
+consolidation_non-relevant 1
+ground_glass_non-relevant 17
+---------------------
+157 number of patches:  131
+consolidation_diffuse 0
+reticulation_basal 130
+ground_glass_diffuse 1
+---------------------
+169 number of patches:  1355
+healthy_non-relevant 1355
+---------------------
+155 number of patches:  27
+consolidation_diffuse 0
+reticulation_basal 26
+ground_glass_diffuse 1
+---------------------
+57002 number of patches:  5
+fibrosis_apical 3
+ground_glass_non-relevant 2
+---------------------
+182 number of patches:  82
+micronodules_peripheral_sub_pleural 82
+---------------------
+23 number of patches:  401
+ground_glass_non-relevant 401
+---------------------
+37 number of patches:  367
+micronodules_non-relevant 367
+---------------------
+142001 number of patches:  125
+fibrosis_basal 125
+bronchiectasis_non-relevant 0
+ground_glass_peripheral_sub_pleural 0
+---------------------
+36 number of patches:  500
+micronodules_non-relevant 500
+---------------------
+183 number of patches:  26
+micronodules_peripheral_sub_pleural 26
+---------------------
+57003 number of patches:  9
+fibrosis_non-relevant 9
+---------------------
+140 number of patches:  21
+micronodules_non-relevant 21
+---------------------
+168 number of patches:  279
+fibrosis_peripheral_sub_pleural 3
+emphysema_non-relevant 276
+---------------------
+144 number of patches:  42
+fibrosis_basal 42
+---------------------
+150 number of patches:  95
+reticulation_apical 95
+consolidation_peripheral_sub_pleural 0
+ground_glass_non-relevant 0
+---------------------
+179 number of patches:  226
+reticulation_non-relevant 226
+---------------------
+153 number of patches:  64
+ground_glass_diffuse 64
+---------------------
+147 number of patches:  232
+healthy_non-relevant 229
+consolidation_apical 3
+---------------------
+19 number of patches:  49
+fibrosis_basal 49
+---------------------
+185 number of patches:  354
+fibrosis_diffuse 354
+---------------------
+152 number of patches:  67
+air_trapping_diffuse 52
+ground_glass_diffuse 15
 ---------------------

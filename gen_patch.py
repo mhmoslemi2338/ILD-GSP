@@ -10,6 +10,9 @@ import tifffile as tiff
 
 #######################################################
 remove_folder(patchesdirnametop)
+subfile_handler(expanded_files2,'end')
+
+# exit()
 expanded_files=subfile_handler([],'start')
 
 cwd=os.getcwd()
@@ -45,6 +48,7 @@ def genebmp(dirName):
 
     lung_bmp_dir = os.path.join(lung_dir,lungmaskbmp)
     remove_folder(lung_bmp_dir)
+    print(lung_bmp_dir)
     os.mkdir(lung_bmp_dir)
    
     #list dcm files
@@ -74,10 +78,10 @@ def genebmp(dirName):
         textw='n: '+f+' scan: '+str(scanNumber)
         
         tablscan=cv2.cvtColor(dsrresize1,cv2.COLOR_GRAY2BGR)
-        tiff.imsave(namescan, tablscan)
+        tiff.imwrite(namescan, tablscan)
         tagviews(namescan,textw,0,20)  
         dsrresize=dsrresize1
-        tiff.imsave(bmpfile,dsrresize)
+        tiff.imwrite(bmpfile,dsrresize)
 
         dimtabx=dsrresize.shape[0]
         dimtaby=dimtabx
@@ -105,9 +109,9 @@ def genebmp(dirName):
         lungresize = cv2.blur(lungresize,(5,5))                 
         np.putmask(lungresize,lungresize>0,100)
 
-        tiff.imsave(lungcoref,lungresize)
+        tiff.imwrite(lungcoref,lungresize)
         bgdirflm=os.path.join(bgdirf,lungcore)
-        tiff.imsave(bgdirflm,lungresize)
+        tiff.imwrite(bgdirflm,lungresize)
 
     
 
@@ -185,7 +189,7 @@ def pavbg(namedirtopcf,dx,dy,px,py):
                                 
                                 imgray =np.array(crorig,np.float32)
                                 tabi2 = np.int16(normi(imgray))
-                                tiff.imsave(patchNormpath+nampa, tabi2)
+                                tiff.imwrite(patchNormpath+nampa, tabi2)
                                 x=0
                                 #draw the rectange
                                 while x < px:
@@ -202,7 +206,7 @@ def pavbg(namedirtopcf,dx,dy,px,py):
                     i+=1
 
                 tabpw =tabfc+tabp
-                tiff.imsave(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'.jpg', tabpw) 
+                tiff.imwrite(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'.jpg', tabpw) 
                 mfl=open(jpegpath+'/'+f+'_slice_'+str(slicenumber)+'_'+labelbg+'_'+locabg+'_1.txt',"w")
                 mfl.write('#number of patches: '+str(nbp)+'\n')
                 mfl.close()
@@ -311,7 +315,7 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,iln,f,label,l
                             
                             imgray =np.array(crorig,dtype=np.float32)
                             tabi2 = np.int16(normi(imgray))
-                            tiff.imsave(patchNormpath+nampa, tabi2)
+                            tiff.imwrite(patchNormpath+nampa, tabi2)
                             
                             strpac=strpac+str(i)+' '+str(j)+'\n'
                             x=0
@@ -325,7 +329,7 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,iln,f,label,l
                                     else:
                                         y+=py-1
                                 x+=1
-                            tabf[j:j+py/2,i:i+px/2]=0   #cancel the source                        
+                            tabf[j:j+py//2,i:i+px//2]=0   #cancel the source                        
                     j+=1
                 i+=1
             break
@@ -337,7 +341,7 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,iln,f,label,l
     mfl=open(jpegpath+'/'+f+'_'+iln+'.txt',"w")
     mfl.write('#number of patches: '+str(nbp)+'\n'+strpac)
     mfl.close()
-    tiff.imsave(jpegpath+'/'+f+'_'+iln+'.jpg', tabp)
+    tiff.imwrite(jpegpath+'/'+f+'_'+iln+'.jpg', tabp)
     return nbp,tabp
 
 
@@ -463,6 +467,8 @@ for f in listdirc:
         os.mkdir(sroidir)
 
     remove_folder(namedirtopcf+'/patchfile')
+    if '.DS_Store' in namedirtopcf:
+        continue
     os.mkdir(namedirtopcf+'/patchfile')
     if posp==-1 and posu==-1:
         fif=False
@@ -548,5 +554,7 @@ for f in listdirc:
 #################### data statistics and log on paches ###########################
 make_log(patchtoppath,jpegpath,listslice)
 for row in glob.iglob(os.path.join(jpegpath, '*.txt')): os.remove(row) 
+if expanded_files==[]:
+    expanded_files=expanded_files2
 subfile_handler(expanded_files,'end')
 print('completed')
