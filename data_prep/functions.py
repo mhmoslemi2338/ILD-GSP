@@ -191,7 +191,7 @@ def subfile_handler(files,mode):
     if mode=='start':
         for row in target:
             master_path=os.getcwd()
-            path_now=os.path.join(master_path,'ILD_DB_lungMasks',row)
+            path_now=os.path.join(master_path,'ILD_DB/ILD_DB_lungMasks',row)
             try:
                 for idx,row2 in enumerate(os.listdir(path_now),start=1):
                     src=os.path.join(path_now,row2)
@@ -220,3 +220,16 @@ def subfile_handler(files,mode):
         print('ERROR : mode not supported!')
 
 
+##############################################################
+
+
+def file_stat(pp):
+    labels=[]
+    for row in os.listdir(pp):
+        if row == '.DS_Store':
+            continue
+        tmp=os.listdir(os.path.join(pp,row))
+        labels.append([row,len(tmp)])
+
+    labels.sort(key=lambda x:x[1],reverse=True)
+    return labels

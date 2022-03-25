@@ -191,7 +191,7 @@ def pavbg(namedirtopcf,dx,dy,px,py):
                                 imgray =np.array(crorig,np.float32)
                                 if out_img_depth==8:
                                     nampa='/'+labelbg+'/'+f+'_'+str(slicenumber)+'_'+str(nbp)+'.'+'png' 
-                                    tabi2 = np.unit8(normi(imgray,8))
+                                    tabi2 = np.uint8(normi(imgray,8))
                                     cv2.imwrite(patchNormpath+nampa, tabi2)
                                 else:
                                     tabi2 = np.int16(normi(imgray,16))
@@ -323,7 +323,7 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,iln,f,label,l
                         
                             if out_img_depth==8:
                                 nampa='/'+label+'/'+f+'_'+iln+'_'+str(nbp)+'.'+'png' 
-                                tabi2 = np.unit8(normi(imgray,8))
+                                tabi2 = np.uint8(normi(imgray,8))
                                 cv2.imwrite(patchNormpath+nampa, tabi2)
                             else:
                                 tabi2 = np.int16(normi(imgray,16))
@@ -569,4 +569,15 @@ if expanded_files==[]:
     expanded_files=expanded_files2
 subfile_handler(expanded_files,'end')
 remove_folder(os.path.join(patchesdirnametop,imagedirname))
-print('completed')
+remove_folder(os.path.join(patchesdirnametop,'SROIS'))
+
+
+
+labels=file_stat(patchNormpath)
+with open('data_prep/OUTPUT_PATCH/patches_norm/raw_stat.txt', 'w') as f:
+    f.write('\n*** Labels statistics for 32*32 img with thresh 0.8 ***\n\n')
+    for line in labels:
+        f.write(line[0]+': '+str(line[1]))
+        f.write('\n')
+
+

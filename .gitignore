@@ -2,7 +2,7 @@
 /matlab/
 matlab/
 TOPPATCH_16_set0_gci/
-OUTPUT_PATCHES*/
+OUTPUT*/
 OUTPUT_*/
 */OUTPUT_*/
 TOPPATCH*/
@@ -26,3 +26,9 @@ TEST/
 */patches_jpeg/
 */SROIS/
 .ipynb_checkpoints
+ILD_DB_talismanTestSuite/
+data/
+ILD_DB.rar
+ILD_DB/
+
+*/.DS_Store
