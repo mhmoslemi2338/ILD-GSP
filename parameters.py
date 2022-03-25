@@ -11,14 +11,20 @@ extendir='PATCHES2'
 raw_patch=False
 make_back_ground=False
 
+
+out_img_size=16
+out_img_depth=8
+
+#######################################################
+
 #patch overlapp tolerance
 thrpatch = 0.8
 # imageDepth=255 #number of bits used on dicom images (2 **n)
 imageDepth=65535
 avgPixelSpacing=0.734
 
-dimpavx =32
-dimpavy = 32
+dimpavx =out_img_size
+dimpavy = out_img_size
 typei='bmp' #can be jpg
 
 font5 = ImageFont.truetype( 'arial.ttf', 5)

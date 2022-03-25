@@ -28,14 +28,18 @@ def reptfulle(tabc,dx,dy):
     tabz = tabzi[:, :,1]   
     return tabz, imgi
 
-def normi(img):
+def normi(img,ddepth=8):
     tabi = np.array(img)
     tabi1=tabi-tabi.min()
     maxt=float(tabi1.max())
     if maxt==0:
         maxt=1
-    tabi2=tabi1*(imageDepth/maxt)
-    tabi2=tabi2.astype('uint16')
+    MAX_SIZE=2**ddepth
+    tabi2=tabi1*(MAX_SIZE/maxt)
+    if ddepth==8:
+        tabi2=tabi2.astype('uint8')
+    else:
+        tabi2=tabi2.astype('uint16')
     return tabi2
 
 def tagview(fig,label,x,y):

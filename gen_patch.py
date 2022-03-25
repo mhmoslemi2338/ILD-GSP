@@ -8,6 +8,7 @@ from parameters import *
 from functions import *
 import tifffile as tiff
 
+
 #######################################################
 remove_folder(patchesdirnametop)
 subfile_handler(expanded_files2,'end')
@@ -188,8 +189,13 @@ def pavbg(namedirtopcf,dx,dy,px,py):
                                     crorig.save(patchpath+nampa)
                                 
                                 imgray =np.array(crorig,np.float32)
-                                tabi2 = np.int16(normi(imgray))
-                                tiff.imwrite(patchNormpath+nampa, tabi2)
+                                if out_img_depth==8:
+                                    nampa='/'+labelbg+'/'+f+'_'+str(slicenumber)+'_'+str(nbp)+'.'+'png' 
+                                    tabi2 = np.unit8(normi(imgray,8))
+                                    cv2.imwrite(patchNormpath+nampa, tabi2)
+                                else:
+                                    tabi2 = np.int16(normi(imgray,16))
+                                    tiff.imwrite(patchNormpath+nampa, tabi2)
                                 x=0
                                 #draw the rectange
                                 while x < px:
@@ -314,9 +320,14 @@ def pavs (imgi,tab,dx,dy,px,py,namedirtopcf,jpegpath,patchpath,thr,iln,f,label,l
                             #normalize patches and put in patches_norm
                             
                             imgray =np.array(crorig,dtype=np.float32)
-                            tabi2 = np.int16(normi(imgray))
-                            tiff.imwrite(patchNormpath+nampa, tabi2)
-                            
+                        
+                            if out_img_depth==8:
+                                nampa='/'+label+'/'+f+'_'+iln+'_'+str(nbp)+'.'+'png' 
+                                tabi2 = np.unit8(normi(imgray,8))
+                                cv2.imwrite(patchNormpath+nampa, tabi2)
+                            else:
+                                tabi2 = np.int16(normi(imgray,16))
+                                tiff.imwrite(patchNormpath+nampa, tabi2)
                             strpac=strpac+str(i)+' '+str(j)+'\n'
                             x=0
                             #we draw the rectange
@@ -557,4 +568,5 @@ for row in glob.iglob(os.path.join(jpegpath, '*.txt')): os.remove(row)
 if expanded_files==[]:
     expanded_files=expanded_files2
 subfile_handler(expanded_files,'end')
+remove_folder(os.path.join(patchesdirnametop,imagedirname))
 print('completed')
