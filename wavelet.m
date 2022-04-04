@@ -7,10 +7,12 @@ cnt=0;
 
 
 
-addpath tools/sgwt_toolbox/
-addpath tools/Graph_kernels/
-addpath tools/gspbox/
-addpath tools/toolbox/
+addpath matlabTools/sgwt_toolbox/
+addpath matlabTools/Graph_kernels/
+addpath matlabTools/gspbox/
+addpath matlabTools/toolbox/
+addpath matlabTools/
+sgwt_setpath
 gsp_start
 
 
@@ -87,8 +89,8 @@ for idx=1:2
                 
                 %print progress
                 cnt=cnt+1;
-                if mod(cnt,485)==0
-                    disp(join(['progress:',num2str(cnt/485),' % ']))
+                if mod(cnt,970)==0
+                    disp(join(['progress:',num2str(cnt/970),' % ']))
                 end
             end             
         end     
@@ -98,9 +100,5 @@ for idx=1:2
 end
 
 
-%% plot wavelet response
-% close all
-% plot_wavelet_response(f_w{1},32,1)
-% plot_wavelet_response(f_w{2},16,2)
-% 
+
 
