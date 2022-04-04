@@ -18,3 +18,4 @@ ILD_DB/
 .DS_Store
 *.mat
 *.asv
+wavelet_mat/

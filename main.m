@@ -3,6 +3,7 @@
 clear all
 clc
 close all
+cnt=0;
 
 
 
@@ -49,13 +50,10 @@ for idx=1:2
     for k=1:length(lables)
         ll=lables{k};
         path=[path; join(['data/',typee,'/',ll])];
-        if ~ isdir(join(['wavelet_mat/',ll]))
-            mkdir(join(['wavelet_mat/',ll]))
+        if ~ isdir(join(['wavelet_mat/',typee,'/',ll]))
+            mkdir(join(['wavelet_mat/',typee,'/',ll]))
         end
     end
-    path
-
-
 
     for k=1:length(path)
         ll=path{k};
@@ -64,8 +62,7 @@ for idx=1:2
     
         for k2=1:length(images)
             filename=join([ll,'/',images{k2}]);
-            savepath=replace(filename,'.png','.mat');
-            savepath=replace(savepath,'data','wavelet_mat');
+
     
             % Graph Signal
             Data = imread(filename);
@@ -82,24 +79,23 @@ for idx=1:2
                     wavelet_band=wavelet_level(:,j);
                     wavelet_band=reshape(wavelet_band,[dim,dim]);
                     wavelet_level_sq(:,:,j)=wavelet_band;
-                end                  
+                end     
+
+                savepath=replace(filename,'.png',join(['_level',num2str(i),'.mat']));
+                savepath=replace(savepath,'data','wavelet_mat');
                 save(savepath,'wavelet_level_sq'); %save wavelet response
+                
+                %print progress
+                cnt=cnt+1;
+                if mod(cnt,485)==0
+                    disp(join(['progress:',num2str(cnt/485),' % ']))
+                end
             end             
         end     
     end
 
 
-
-
-
 end
-
-
-
-
-
-
-
 
 
 %% plot wavelet response
