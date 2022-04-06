@@ -10,16 +10,18 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.metrics import confusion_matrix
 
+try: os.mkdir('results')
+except: pass
 
-def make_train_test_Data(features,lable,pca_num,train_ratio):
-    Data=pd.DataFrame(np.concatenate([features,lable],axis=1))
+def make_train_test_Data(features,label,pca_num,train_ratio):
+    Data=pd.DataFrame(np.concatenate([features,label],axis=1))
     x =  Data.loc[:,[i for i in range(features.shape[1])]].values
     # Standardizing the features
     x = StandardScaler().fit_transform(x)
     # PCA
     pca = PCA(n_components=pca_num)
     principalComponents = pca.fit_transform(x)
-    Data=pd.DataFrame(np.concatenate([principalComponents,lable],axis=1))
+    Data=pd.DataFrame(np.concatenate([principalComponents,label],axis=1))
     # make train_test
     train=Data.sample(frac=train_ratio,replace=False,random_state=0)
     test=Data.drop(train.index)
@@ -69,11 +71,11 @@ def plot_CM(CM_in,name,is_save):
             if float(number)>0.5 : 
                 fontsize=22
             plt.text(j, i,number ,horizontalalignment="center",color=color,fontsize=fontsize)
-    plt.xticks(np.arange(a), lables_name,fontsize='x-large',rotation=-30,fontweight='bold')
-    plt.yticks(np.arange(a),  lables_name,fontsize='x-large',fontweight='bold')
+    plt.xticks(np.arange(a), labels_name,fontsize='x-large',rotation=-30,fontweight='bold')
+    plt.yticks(np.arange(a),  labels_name,fontsize='x-large',fontweight='bold')
     plt.title(name,fontsize=20,fontweight='bold'); plt.ylabel('True label',fontsize=20); plt.xlabel('Predicted label',fontsize=20);
     if is_save:
-        fig.savefig(name+'.jpg', dpi=3*fig.dpi)
+        fig.savefig('results/'+name+'.jpg', dpi=3*fig.dpi)
         plt.close(fig)
 
 
@@ -85,7 +87,7 @@ def statistics_CM(CM_in):
     FP = np.sum(cm, axis=0) - TP
     FN = np.sum(cm, axis=1) - TP
 
-    num_classes = len(lables_name)
+    num_classes = len(labels_name)
     TN = []
     for i in range(num_classes):
         temp = np.delete(cm, i, 0)    # delete ith row
@@ -111,7 +113,7 @@ def statistics_CM(CM_in):
         "Precision":np.round(100*precision,2),
         "Specificity":np.round(100*specificity,2),
         "F1-score":np.round(100*F1_score,2)})
-    tmp=dict((v-1,k) for k,v in lables_dict.items())
+    tmp=dict((v-1,k) for k,v in labels_dict.items())
     tmp[5]='All classes'
     return df.rename(index=tmp)
 
@@ -121,68 +123,68 @@ def statistics_CM(CM_in):
 #*******************************************************************
 
 
-######## Lables name ##########
-lables_name=os.listdir('features/Train_ILD')
-try: lables_name.remove('.DS_Store')
+######## labels name ##########
+labels_name=os.listdir('features/Train_ILD')
+try: labels_name.remove('.DS_Store')
 except: pass
-lables_dict={}
-for i in range(len(lables_name)):
-    lables_dict[lables_name[i]]=i+1
+labels_dict={}
+for i in range(len(labels_name)):
+    labels_dict[labels_name[i]]=i+1
 
 ######## ILD ##########
-lable_ILD=[]
+label_ILD=[]
 features_ILD=[]
 
-for ll in lables_name:
-    lable_path=os.path.join('features/Train_ILD',ll)
-    files=os.listdir(lable_path)
+for ll in labels_name:
+    label_path=os.path.join('features/Train_ILD',ll)
+    files=os.listdir(label_path)
     try: files.remove('.DS_Store')
     except: pass
     for row in files:
-        file_path=os.path.join(lable_path,row)
+        file_path=os.path.join(label_path,row)
         feature_vector = scipy.io.loadmat(file_path)['feature_vector']
         features_ILD.append(feature_vector[0])
 
-    lable_ILD+=[lables_dict[ll]]*len(files)
+    label_ILD+=[labels_dict[ll]]*len(files)
 
 features_ILD=np.array(features_ILD)
-lable_ILD=np.array(lable_ILD)
-lable_ILD = np.reshape(lable_ILD,(features_ILD.shape[0],1))
+label_ILD=np.array(label_ILD)
+label_ILD = np.reshape(label_ILD,(features_ILD.shape[0],1))
 
 
 
 ######## Talisman ##########
-lable_Talisman=[]
+label_Talisman=[]
 features_Talisman=[]
 
-for ll in lables_name:
-    lable_path=os.path.join('features/Test_Talisman',ll)
-    files=os.listdir(lable_path)
+for ll in labels_name:
+    label_path=os.path.join('features/Test_Talisman',ll)
+    files=os.listdir(label_path)
     try: files.remove('.DS_Store')
     except: pass
     for row in files:
-        file_path=os.path.join(lable_path,row)
+        file_path=os.path.join(label_path,row)
         feature_vector = scipy.io.loadmat(file_path)['feature_vector']
         features_Talisman.append(feature_vector[0])
 
-    lable_Talisman+=[lables_dict[ll]]*len(files)
+    label_Talisman+=[labels_dict[ll]]*len(files)
 
 features_Talisman=np.array(features_Talisman)
-lable_Talisman=np.array(lable_Talisman)
-lable_Talisman = np.reshape(lable_Talisman,(features_Talisman.shape[0],1))
+label_Talisman=np.array(label_Talisman)
+label_Talisman = np.reshape(label_Talisman,(features_Talisman.shape[0],1))
 
 
 ####### statistics #####
-Data_ILD=pd.DataFrame(np.concatenate([features_ILD,lable_ILD],axis=1))
-Data_Talisman=pd.DataFrame(np.concatenate([features_Talisman,lable_Talisman],axis=1))
+Data_ILD=pd.DataFrame(np.concatenate([features_ILD,label_ILD],axis=1))
+Data_Talisman=pd.DataFrame(np.concatenate([features_Talisman,label_Talisman],axis=1))
 print('ILD class Distribution:')
 tmp=pd.DataFrame(Data_ILD[features_ILD.shape[1]].value_counts())
-tmp=tmp.rename(index=dict((v,k) for k,v in lables_dict.items()))
+tmp=tmp.rename(index=dict((v,k) for k,v in labels_dict.items()))
 tmp=tmp.rename(columns={48:'count'})
 print(tmp)
 print('\nTalisman Distribution Dist:')
 tmp=pd.DataFrame(Data_Talisman[features_Talisman.shape[1]].value_counts())
-tmp=tmp.rename(index=dict((v,k) for k,v in lables_dict.items()))
+tmp=tmp.rename(index=dict((v,k) for k,v in labels_dict.items()))
 tmp=tmp.rename(columns={48:'count'})
 print(tmp)
 
@@ -197,11 +199,11 @@ ratio=0.75
 pca_num=30
 
 
-[ILD_train,ILD_test]=make_train_test_Data(features_ILD,lable_ILD,pca_num,ratio)
+[ILD_train,ILD_test]=make_train_test_Data(features_ILD,label_ILD,pca_num,ratio)
 [CM_ILD,acc_ILD]=train_SVM(ILD_train,ILD_test) 
 print('\nAccuracy on ILD, RBF kernel,',pca_num,'PCA components: ',round(acc_ILD,3),'%')
 
-[Talisman_train,Talisman_test]=make_train_test_Data(features_Talisman,lable_Talisman,pca_num,ratio)
+[Talisman_train,Talisman_test]=make_train_test_Data(features_Talisman,label_Talisman,pca_num,ratio)
 [CM_Talisman,acc_Talisman]=train_SVM(Talisman_train,Talisman_test) 
 print('Accuracy on Talisman, RBF kernel,',pca_num,'PCA components: ',round(acc_Talisman,3),'%\n')
 
@@ -217,8 +219,8 @@ plot_CM(CM_Talisman,'Confusion Matrix for Talisman Data',True)
 stat_ILD=statistics_CM(CM_ILD)
 stat_Talisman=statistics_CM(CM_Talisman)
 
-with open('ILD.txt', mode='w') as file_object:
+with open('results/ILD.txt', mode='w') as file_object:
     print(stat_ILD, file=file_object)
 
-with open('Talisman.txt', mode='w') as file_object:
+with open('results/Talisman.txt', mode='w') as file_object:
     print(stat_Talisman, file=file_object)
