@@ -3,24 +3,57 @@
 import os
 import scipy.io
 import numpy as np
+import pandas as pd
 from sklearn import svm
-import random
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.metrics import confusion_matrix
 
 
-ration=0.75
+def make_train_test_Data(features,lable,pca_num,train_ratio):
+    Data=pd.DataFrame(np.concatenate([features,lable],axis=1))
+    x =  Data.loc[:,[i for i in range(features.shape[1])]].values
+    # Standardizing the features
+    x = StandardScaler().fit_transform(x)
+    # PCA
+    pca = PCA(n_components=pca_num)
+    principalComponents = pca.fit_transform(x)
+    Data=pd.DataFrame(np.concatenate([principalComponents,lable],axis=1))
+    # make train_test
+    train=Data.sample(frac=train_ratio,replace=False,random_state=0)
+    test=Data.drop(train.index)
+    return [train,test]
 
-######## ILD ##########
-lable_ILD=[]
-features_ILD=[]
+def train_SVM(train, test):
+    x_train =  train.loc[:,[i for i in range(train.shape[1]-1)]].values
+    y_train = train.loc[:,[train.shape[1]-1]].values.ravel()
 
-lable_ILD_train=[]
-features_ILD_train=[]
+    x_test=  test.loc[:,[i for i in range(test.shape[1]-1)]].values
+    y_test = test.loc[:,[test.shape[1]-1]].values.ravel()
 
-lable_ILD_test=[]
-features_ILD_test=[]
+    clf = svm.SVC(kernel='rbf',decision_function_shape='ovo'  , class_weight='balanced'  ,max_iter=-1)
+    clf.fit(x_train, y_train)
+
+    ####### ACC on Test  ########
+    label_predict_Test=[]
+    for row in x_test:
+        ll=clf.predict([row])
+        label_predict_Test.append(ll)
+
+    label_predict_Test=np.array(label_predict_Test)
+    label_predict_Test=label_predict_Test.reshape(y_test.shape)
+    diff=(label_predict_Test==y_test)
+    acc=100*np.sum(diff)/len(y_test) 
+    CM=confusion_matrix(y_test, label_predict_Test)
+    return [CM,acc]
 
 
+#*******************************************************************
+#************************** Prepare Data ***************************
+#*******************************************************************
 
+
+######## Lables name ##########
 lables_name=os.listdir('features/Train_ILD')
 try: lables_name.remove('.DS_Store')
 except: pass
@@ -28,126 +61,78 @@ lables_dict={}
 for i in range(len(lables_name)):
     lables_dict[lables_name[i]]=i+1
 
+######## ILD ##########
+lable_ILD=[]
+features_ILD=[]
+
 for ll in lables_name:
     lable_path=os.path.join('features/Train_ILD',ll)
     files=os.listdir(lable_path)
     try: files.remove('.DS_Store')
     except: pass
-    
-    tmp=[]
     for row in files:
         file_path=os.path.join(lable_path,row)
         feature_vector = scipy.io.loadmat(file_path)['feature_vector']
         features_ILD.append(feature_vector[0])
-        tmp.append(feature_vector[0])
-    
-    np.random.shuffle(tmp)
-    idx=len(tmp)
-    features_ILD_train+=tmp[0:int(0.8*idx)]
-    lable_ILD_train+=[lables_dict[ll]]*int(0.8*idx)
-    
-    features_ILD_test+=tmp[int(0.8*idx):]
-    lable_ILD_test+=[lables_dict[ll]]*(idx-int(0.8*idx))
 
     lable_ILD+=[lables_dict[ll]]*len(files)
 
 features_ILD=np.array(features_ILD)
 lable_ILD=np.array(lable_ILD)
+lable_ILD = np.reshape(lable_ILD,(features_ILD.shape[0],1))
 
-lable_ILD_test=np.array(lable_ILD_test)
-lable_ILD_train=np.array(lable_ILD_train)
-
-features_ILD_train=np.array(features_ILD_train)
-features_ILD_test=np.array(features_ILD_test)
 
 
 ######## Talisman ##########
 lable_Talisman=[]
 features_Talisman=[]
 
-lable_Talisman_train=[]
-features_Talisman_train=[]
-
-lable_Talisman_test=[]
-features_Talisman_test=[]
-
-
 for ll in lables_name:
     lable_path=os.path.join('features/Test_Talisman',ll)
     files=os.listdir(lable_path)
     try: files.remove('.DS_Store')
     except: pass
-
-    tmp=[]
     for row in files:
         file_path=os.path.join(lable_path,row)
         feature_vector = scipy.io.loadmat(file_path)['feature_vector']
         features_Talisman.append(feature_vector[0])
-        tmp.append(feature_vector[0])
-    
-    np.random.shuffle(tmp)
-    idx=len(tmp)
-    features_Talisman_train+=tmp[0:int(0.8*idx)]
-    lable_Talisman_train+=[lables_dict[ll]]*int(0.8*idx)
-    
-    features_Talisman_test+=tmp[int(0.8*idx):]
-    lable_Talisman_test+=[lables_dict[ll]]*(idx-int(0.8*idx))
 
     lable_Talisman+=[lables_dict[ll]]*len(files)
 
 features_Talisman=np.array(features_Talisman)
 lable_Talisman=np.array(lable_Talisman)
-
-lable_Talisman_test=np.array(lable_Talisman_test)
-lable_Talisman_train=np.array(lable_Talisman_train)
-
-features_Talisman_test=np.array(features_Talisman_test)
-features_Talisman_train=np.array(features_Talisman_train)
+lable_Talisman = np.reshape(lable_Talisman,(features_Talisman.shape[0],1))
 
 
-
-
-# clf = svm.SVC(decision_function_shape='ovo'  , probability=True,class_weight='balanced' ,verbose=True ,max_iter=-1, random_state=random.randint(1,900))
-clf = svm.SVC(decision_function_shape='ovo'  , class_weight='balanced'  ,max_iter=-1)
-clf.fit(features_ILD_train, lable_ILD_train)
-
-
-
-####### ACC on Test data ########
-label_predict_Test=[]
-for row in features_ILD_test:
-    ll=clf.predict([row])
-    label_predict_Test.append(ll)
-
-
-label_predict_Test=np.array(label_predict_Test)
-label_predict_Test=label_predict_Test.reshape(lable_ILD_test.shape)
-diff=(label_predict_Test==lable_ILD_test)
-acc=100*np.sum(diff)/len(lable_ILD_test) 
-
-print('Accuracy in ILD Test: ',acc)
+####### statistics #####
+Data_ILD=pd.DataFrame(np.concatenate([features_ILD,lable_ILD],axis=1))
+Data_Talisman=pd.DataFrame(np.concatenate([features_Talisman,lable_Talisman],axis=1))
+print('ILD class Distribution:')
+tmp=pd.DataFrame(Data_ILD[features_ILD.shape[1]].value_counts())
+tmp=tmp.rename(index=dict((v,k) for k,v in lables_dict.items()))
+tmp=tmp.rename(columns={48:'count'})
+print(tmp)
+print('\nTalisman Distribution Dist:')
+tmp=pd.DataFrame(Data_Talisman[features_Talisman.shape[1]].value_counts())
+tmp=tmp.rename(index=dict((v,k) for k,v in lables_dict.items()))
+tmp=tmp.rename(columns={48:'count'})
+print(tmp)
 
 
 
+#**************************************************************
+#************************** Trainng ***************************
+#**************************************************************
 
 
-
-# clf = svm.SVC(decision_function_shape='ovo'  , probability=True,class_weight='balanced' ,verbose=True ,max_iter=-1, random_state=random.randint(1,900))
-clf = svm.SVC(decision_function_shape='ovo'  , class_weight='balanced'  ,max_iter=-1)
-clf.fit(features_Talisman_train, lable_Talisman_train)
+ratio=0.75
+pca_num=30
 
 
+[ILD_train,ILD_test]=make_train_test_Data(features_ILD,lable_ILD,pca_num,ratio)
+[CM_ILD,acc_ILD]=train_SVM(ILD_train,ILD_test) 
+print('\nAccuracy on ILD, RBF kernel,',pca_num,'PCA components: ',round(acc_ILD,3),'%')
 
-####### ACC on Test data ########
-label_predict_Test=[]
-for row in features_Talisman_test:
-    ll=clf.predict([row])
-    label_predict_Test.append(ll)
-
-
-label_predict_Test=np.array(label_predict_Test)
-label_predict_Test=label_predict_Test.reshape(lable_Talisman_test.shape)
-diff=(label_predict_Test==lable_Talisman_test)
-acc=100*np.sum(diff)/len(lable_Talisman_test) 
-
-print('Accuracy in Talisman Test: ',acc)
+[Talisman_train,Talisman_test]=make_train_test_Data(features_Talisman,lable_Talisman,pca_num,ratio)
+[CM_Talisman,acc_Talisman]=train_SVM(Talisman_train,Talisman_test) 
+print('Accuracy on Talisman, RBF kernel,',pca_num,'PCA components: ',round(acc_Talisman,3),'%\n')
