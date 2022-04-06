@@ -4,6 +4,7 @@ import os
 import scipy.io
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn import svm
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
@@ -47,6 +48,33 @@ def train_SVM(train, test):
     CM=confusion_matrix(y_test, label_predict_Test)
     return [CM,acc]
 
+def plot_CM(CM_in,name,is_save):
+    CM=CM_in.copy()
+    CM=CM/CM.sum(axis=1)[:,None]
+    (a,a)=CM.shape
+    ###### save confussion matrix as an image #####
+    fig=plt.figure(figsize=(16, 14))
+    plt.imshow(CM,  cmap=plt.cm.Blues);
+    thresh=CM.max()/2
+    for i in range(a):
+        for j in range(a):
+            number=CM[i, j].copy()
+            if number==float(0):
+                number=int(number)
+            number=round(number,3)
+            if(CM[i, j] > thresh) : color="white"
+            else: color="black"
+            fontweight='normal'
+            fontsize=20
+            if float(number)>0.5 : 
+                fontsize=22
+            plt.text(j, i,number ,horizontalalignment="center",color=color,fontsize=fontsize)
+    plt.xticks(np.arange(a), lables_name,fontsize='x-large',rotation=-30,fontweight='bold')
+    plt.yticks(np.arange(a),  lables_name,fontsize='x-large',fontweight='bold')
+    plt.title(name,fontsize=20,fontweight='bold'); plt.ylabel('True label',fontsize=20); plt.xlabel('Predicted label',fontsize=20);
+    if is_save:
+        fig.savefig(name+'.jpg', dpi=3*fig.dpi)
+        plt.close(fig)
 
 #*******************************************************************
 #************************** Prepare Data ***************************
@@ -136,3 +164,8 @@ print('\nAccuracy on ILD, RBF kernel,',pca_num,'PCA components: ',round(acc_ILD,
 [Talisman_train,Talisman_test]=make_train_test_Data(features_Talisman,lable_Talisman,pca_num,ratio)
 [CM_Talisman,acc_Talisman]=train_SVM(Talisman_train,Talisman_test) 
 print('Accuracy on Talisman, RBF kernel,',pca_num,'PCA components: ',round(acc_Talisman,3),'%\n')
+
+
+###### plot confusion matrix ######
+plot_CM(CM_ILD,'Confusion Matrix for ILD Data',True)
+plot_CM(CM_Talisman,'Confusion Matrix for Talisman Data',True)
