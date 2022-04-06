@@ -76,6 +76,46 @@ def plot_CM(CM_in,name,is_save):
         fig.savefig(name+'.jpg', dpi=3*fig.dpi)
         plt.close(fig)
 
+
+
+
+def statistics_CM(CM_in):
+    cm=CM_in.copy()
+    TP = np.diag(cm)
+    FP = np.sum(cm, axis=0) - TP
+    FN = np.sum(cm, axis=1) - TP
+
+    num_classes = len(lables_name)
+    TN = []
+    for i in range(num_classes):
+        temp = np.delete(cm, i, 0)    # delete ith row
+        temp = np.delete(temp, i, 1)  # delete ith column
+        TN.append(sum(sum(temp)))
+
+    acc=TP/np.sum(cm, axis=1)
+    precision = TP/(TP+FP)
+    recall = TP/(TP+FN)
+    specificity = TN/(TN+FP)
+    F1_score=2*precision*recall/(precision+recall)
+
+    acc=np.append(acc,np.average(acc,weights=np.sum(CM_in,axis=1)/np.sum(CM_in)))
+    precision=np.append(precision,np.average(precision,weights=np.sum(CM_in,axis=1)/np.sum(CM_in)))
+    recall = np.append(recall,np.average(recall,weights=np.sum(CM_in,axis=1)/np.sum(CM_in)))
+    specificity=np.append(specificity,np.average(specificity,weights=np.sum(CM_in,axis=1)/np.sum(CM_in)))
+    F1_score=np.append(F1_score,np.average(F1_score,weights=np.sum(CM_in,axis=1)/np.sum(CM_in)))
+
+
+    df=pd.DataFrame(
+        {"Accuracy":np.round(100*acc,2),
+        "Recall":np.round(100*recall,2),
+        "Precision":np.round(100*precision,2),
+        "Specificity":np.round(100*specificity,2),
+        "F1-score":np.round(100*F1_score,2)})
+    tmp=dict((v-1,k) for k,v in lables_dict.items())
+    tmp[5]='All classes'
+    return df.rename(index=tmp)
+
+
 #*******************************************************************
 #************************** Prepare Data ***************************
 #*******************************************************************
@@ -169,3 +209,16 @@ print('Accuracy on Talisman, RBF kernel,',pca_num,'PCA components: ',round(acc_T
 ###### plot confusion matrix ######
 plot_CM(CM_ILD,'Confusion Matrix for ILD Data',True)
 plot_CM(CM_Talisman,'Confusion Matrix for Talisman Data',True)
+
+
+
+
+##### acc values
+stat_ILD=statistics_CM(CM_ILD)
+stat_Talisman=statistics_CM(CM_Talisman)
+
+with open('ILD.txt', mode='w') as file_object:
+    print(stat_ILD, file=file_object)
+
+with open('Talisman.txt', mode='w') as file_object:
+    print(stat_Talisman, file=file_object)
