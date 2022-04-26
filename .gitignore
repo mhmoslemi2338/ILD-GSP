@@ -9,7 +9,6 @@ tmp.m
 *.pckl
 *.ipynb
 TOKEN.txt
-*.xlsx
 .ipynb_checkpoints
 data/
 ILD_DB.rar
