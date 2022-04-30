@@ -20,3 +20,8 @@ ILD_DB/
 wavelet_mat/
 features/
 weekly lab/
+*.zip
+*.rar
+Graph\ wavelet\ implement/features/
+Graph\ wavelet\ implement/wavelet_mat/
+
