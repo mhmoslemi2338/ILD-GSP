@@ -1,6 +1,7 @@
 /_/
 _/
 tmp.m
+matlabTools/
 *.java
 /_*/
 /.vscode/
