@@ -7,6 +7,7 @@ tmp.m
 .vscode/
 *.pyc
 *.pckl
+*.pkl
 *.ipynb
 TOKEN.txt
 .ipynb_checkpoints
