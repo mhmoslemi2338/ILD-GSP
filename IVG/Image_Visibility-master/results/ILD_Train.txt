@@ -1,7 +1,0 @@
-              Accuracy  Recall  Precision  Specificity  F1-score
-healthy          99.69   99.69      98.49        99.45     99.09
-ground           99.96   99.96      99.42        99.94     99.69
-micronodules     98.61   98.61      99.80        99.87     99.20
-emphysema       100.00  100.00     100.00       100.00    100.00
-fibrosis         99.80   99.80      99.29        99.85     99.54
-All classes      99.34   99.34      99.34        99.77     99.33

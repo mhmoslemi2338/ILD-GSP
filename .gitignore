@@ -4,11 +4,11 @@ tmp.m
 *.java
 /_*/
 /.vscode/
+__pycache__/
 .vscode/
 *.pyc
 *.pckl
 *.pkl
-*.ipynb
 TOKEN.txt
 .ipynb_checkpoints
 data/

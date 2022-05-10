@@ -1,0 +1,9 @@
+              Accuracy  Recall  Precision  TN rate    AUC     F1
+healthy          96.57   94.69      88.72    97.03  95.86  91.61
+ground           97.33   95.11      92.22    97.91  96.51  93.64
+micronodules     97.82   93.12      96.15    99.03  96.08  94.61
+emphysema        98.59   94.81      97.86    99.50  97.16  96.31
+fibrosis         97.90   92.77      96.35    99.15  95.96  94.53
+
+	**** overal accuracy: 94.1 % 
+	**** overal F1-score (Macro): 94.14 %
