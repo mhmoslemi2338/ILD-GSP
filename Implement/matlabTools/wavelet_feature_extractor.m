@@ -12,7 +12,7 @@ function vector=wavelet_feature_extractor(I)
 
 
     Data=double(I);
-    [Gs ,N ,Ln_bpt ,Colorednodes ,beta_dist] = define_graph(Data , theta , max_level);
+    [N, Ln_bpt ,Colorednodes ,beta_dist] = define_graph(Data , theta , max_level);
     f_w = wavelet_response(Data,N, Ln_bpt, Colorednodes, beta_dist, filterlen, theta);
 
     % convert wavelet response to 4D matrix and save

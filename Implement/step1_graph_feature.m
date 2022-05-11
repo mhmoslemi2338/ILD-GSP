@@ -3,9 +3,7 @@
 clear all; clc; close all
 
 
-addpath matlabTools/gspbox/
 addpath matlabTools/
-gsp_start
 
 cnt=1;
 dest_dir='texture_features';
@@ -36,10 +34,10 @@ for k=1:length(path)
  
         %%%%%% HVG , IVG
         feature_vector=[];
-        for method={'horizontal','natural'}
-            for lattice={true , false}
-                for I = {img ,255-img} 
-                    I=cell2mat(I);
+        for I = {img ,255-img}
+            I=cell2mat(I);
+            for method={'horizontal','natural'}
+                for lattice={true , false}    
                     Edge_list=imageVisibilityGraph(I,cell2mat(method),cell2mat(lattice));
                     G = graph(Edge_list(:,1),Edge_list(:,2));
                     Deg_seq = degree(G);
@@ -50,10 +48,10 @@ for k=1:length(path)
                     feature_vector=[feature_vector wblfit(Pk) Z];
                 end
             end
+            %%%%%% wavelet
+            wavelet_feature=wavelet_feature_extractor(I);
+            feature_vector=[feature_vector wavelet_feature];
         end   
-        %%%%%% wavelet
-        wavelet_feature=wavelet_feature_extractor(img);
-        feature_vector=[feature_vector wavelet_feature];
 
         savepath=replace(replace(filename,'.png','.mat'),'data',dest_dir);
         save(savepath,'feature_vector');

@@ -1,6 +1,6 @@
 
 
-function [Gs ,N ,Ln_bpt ,Colorednodes ,beta_dist] = define_graph(Data , theta , max_level)
+function [N, Ln_bpt ,Colorednodes ,beta_dist] = define_graph(Data , theta , max_level)
     
 % Parameters ####
     edgemap =1; % uses edge-map if 1, use regular 8-connected graph otherwise
@@ -26,20 +26,4 @@ function [Gs ,N ,Ln_bpt ,Colorednodes ,beta_dist] = define_graph(Data , theta , 
         end
     end
     
-% GSPbox implementation ####
-    G1_L1 = gsp_estimate_lmax(gsp_graph(sparse(bptG{1,1}),gsp_2dgrid(m).coords));
-    G2_L1 = gsp_estimate_lmax(gsp_graph(sparse(bptG{1,2}),gsp_2dgrid(m).coords));
-    G1_L2 = gsp_estimate_lmax(gsp_graph(sparse(bptG{2,1}),gsp_2dgrid(m).coords));
-    G2_L2 = gsp_estimate_lmax(gsp_graph(sparse(bptG{2,2}),gsp_2dgrid(m).coords));
-    
-    G1_L1.LN=Ln_bpt{1,1};
-    G2_L1.LN=Ln_bpt{1,2};
-    G1_L2.LN=Ln_bpt{2,1};
-    G2_L2.LN=Ln_bpt{2,2};
-
-    Gs={'G1_L1',G1_L1;
-        'G2_L1',G2_L1;
-        'G1_L2',G1_L2;
-        'G2_L2',G2_L2};
-
 end

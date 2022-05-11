@@ -37,6 +37,8 @@ for same_class_size in [True , False]:
     # we choose 25% of data for Test
     # after selecting Train , test we shuffles each set using unison_shuffled_copies
     ####################################################
+    
+    
     Data=pd.read_pickle('Data.pkl')
     Data=Data.rename(columns={"label": 2112})
     if same_class_size:
