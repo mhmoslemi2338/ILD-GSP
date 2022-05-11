@@ -1,5 +1,6 @@
-
+import os
 from pycm import *
+import scipy.io
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn import svm
@@ -7,6 +8,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+try: os.mkdir("result")
+except: pass
 
 labels_name=['healthy', 'ground', 'micronodules', 'emphysema', 'fibrosis']
 labels_dict={'healthy': 1, 'ground': 2, 'micronodules': 3, 'emphysema': 4, 'fibrosis': 5}
@@ -24,11 +27,32 @@ def plot_CM(CM,labels_name,name,is_save):
     plt.yticks(np.arange(CM.shape[0]),  labels_name,fontsize='x-large',fontweight='bold')
     plt.title(name,fontsize=18,fontweight='bold'); plt.ylabel('True label',fontsize=18); plt.xlabel('Predicted label',fontsize=18);
     if is_save:
-        fig.savefig(name+'.jpg', dpi=3*fig.dpi)
+        fig.savefig("result/"+name+'.jpg', dpi=3*fig.dpi)
         plt.close(fig)
 
 
-for same_class_size in [True , False]:
+
+
+### read features and concert to dataframe
+feature_name='texture_features'
+label_ILD=[]
+features=[]
+for ll in labels_name:
+    label_path=os.path.join(feature_name+'/',ll)
+    files=os.listdir(label_path)
+    try: files.remove('.DS_Store')
+    except: pass
+    for row in files:
+        file_path=os.path.join(label_path,row)
+        feature_vector = scipy.io.loadmat(file_path)['feature_vector']
+        features.append(feature_vector[0])
+    label_ILD+=[labels_dict[ll]]*len(files)
+features=np.array(features)
+label_ILD=np.array(label_ILD)
+label_ILD = np.reshape(label_ILD,(features.shape[0],1))
+
+
+for same_class_size in [False , True]:
     if same_class_size: name="_same_class_size"
     else: name=""
 
@@ -37,16 +61,14 @@ for same_class_size in [True , False]:
     # we choose 25% of data for Test
     # after selecting Train , test we shuffles each set using unison_shuffled_copies
     ####################################################
-    
-    
-    Data=pd.read_pickle('Data.pkl')
-    Data=Data.rename(columns={"label": 2112})
+    Data=pd.DataFrame(np.concatenate([features, label_ILD],axis=1))
     if same_class_size:
-        class_size=np.min(Data[2112].value_counts())
+        class_size=np.min(Data[Data.shape[1]-1].value_counts())
         Data=Data.groupby(Data.shape[1]-1).apply(lambda s: s.sample(n=class_size,replace=False,random_state=0))
         Data = Data.reset_index(level=[None])
         Data=Data.set_index('level_1')
-    Data=Data.sample(frac=1,random_state=0) ## shuffle
+
+    Data=Data.sample(frac=1,random_state=5) ## shuffle
     Train=Data.sample(frac=0.75,replace=False,random_state=0)
     Test= Data.drop(index=Train.index)
 
@@ -83,7 +105,7 @@ for same_class_size in [True , False]:
     #*****
     cm = ConfusionMatrix(actual_vector=y_test, predict_vector=label_predict_test)
     CM=np.array([list(row.values()) for row in list(cm.matrix.values())])
-    plot_CM(CM,labels_name,'CM for ILD_Test'+name,True)
+    plot_CM(CM,labels_name,'CM_ILD_Test'+name,True)
 
     #*****
     accuracy=np.array(list((cm.ACC).values()))
@@ -103,12 +125,13 @@ for same_class_size in [True , False]:
         "AUC":np.round(100*AUC,2),
         "F1":np.round(100*F1,2)})
     df=df.rename(index=dict((v-1,k) for k,v in labels_dict.items()))
-    with open('ILD_Test'+name+'.txt', mode='w') as file_object:
+    with open('result/ILD_Test'+name+'.txt', mode='w') as file_object:
         print(df, file=file_object)
         print('\n\t**** overal accuracy: '+str(overall_accuracy)+' % ', file=file_object)
         print('\t**** overal F1-score (Macro): '+str(overal_F1)+' %', file=file_object)
     #*****
-    # print('Feature vector length:',Train.shape[1])
-    print('\nSVM, RBF kernel,',pca_num,'PCA components: ')
+    print('\nFeature vector length'+name+' :',Train.shape[1])
+    print('SVM, RBF kernel,PCA components: ',pca_num)
     print('\tAccuracy on Test: ' ,overall_accuracy,'%')
     print('\tF1_score on Test: ',overal_F1,'%')
+
