@@ -22,7 +22,9 @@ for k=1:length(lables)
         mkdir(join([dest_dir,'/',ll]))
     end
 end
-
+%*************************************
+%%%%%%%%%%% EXTRACT FEATURES %%%%%%%%%
+%*************************************
 
 for k=1:length(path)
     ll=path{k};
