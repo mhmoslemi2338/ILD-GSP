@@ -34,9 +34,25 @@ def plot_CM(CM,labels_name,name,is_save):
 
 
 ### read features and concert to dataframe
-feature_name='texture_features'
+feature_name='texture_features/graph'
 label_ILD=[]
-features=[]
+features_graph=[]
+for ll in labels_name:
+    label_path=os.path.join(feature_name+'/',ll)
+    files=os.listdir(label_path)
+    try: files.remove('.DS_Store')
+    except: pass
+    for row in files:
+        file_path=os.path.join(label_path,row)
+        feature_vector = scipy.io.loadmat(file_path)['feature_vector'] 
+        features_graph.append(feature_vector[0])
+    label_ILD+=[labels_dict[ll]]*len(files)
+features_graph=np.array(features_graph)
+label_ILD=np.array(label_ILD)
+label_ILD = np.reshape(label_ILD,(features_graph.shape[0],1))
+
+feature_name='texture_features/wavelet'
+features_wavelet=[]
 for ll in labels_name:
     label_path=os.path.join(feature_name+'/',ll)
     files=os.listdir(label_path)
@@ -45,11 +61,9 @@ for ll in labels_name:
     for row in files:
         file_path=os.path.join(label_path,row)
         feature_vector = scipy.io.loadmat(file_path)['feature_vector']
-        features.append(feature_vector[0])
-    label_ILD+=[labels_dict[ll]]*len(files)
-features=np.array(features)
-label_ILD=np.array(label_ILD)
-label_ILD = np.reshape(label_ILD,(features.shape[0],1))
+        features_wavelet.append(feature_vector[0])
+features_wavelet=np.array(features_wavelet)
+
 
 
 for same_class_size in [False , True]:
@@ -61,7 +75,7 @@ for same_class_size in [False , True]:
     # we choose 25% of data for Test
     # after selecting Train , test we shuffles each set using unison_shuffled_copies
     ####################################################
-    Data=pd.DataFrame(np.concatenate([features, label_ILD],axis=1))
+    Data=pd.DataFrame(np.concatenate([features_graph,features_wavelet, label_ILD],axis=1))
     if same_class_size:
         class_size=np.min(Data[Data.shape[1]-1].value_counts())
         Data=Data.groupby(Data.shape[1]-1).apply(lambda s: s.sample(n=class_size,replace=False,random_state=0))

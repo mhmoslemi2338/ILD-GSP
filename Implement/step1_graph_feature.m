@@ -57,6 +57,7 @@ for k=1:length(path)
                     Z=visibilityPatches(I,1,cell2mat(method));
                     feature_vector=[feature_vector global_feature Z];
                     
+                
                 end
             end
             %%%%%% wavelet
