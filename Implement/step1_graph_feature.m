@@ -63,7 +63,8 @@ for k=1:length(path)
             %%%%%% wavelet
 %             wavelet_feature=wavelet_feature_extractor(I);
 %             feature_vector=[feature_vector wavelet_feature];
-        end   
+        end  
+       
         
         
         savepath=replace(replace(filename,'.png','.mat'),'data',join([dest_dir,'/graph']));
@@ -75,4 +76,10 @@ for k=1:length(path)
         end                 
     end     
 end
+
+
+
+
+
+
 

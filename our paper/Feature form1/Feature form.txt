@@ -1,0 +1,7 @@
+	I_hvg_lattice= ['Pk_avg','Pk_wb','C_avg','C_wb','Knn_avg','Knn_wb','Z']
+	I_hvg_Nolattice
+	I_ivg_lattice
+	I2_hvg_lattice
+	I2_ivg_lattice
+	I_wavelet
+	I2_wavelet
