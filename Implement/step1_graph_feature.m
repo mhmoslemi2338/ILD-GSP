@@ -53,9 +53,13 @@ for k=1:length(path)
 
                     Edge_list=imageVisibilityGraph(I,cell2mat(method),cell2mat(lattice));
                     G = graph(Edge_list(:,1),Edge_list(:,2));
-                    global_feature=global_feature_extract(G);
+% % %                     global_feature=global_feature_extract(G);
                     Z=visibilityPatches(I,1,cell2mat(method));
-                    feature_vector=[feature_vector global_feature Z];
+%                     Z2=visibilityPatches(I,2,cell2mat(method));
+%                     Z2=hist(Z2,64);
+%                     Z3=visibilityPatches(I,3,cell2mat(method));
+%                     Z3=hist(Z3,64);
+                    feature_vector=[feature_vector Z];
                     
                 
                 end
@@ -71,7 +75,7 @@ for k=1:length(path)
         save(savepath,'feature_vector');
         %print progress
         cnt=cnt+1;
-        if mod(cnt,148)==0
+        if mod(cnt,296)==0
             disp(join(['progress:',num2str(cnt/296),' % ']))
         end                 
     end     
