@@ -1,7 +1,7 @@
 
 
 clear all; clc; close all
-dest_dir='texture_features2';
+dest_dir='texture_features';
 
 %--------------------------------------
 %---------- Prepare folders -----------
