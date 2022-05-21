@@ -5,13 +5,18 @@
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pgf-pie}  
+
 \usepackage{textcomp}
+
 \usepackage{xcolor}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Texture Classification in Interstitial lung disease patients using Graph signal Processing approach}
+\title{Texture Classification in Interstitial lung disease patients using Graph signal Processing}
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
 \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
@@ -44,10 +49,10 @@ email address or ORCID}
 \end{IEEEkeywords}
 
 \section{Introduction}
-
+\vspace{0.5cm}
 
 \section{Related work}
-
+\vspace{0.5cm}
 
 
 \section{Method}
@@ -66,22 +71,113 @@ discuss about local and global features
 
 
 \section{Feature selection}
-\subsubsection{I , 255-I}
-\subsubsection{IHVG, INVG}
-\subsubsection{Lattice, without lattice}
-\subsubsection{wavelet}
-\subsubsection{Final choice}
-also talk about PCA analysis
+This section will discuss the various features that we can choose for our final feature vector; firstly, we discuss each component individually and then demonstrate the final feature vector.
+
+
+\subsubsection{\textbf{Image, reversed-image}}
+As we showed before, the nature of the IVG and HVG definition behaves differently about the local maxima, so taking into account this fact, we calculate features for the original image and reverse image, which is obtained by replacing each pixel value with the maximum pixels value subtracted by the current pixel value.
+Figure \ref{fig:original_reversed_texture} shows an example of a texture and its reverse.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.24\textwidth}
+        \centering
+        \includegraphics[width=0.55\linewidth]{origianl_fibrosis.png}
+        \caption{Original image}
+        \label{fig:original_texture}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.24\textwidth}
+        \centering
+        \includegraphics[width=0.55\linewidth]{reversed_fibrosis.png}
+        \caption{Reversed image}
+        \label{fig:reversed_texture}
+    \end{subfigure}
+    \caption{original and reversed image of a Fibrosis texture}
+    \label{fig:original_reversed_texture}
+\end{figure}
+
+
+
+\subsubsection{\textbf{IHVG, INVG}}
+As we discussed before, we had to choose to define our graphs on images,i.e., natural or horizontal visibility graphs. Our investigation indicates that both of these definitions are useful for describing the textures, and we finally chose features from both of these graph types.
+Figure \ref{fig:lattice_nolattice_example} is an artifial $3\times3$ image and in \cite{b1} INVG is drawn for with Lattice and with No-lattice condition.
+
+
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.24\textwidth}
+        \centering
+        \includegraphics[width=0.55\linewidth]{Lattice_IVG.jpg}
+        \caption{With lattice}
+        \label{fig:lattice_example}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.24\textwidth}
+        \centering
+        \includegraphics[width=0.55\linewidth]{Nolattice_IVG.jpg}
+        \caption{Without lattice}
+        \label{fig:nolattice_example}
+    \end{subfigure}
+    \caption{An example of INVG with and without lattice\cite{b1}}
+    \label{fig:lattice_nolattice_example}
+\end{figure}
+
+
+\subsubsection{\textbf{Lattice, without lattice}}
+Based on the definition of a visibility graph, each pixel is connected to all of the neighbor pixels, so for simplicity, we can choose to consider these links or not. If we decided not to consider these links, we would have a visibility graph with no-lattice and vice versa. No-lattice graphs result in a more simple graph representation and a more sparse adjacency matrix.
+
+
+It is good to mention that we can choose both local and global features for each visibility graph configuration; we implemented local feature extraction with $3\times3$ windows and stride one. Also, for global features, we calculate the degree distribution for the graph and plot the histogram of it, then fit a Weibull distribution to that, which will give us two elements for the feature vector, so each of the visibility graph feature vectors is a 258-dimensional vector which the first 256 element is for local feature extraction, and the rest is for global features.
+
+\subsubsection{\textbf{wavelet}}
+The method discussed in \cite{b2} is a very innovative approach to defining a graph-based feature vector for a texture. We implement that method with a 2-level bipartite graph, and two levels of image,i.e., only one subsampling from $32\times32$ texture resulting in a $16\times16$ texture, and with Meyer kernel for graph wavelet filter with a filter length of 24.
+This method for each texture results in a 48-dimensional feature vector, and we can calculate it for both original textures and reversed textures, as discussed before. 
+
+
+\subsubsection*{\textbf{Final choice}}
+Suppose we concatenate all of the possible choices for the final feature vector. In that case, it will give us a 2160-dimensional feature vector for a $32\times32$ texture image which is not desired and can cause overfitting of the model and harder convergence for the classifier. So we sort each feature vector component based on their part in total varience of data,this job done by the same strategy of primary component analysis. Before that, we have to make the feature vectors zero-mean and unit length (due to zero-mean, this has the same effect of making the data unit variance) to make all data have the same scale. Otherwise, we do not get correct result. Also, an essential consideration in machine learning theory is to only perform PCA and data-preprocess (zero-mean and unit length) on Train data, which will be discussed later and not on the full dataset.
+Figure \ref{fig: PCA1} shows a pie chart that indicates part of the total variance of data for each possible feature vector component. We should mention that sum of the variance of all global feature extraction methods for visibility graph components was only 1.3\% of all variance. Hence, we decided to remove them from the final feature vector for training our classifier. We concatenate all possible feature vector components except three\: Image-IVG-Nolattice, Reversed-Image-HVG-Nolattice, and Reversed-Image-IVG-Nolattice, which will give us a 1376-dimensional feature vector for each texture.
+
+\begin{figure}[h]
+  \includegraphics[width=1\linewidth]{PCA_piechart.png}
+      \caption{Importance of each feature vector component based on the variance of all data}
+  \label{fig: PCA1}
+\end{figure}
+
+
+
+%\pie[explode=0.1,text = pin ]
+%    {
+%	29.01/Reversed-image-IHVG-lattice,
+%    23.96/Reversed-image-INVG-lattice,
+%    17.59/Image-INVG-lattice,
+%    10.48/Image-IHVG-lattice,
+%    7.17/Image-IHVG-Nolattice,
+%    6.26/Reversed-image-wavelet,
+%    4.63/Image-wavelet,
+%    0.9/Other}
+%   \label{pie: PCA1}
+%\end{tikzpicture}
 
 
 \section{Experiment}
-\subsection{Dataset}
-\subsection{Classifier}
+\subsection{\textbf{Dataset}}
+\subsection{\textbf{preprocessing \& Classifier}}
+
+Due to unbalanced data distribution between various classes, we used 10-fold stratified cross-validation. For each fold, we make train data zero-mean with a unit length. Then, with the aim of the primary component analysis, we only chose features that make up 95\% of all data variation. Before PCA feature vector length was 1386, and after PCA was 561. We have to use the same transform applied to train data for data preprocess and PCA for test data in each fold. After this transformation, the mean of the test data is not necessarily zero.
+
+For the classifier, we used support vector machine, SVM, with a gaussian kernel and one-vs-other strategy for our multiple class problem. Also, to address the imbalanced distribution of data between classes, we used weighted SVM to solve this issue,i.e., for the class with the least data, the SVM weight is the largest.
+
+
+
+
 
 \section{Results and compare}
-
+\vspace{1cm}
 \section{Conclusions}
-
+\vspace{1cm}
 
 
 
@@ -91,7 +187,14 @@ also talk about PCA analysis
 
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
+
+\bibitem{b1}
+Laifan Pei, Zhaohui Li, and Jie Liu , "Texture classification based on image (natural and horizontal) visibility graph constructing methods", Chaos 31, 013128 (2021) https://doi.org/10.1063/5.0036933
+
+\bibitem{b2}
+Qiao, Y-L, Zhao, Y, Song, C-Y, Zhang, K-G, Xiang, X-Z. Graph wavelet transform for image texture classification. IET Image Process. 2021; 15: 2372– 2383. https://doi.org/10.1049/ipr2.12220
+
+
 
 \end{thebibliography}
 \vspace{12pt}
