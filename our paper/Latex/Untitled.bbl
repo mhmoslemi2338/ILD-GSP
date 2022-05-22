@@ -21,6 +21,16 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{VG}
+L.~Lacasa, B.~Luque, F.~Ballesteros, J.~Luque, and J.~C. Nuno, ``From time
+  series to complex networks: The visibility graph,'' \emph{Proceedings of the
+  National Academy of Sciences}, vol. 105, no.~13, pp. 4972--4975, 2008.
+
+\bibitem{IVG}
+J.~Iacovacci and L.~Lacasa, ``Visibility graphs for image processing,''
+  \emph{IEEE transactions on pattern analysis and machine intelligence},
+  vol.~42, no.~4, pp. 974--987, 2019.
+
 \bibitem{china_HVG}
 L.~Pei, Z.~Li, and J.~Liu, ``Texture classification based on image (natural and
   horizontal) visibility graph constructing methods,'' \emph{Chaos: An

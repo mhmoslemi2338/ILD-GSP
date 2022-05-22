@@ -57,13 +57,28 @@ email address or ORCID}
 
 
 \section{Method}
-\subsection{Graph wavelet}
+\subsection{\textbf{Graph wavelet}}
 
-\subsection{Visibility Graphs}
+\subsection{\textbf{Visibility Graphs}}
+
+
+In recent yeast, increasing the popularity of complex systems and networks motivates researchers to develop methods for transforming classic signals into graph signals which help indicate the relation of signal values. one of these methods is called visibility graphs which are introduced in \cite{VG}. This method proposed in that paper is mainly applied to 1D signals. However, the concept is the same for higher dimension signals. As we know, images are 2D signals, and Iacovacci et al. in \cite{IVG} proposed a new version of visibility graphs for images called image visibility graphs.
+
+
+
 \subsubsection{Natural Visibility Graphs}
+We can connect the visibility line between two nodes with any slope in this definition. Instead, we can only have horizontal visibility lines in the horizontal visibility graph.
+for the time series signal $S(t)=\{x_1,x_2,x_3,...,x_N\}$, we can define a N node natural visibility graph (N is the numbet of signal points) which $x_i$ and $x_j$ are connected only if we can find a line from $x_i$ to $x_j$ without intercepting other signal values.Equivalently $x_i$ and $x_j$ are connected if following constraint is hold,
+\begin{equation}
+x_k < x_i +\frac{k-i}{j-i}(x_j-x_i), \forall(i<k<j)
+\end{equation}
+
+
+
+
 \subsubsection{Horizontal Visibility Graphs}
 
-\subsection{Image Visibility Graphs}
+\subsection{\textbf{Image Visibility Graphs}}
 \subsubsection{INVG: Image natural visibility graph}
 \subsubsection{IHVG: Image Horizontal visibility graph}
 \subsubsection{Feature extraction }
@@ -175,7 +190,7 @@ For the classifier, we used support vector machine, SVM, with a gaussian kernel 
 
 
 
-\section{Results and compare}
+\subsection{\textbf{Results and comparison}}
 \vspace{1cm}
 \section{Conclusions}
 \vspace{1cm}
