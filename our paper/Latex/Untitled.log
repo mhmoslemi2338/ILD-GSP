@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.18)  23 MAY 2022 02:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.18)  23 MAY 2022 13:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -638,38 +638,50 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<origianl_fibrosis.png, id=4, 4.62527pt x 4.62527pt>
-File: origianl_fibrosis.png Graphic file (type png)
-<use origianl_fibrosis.png>
-Package pdftex.def Info: origianl_fibrosis.png  used on input line 101.
-(pdftex.def)             Requested size: 68.11392pt x 68.11746pt.
-<reversed_fibrosis.png, id=6, 4.62527pt x 4.62527pt>
-File: reversed_fibrosis.png Graphic file (type png)
-<use reversed_fibrosis.png>
-Package pdftex.def Info: reversed_fibrosis.png  used on input line 108.
-(pdftex.def)             Requested size: 68.11392pt x 68.11746pt.
-<Lattice_IVG.jpg, id=7, 243.91125pt x 211.79124pt>
-File: Lattice_IVG.jpg Graphic file (type jpg)
-<use Lattice_IVG.jpg>
-Package pdftex.def Info: Lattice_IVG.jpg  used on input line 128.
-(pdftex.def)             Requested size: 68.11392pt x 59.14279pt.
-<Nolattice_IVG.jpg, id=8, 255.95625pt x 212.795pt>
-File: Nolattice_IVG.jpg Graphic file (type jpg)
-<use Nolattice_IVG.jpg>
-Package pdftex.def Info: Nolattice_IVG.jpg  used on input line 135.
-(pdftex.def)             Requested size: 68.11392pt x 56.62743pt.
+<NVG.jpg, id=4, 464.73625pt x 378.41376pt>
+File: NVG.jpg Graphic file (type jpg)
+<use NVG.jpg>
+Package pdftex.def Info: NVG.jpg  used on input line 94.
+(pdftex.def)             Requested size: 232.19843pt x 189.06783pt.
+<HVG.jpg, id=5, 464.73625pt x 379.4175pt>
+File: HVG.jpg Graphic file (type jpg)
+<use HVG.jpg>
+Package pdftex.def Info: HVG.jpg  used on input line 101.
+(pdftex.def)             Requested size: 232.19843pt x 189.56934pt.
  [1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
- <./origianl_fibrosis.png> <./reversed_fibrosis.png> <./Lattice_IVG.jpg> <./Nol
-attice_IVG.jpg>]
+ <./NVG.jpg> <./HVG.jpg>]
+<origianl_fibrosis.png, id=20, 4.62527pt x 4.62527pt>
+File: origianl_fibrosis.png Graphic file (type png)
+<use origianl_fibrosis.png>
+Package pdftex.def Info: origianl_fibrosis.png  used on input line 133.
+(pdftex.def)             Requested size: 68.11392pt x 68.11746pt.
+<reversed_fibrosis.png, id=22, 4.62527pt x 4.62527pt>
+File: reversed_fibrosis.png Graphic file (type png)
+<use reversed_fibrosis.png>
+Package pdftex.def Info: reversed_fibrosis.png  used on input line 140.
+(pdftex.def)             Requested size: 68.11392pt x 68.11746pt.
+<Lattice_IVG.jpg, id=23, 243.91125pt x 211.79124pt>
+File: Lattice_IVG.jpg Graphic file (type jpg)
+<use Lattice_IVG.jpg>
+Package pdftex.def Info: Lattice_IVG.jpg  used on input line 160.
+(pdftex.def)             Requested size: 68.11392pt x 59.14279pt.
+<Nolattice_IVG.jpg, id=24, 255.95625pt x 212.795pt>
+File: Nolattice_IVG.jpg Graphic file (type jpg)
+<use Nolattice_IVG.jpg>
+Package pdftex.def Info: Nolattice_IVG.jpg  used on input line 167.
+(pdftex.def)             Requested size: 68.11392pt x 56.62743pt.
 <PCA_piechart.png, id=25, 805.50937pt x 578.16pt>
 File: PCA_piechart.png Graphic file (type png)
 <use PCA_piechart.png>
-Package pdftex.def Info: PCA_piechart.png  used on input line 160.
+Package pdftex.def Info: PCA_piechart.png  used on input line 192.
 (pdftex.def)             Requested size: 252.0pt x 180.86864pt.
 
-(./Untitled.bbl)
+Underfull \vbox (badness 1701) has occurred while \output is active []
+
+ [2 <./origianl_fibrosis.png> <./reversed_fibrosis.png> <./Lattice_IVG.jpg> <./
+Nolattice_IVG.jpg> <./PCA_piechart.png (PNG copy)>] (./Untitled.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -681,29 +693,35 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2 <./PCA_piechart.png (PNG copy)>] (./Untitled.aux) ) 
+[3
+
+] (./Untitled.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 15793 strings out of 478268
- 318000 string characters out of 5846347
- 586968 words of memory out of 5000000
- 33737 multiletter control sequences out of 15000+600000
+ 15812 strings out of 478268
+ 318252 string characters out of 5846347
+ 586011 words of memory out of 5000000
+ 33754 multiletter control sequences out of 15000+600000
  508967 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,11n,103p,913b,461s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/
-texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/u
-rw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/u
-tmbi8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
-></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Untitled.pdf (2 pages, 645466 bytes).
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
+xlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texl
+ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
+e/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
+022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
+22/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-d
+ist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2022/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw
+/times/utmri8a.pfb>
+Output written on Untitled.pdf (3 pages, 829536 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 73 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

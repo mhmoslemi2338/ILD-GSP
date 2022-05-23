@@ -76,7 +76,39 @@ x_k < x_i +\frac{k-i}{j-i}(x_j-x_i), \forall(i<k<j)
 
 
 
+
 \subsubsection{Horizontal Visibility Graphs}
+
+The definition of horizontal visibility graphs is the same as natural visibility graphs, but we are only allowed to have horizontal lines instead of any slope for visibility lines. The  Following equation depicts this definition,
+\begin{equation}
+x_k < inf(x_i, x_j), \forall(i<k<j)
+\end{equation}
+
+Pei et al. in \cite{china_HVG} brough an example of HVG and NVG for a time series signal which is shown in Figure \ref{fig:VG_example}
+
+
+\begin{figure}[tbh]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{NVG.jpg}
+        \caption{Natural visibility graph}
+        \label{fig:NVG_example}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{HVG.jpg}
+        \caption{Horizontal visibility graph}
+        \label{fig:HVG_example}
+    \end{subfigure}
+    \caption{Example of NVG and HVG for a time series signal \cite{china_HVG}}
+    \label{fig:VG_example}
+\end{figure}
+
+
+
+
 
 \subsection{\textbf{Image Visibility Graphs}}
 \subsubsection{INVG: Image natural visibility graph}
