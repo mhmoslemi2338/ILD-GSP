@@ -21,6 +21,11 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{wavelet}
+Y.-L. Qiao, Y.~Zhao, C.-Y. Song, K.-G. Zhang, and X.-Z. Xiang, ``Graph wavelet
+  transform for image texture classification,'' \emph{IET Image Processing},
+  vol.~15, no.~10, pp. 2372--2383, 2021.
+
 \bibitem{VG}
 L.~Lacasa, B.~Luque, F.~Ballesteros, J.~Luque, and J.~C. Nuno, ``From time
   series to complex networks: The visibility graph,'' \emph{Proceedings of the
@@ -36,10 +41,5 @@ L.~Pei, Z.~Li, and J.~Liu, ``Texture classification based on image (natural and
   horizontal) visibility graph constructing methods,'' \emph{Chaos: An
   Interdisciplinary Journal of Nonlinear Science}, vol.~31, no.~1, p. 013128,
   2021.
-
-\bibitem{wavelet}
-Y.-L. Qiao, Y.~Zhao, C.-Y. Song, K.-G. Zhang, and X.-Z. Xiang, ``Graph wavelet
-  transform for image texture classification,'' \emph{IET Image Processing},
-  vol.~15, no.~10, pp. 2372--2383, 2021.
 
 \end{thebibliography}

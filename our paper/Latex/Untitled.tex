@@ -3,21 +3,33 @@
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 %\usepackage[noadjust]{cite}  
-\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsmath,amssymb,amsfonts , nccmath}
 \usepackage{algorithmic}
 \usepackage{graphicx}
+\usepackage{mathtools}
+
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{pgf-pie}  
-
 \usepackage{textcomp}
-
 \usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+
+
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+    
+
+    
+    
+    
 \begin{document}
 
-\title{Texture Classification in Interstitial lung disease patients using Graph signal Processing}
+\title{Texture Classification in Interstitial lung disease patients using Graph Signal Processing}
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
 \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
@@ -38,7 +50,12 @@ Tehran, Iran \\
 email address or ORCID}
 \and
 
-
+%\IEEEauthorblockN{4\textsuperscript{rd} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%Lausanne, Switzerland \\
+%email address or ORCID}
+%\and
 }
 
 \maketitle
@@ -57,11 +74,62 @@ email address or ORCID}
 
 
 \section{Method}
-\subsection{\textbf{Graph wavelet}}
+\subsection{\textbf{Graph wavelet filter banks}}
+
+Wavelet filter banks are among the most popular methods for extracting features from images or textures. One of their variations is graph wavelet filter banks that take into account the relation of different pixels in the texture. In this work, we used the method proposed by Qiao et al. at \cite{wavelet}. We used two-level decomposition for graph wavelet filters; after calculating the filter response with meyer kernel on the texture as discussed in \cite{wavelet}, we moved a $4\times4$ window with the stride of 1 on the response of wavelet and for each window we applied singular value decomposition. $F_1 , F_2, F_3$ sets as discussed in \cite{wavelet} are
+
+\begin{equation}
+\begin{multlined}
+F_1=\{ max(S_1),max(S_2),...,\\max(S_i),...,max(S_N)\}\\
+F_2=\{ mean(S_1),mean(S_2),...,\\mean(S_i),...,mean(S_N)\}\\
+F_3=\{ median(S_1),median(S_2),...,\\median(S_i),...,median(S_N)\}
+\end{multlined}
+\end{equation}
+
+After fitting a Weibull distribution to each set, we will get two parameters, scale and shape parameters.
+
+For each texture, we have two level graph wavelets, and every wavelet has four subbands, every subband results in three $F_i$ sets, which will result in two parameters for Weibull distribution. Finally, we have a 48-dimensional feature vector for each texture.
+
+
+
+Figure \ref{fig:weibull_fit} shows an example of weibull distribution fitting to $F_1$ and $F_2$ sets.
+\begin{figure}[tbh]
+    \centering
+    \begin{subfigure}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{weibull1.jpg}
+       \caption{}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.24\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{weibull2.jpg}
+        \caption{}
+    \end{subfigure}
+    \caption{Example of Weibull fitting to $F_i$ sets}
+    \label{fig:weibull_fit}
+\end{figure}
+
+
+
+%Qiao et al. at \cite{wavelet} in Figure \ref{fig:waveletsum} are showing the summary of graph wavelet method for extracting features from tesxtures.
+%\begin{figure*}[tbh]
+%  \includegraphics[width=1\linewidth]{waveletsum.png}
+%      \caption{the graph wavelet method proposed in \cite{wavelet}}
+%  \label{fig:waveletsum}
+%\end{figure*}
+%
+%
+
+
+
+
+
+
+
+
 
 \subsection{\textbf{Visibility Graphs}}
-
-
 In recent yeast, increasing the popularity of complex systems and networks motivates researchers to develop methods for transforming classic signals into graph signals which help indicate the relation of signal values. one of these methods is called visibility graphs which are introduced in \cite{VG}. This method proposed in that paper is mainly applied to 1D signals. However, the concept is the same for higher dimension signals. As we know, images are 2D signals, and Iacovacci et al. in \cite{IVG} proposed a new version of visibility graphs for images called image visibility graphs.
 
 
@@ -72,8 +140,6 @@ for the time series signal $S(t)=\{x_1,x_2,x_3,...,x_N\}$, we can define a N nod
 \begin{equation}
 x_k < x_i +\frac{k-i}{j-i}(x_j-x_i), \forall(i<k<j)
 \end{equation}
-
-
 
 
 
@@ -149,7 +215,7 @@ Figure \ref{fig:original_reversed_texture} shows an example of a texture and its
 
 \subsubsection{\textbf{IHVG, INVG}}
 As we discussed before, we had to choose to define our graphs on images,i.e., natural or horizontal visibility graphs. Our investigation indicates that both of these definitions are useful for describing the textures, and we finally chose features from both of these graph types.
-Figure \ref{fig:lattice_nolattice_example} is an artifial $3\times3$ image and in \cite{china_HVG} INVG is drawn for with Lattice and with No-lattice condition.
+Figure \ref{fig:lattice_nolattice_example} is an artifial $3\times3$ image and INVG is drawn for with Lattice and with No-lattice condition.
 
 
 
@@ -157,18 +223,18 @@ Figure \ref{fig:lattice_nolattice_example} is an artifial $3\times3$ image and i
     \centering
     \begin{subfigure}{0.24\textwidth}
         \centering
-        \includegraphics[width=0.55\linewidth]{Lattice_IVG.jpg}
+        \includegraphics[width=0.55\linewidth]{Lattice_IVG.png}
         \caption{With lattice}
         \label{fig:lattice_example}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.24\textwidth}
         \centering
-        \includegraphics[width=0.55\linewidth]{Nolattice_IVG.jpg}
+        \includegraphics[width=0.55\linewidth]{Nolattice_IVG.png}
         \caption{Without lattice}
         \label{fig:nolattice_example}
     \end{subfigure}
-    \caption{An example of INVG with and without lattice\cite{china_HVG}}
+    \caption{An example of INVG with and without lattice}
     \label{fig:lattice_nolattice_example}
 \end{figure}
 
@@ -214,7 +280,7 @@ Figure \ref{fig: PCA1} shows a pie chart that indicates part of the total varian
 \subsection{\textbf{Dataset}}
 \subsection{\textbf{preprocessing \& Classifier}}
 
-Due to unbalanced data distribution between various classes, we used 10-fold stratified cross-validation. For each fold, we make train data zero-mean with a unit length. Then, with the aim of the primary component analysis, we only chose features that make up 95\% of all data variation. Before PCA feature vector length was 1376, and after PCA was 561. We have to use the same transform applied to train data for data preprocess and PCA for test data in each fold. After this transformation, the mean of the test data is not necessarily zero.
+Due to unbalanced data distribution between various classes, we used five-fold stratified cross-validation. For each fold, we make train data zero-mean with a unit length. Then, with the aim of the primary component analysis, we only chose features that make up 95.83\% of all data variation. Before PCA feature vector length was 1376, and after PCA was 561. We have to use the same transform applied to train data for data preprocess and PCA for test data in each fold. After this transformation, the mean of the test data is not necessarily zero.
 
 For the classifier, we used support vector machine, SVM, with a gaussian kernel and one-vs-other strategy for our multiple class problem. Also, to address the imbalanced distribution of data between classes, we used weighted SVM to solve this issue,i.e., for the class with the least data, the SVM weight is the largest.
 
@@ -223,6 +289,67 @@ For the classifier, we used support vector machine, SVM, with a gaussian kernel 
 
 
 \subsection{\textbf{Results and comparison}}
+
+After extracting features and preprocessing the data we trained an SVM classifier as discussed before and we get an overall accuracy of 95.22\%, in each fold of cross-validation we concatenate the prediction for test partition and the overall accuracy is from concatenation of all these partitions.
+
+
+Table  \ref{cm:CM} shows confusion matrix for final classifier.
+
+
+
+\begin{table}[tbh]
+\caption{Table of Confusion Matrix for classification}
+\label{cm:CM}
+\small
+\centering
+%\begin{tabular}{@{}|lllllc|@{}}
+%\begin{tabular}{c|c|*{8}{c|}}
+%\begin{tabular}{@{}|lllllc|@{}}
+\begin{tabular}{@{}lllllllll@{}}
+&& \multicolumn{3}{c}{Predicted label}\\
+\toprule
+ & H & GG & M & E & F \\ \midrule
+ 
+H (Healthy) & 734 & 25 & 28 & 5 & 3 \\ 
+GG (Ground galss) & 44 & 218 & 9 & 1 & 22 \\ 
+M (Micronodules) & 80 & 5 & 1052 & 1 & 23 \\ 
+E (Emphysema) & 53 & 5 & 7 & 114 & 4 \\ 
+F (Fibrosis) & 8 & 29 & 12 & 2 & 484 \\ \bottomrule
+
+\end{tabular}
+\end{table}
+
+
+
+
+\begin{table}[tbh]
+\caption{Results}
+\label{cm:result}
+\small
+\centering
+\begin{tabular}{@{}lllllllll@{}}
+\toprule
+&accuracy&recall  &precision & TN-rate &   AUC   &  F1-score \\ \midrule
+
+H & 91.71\% & 92.33\% & 79.87\% & 91.49\% & 91.91\% & 85.65\% \\ 
+GG & 95.28\% & 74.15\% & 77.3\% & 97.61\% & 85.88\% & 75.69\% \\ 
+M & 94.44\% & 90.61\% & 94.95\% & 96.9\% & 93.76\% & 92.73\% \\ 
+E & 97.37\% & 62.3\% & 92.68\% & 99.68\% & 80.99\% & 74.51\% \\ 
+F & 96.53\% & 90.47\% & 90.3\% & 97.86\% & 94.17\% & 90.38\% \\   \bottomrule
+\vspace{-0.25cm} \\ 
+Overal & 87.67\% & 87.67\% & 87.67\% & 96.92\% & - & 87.67\% \\ 
+\vspace{-0.3cm} \\ 
+\bottomrule
+
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+
 \vspace{1cm}
 \section{Conclusions}
 \vspace{1cm}
