@@ -22,7 +22,7 @@ out_img_depth=8
 #patch overlapp tolerance
 thrpatch = 0.8
 # imageDepth=255 #number of bits used on dicom images (2 **n)
-imageDepth=65535
+imageDepth=255
 avgPixelSpacing=0.734
 
 dimpavx =out_img_size
