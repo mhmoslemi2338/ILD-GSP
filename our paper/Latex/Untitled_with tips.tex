@@ -1,6 +1,8 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
+%\usepackage[noadjust]{cite}  
 \usepackage{amsmath,amssymb,amsfonts , nccmath}
 \usepackage{algorithmic}
 \usepackage{graphicx}
@@ -13,19 +15,23 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{booktabs}
-\usepackage{hyperref}
 
 
 
-\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     
-   
+    
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+    
+    
     
 \begin{document}
 
-\title{Lung Tissue Classification using Graph Signal Processing}
+\title{Texture Classification in Interstitial lung disease patients using Graph Signal Processing}
 \author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
 \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
 \textit{name of organization (of Aff.)}\\
@@ -44,6 +50,13 @@ email address or ORCID}
 Tehran, Iran \\
 email address or ORCID}
 \and
+
+%\IEEEauthorblockN{4\textsuperscript{rd} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%Lausanne, Switzerland \\
+%email address or ORCID}
+%\and
 }
 
 \maketitle
@@ -52,13 +65,13 @@ email address or ORCID}
 \end{abstract}
 
 \begin{IEEEkeywords}
-Graph, Visibility graph, Textue, ILD
 \end{IEEEkeywords}
 
-\section{Introduction and related work}
+\section{Introduction}
 \vspace{0.5cm}
 
-
+\section{Related work}
+\vspace{0.5cm}
 
 
 \section{Method}
@@ -77,6 +90,7 @@ F_3=\{ median(S_1),median(S_2),...,\\median(S_i),...,median(S_N)\}
 After fitting a Weibull distribution to each set, we will get two parameters, scale and shape parameters.
 
 For each texture, we have two level graph wavelets, and every wavelet has four subbands, every subband results in three $F_i$ sets, which will result in two parameters for Weibull distribution. Finally, we have a 48-dimensional feature vector for each texture.
+
 
 
 Figure \ref{fig:weibull_fit} shows an example of weibull distribution fitting to $F_1$ and $F_2$ sets.
@@ -99,6 +113,23 @@ Figure \ref{fig:weibull_fit} shows an example of weibull distribution fitting to
 
 
 
+%Qiao et al. at \cite{wavelet} in Figure \ref{fig:waveletsum} are showing the summary of graph wavelet method for extracting features from tesxtures.
+%\begin{figure*}[tbh]
+%  \includegraphics[width=1\linewidth]{waveletsum.png}
+%      \caption{the graph wavelet method proposed in \cite{wavelet}}
+%  \label{fig:waveletsum}
+%\end{figure*}
+%
+%
+
+
+
+
+
+
+
+
+
 \subsection{\textbf{Visibility Graphs}}
 In recent yeast, increasing the popularity of complex systems and networks motivates researchers to develop methods for transforming classic signals into graph signals which help indicate the relation of signal values. one of these methods is called visibility graphs which are introduced in \cite{VG}. This method proposed in that paper is mainly applied to 1D signals. However, the concept is the same for higher dimension signals. As we know, images are 2D signals, and Iacovacci et al. in \cite{IVG} proposed a new version of visibility graphs for images called image visibility graphs.
 
@@ -114,32 +145,35 @@ x_k < x_i +\frac{k-i}{j-i}(x_j-x_i), \forall(i<k<j)
 
 
 \subsubsection{Horizontal Visibility Graphs}
+
 The definition of horizontal visibility graphs is the same as natural visibility graphs, but we are only allowed to have horizontal lines instead of any slope for visibility lines. The  Following equation depicts this definition,
 \begin{equation}
 x_k < inf(x_i, x_j), \forall(i<k<j)
 \end{equation}
 
-Figure \ref{fig:VG_example} is an example of  of HVG and NVG for a time series signal.
+Pei et al. in \cite{china_HVG} brough an example of HVG and NVG for a time series signal which is shown in Figure \ref{fig:VG_example}
 
 
 \begin{figure}[tbh]
     \centering
-    \begin{subfigure}{0.5\textwidth}
+    \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{VG.png}
+        \includegraphics[width=\linewidth]{NVG.jpg}
         \caption{Natural visibility graph}
         \label{fig:NVG_example}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.5\textwidth}
+    \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{HVG.png}
+        \includegraphics[width=\linewidth]{HVG.jpg}
         \caption{Horizontal visibility graph}
         \label{fig:HVG_example}
     \end{subfigure}
-    \caption{Example of NVG and HVG for a time series signal}
+    \caption{Example of NVG and HVG for a time series signal \cite{china_HVG}}
     \label{fig:VG_example}
 \end{figure}
+
+
 
 
 
@@ -164,15 +198,15 @@ According the definition proposed in \cite{IVG},nodes $I_{ij}$  and node $I'_{i'
 
 
 
+
 \subsubsection{\textbf{IHVG} (Image Horizontal visibility graph)}
 The definition of the IHVG is the same as the INVG, but in the second condition, we have to change NVG with the HVG.
-
 \subsubsection{\textbf{Global and local features for IVG's}}
-After defining the IVGs, we have to extract features to use them for classification; Iacovacci et al. at \cite{IVG} introduced global features to comprise global properties of the image and local features for compacting the local characteristics of the image. For the global feature, we used degree distribution, $p(k)$, and visibility patch with the order of 3, $VP_3$ as defined in \cite{IVG} for the local feature, even though the global feature did not use in the final feature selection process which is discussed in section \ref{feature_selecting}
 
 
 
-\section{\large{Feature selection}}\label{feature_selecting}
+
+\section{\large{Feature selection}}
 This section will discuss the various features that we can choose for our final feature vector; firstly, we discuss each component individually and then demonstrate the final feature vector.
 
 
@@ -249,19 +283,25 @@ Figure \ref{fig: PCA1} shows a pie chart that indicates part of the total varian
 \end{figure}
 
 
-\section{Experiments and results}
+
+%\pie[explode=0.1,text = pin ]
+%    {
+%	29.01/Reversed-image-IHVG-lattice,
+%    23.96/Reversed-image-INVG-lattice,
+%    17.59/Image-INVG-lattice,
+%    10.48/Image-IHVG-lattice,
+%    7.17/Image-IHVG-Nolattice,
+%    6.26/Reversed-image-wavelet,
+%    4.63/Image-wavelet,
+%    0.9/Other}
+%   \label{pie: PCA1}
+%\end{tikzpicture}
+
+
+\section{Experiment}
 \subsection{\textbf{Dataset}}
-We used a dataset of interstitial lung disease (ILD) \cite{dataset} cases containing HRCT images of 128 patients with the inter-slide distance of 10mm, slice thickness of 1mm, and in-plane resolution of $512\times 512$ pixels. In each 2D-single image of a patient, regions of interest (ROIs) are hand-drawn and labeled by two expert radiologists with 20 and 15 years of experience used as ground truth. 
+\subsection{\textbf{preprocessing \& Classifier}}
 
-The dataset consists of 17 types of lung textures, but in this work, we only used the five most frequent ones, which are Healthy (H), Ground glass (GG), Micronodules (M), Emphysema (E), and Fibrosis (F). This choice only left us 108 patients from a total patient number of 128.
-
-For detecting and extracting textures from HRCT image series, in each 2D image with defined ROIs, we moved a window with the size of $32 \times 32 $ pixels on the lung mask and if the percentage of window area that covers the specific ROI with a defined texture label was greater than a chosen threshold (the chosen threshold is 0.8).
-
-
-For extracting textures, we mainly used the implementation that Anthimopoulos et al. provided in a GitHub repository \footnote{ \url{https://github.com/ChelovekHe/ild-cnn}} for the paper \cite{textureextract}. However, we modified and adjusted the code for our work.
-
-
-\subsection{\textbf{Data preprocessing  \& Classifier}}
 Due to unbalanced data distribution between various classes, we used five-fold stratified cross-validation. For each fold, we make train data zero-mean with a unit length. Then, with the aim of the primary component analysis, we only chose features that make up 95.83\% of all data variation. Before PCA feature vector length was 1376, and after PCA was 561. We have to use the same transform applied to train data for data preprocess and PCA for test data in each fold. After this transformation, the mean of the test data is not necessarily zero.
 
 For the classifier, we used support vector machine, SVM, with a gaussian kernel and one-vs-other strategy for our multiple class problem. Also, to address the imbalanced distribution of data between classes, we used weighted SVM to solve this issue,i.e., for the class with the least data, the SVM weight is the largest.
@@ -270,28 +310,33 @@ For the classifier, we used support vector machine, SVM, with a gaussian kernel 
 
 
 
-\subsection{\textbf{Performance evaluation}}
-After extracting features and preprocessing the data we trained an SVM classifier as discussed before and we get an overall accuracy of 95.82\%, in each fold of cross-validation we concatenate the prediction for test partition and the overall accuracy is from concatenation of all these partitions.
+\subsection{\textbf{Results and comparison}}
 
-Table \ref{cm:CM} shows the confusion matrix for the final classifier. In table \ref{cm:result}, we summarize the performance of our method for each class and also overall classification performance with various metrics.
+After extracting features and preprocessing the data we trained an SVM classifier as discussed before and we get an overall accuracy of 95.22\%, in each fold of cross-validation we concatenate the prediction for test partition and the overall accuracy is from concatenation of all these partitions.
+
+
+Table  \ref{cm:CM} shows confusion matrix for final classifier.
 
 
 
 \begin{table}[tbh]
-\caption{Confusion Matrix for texture classification}
+\caption{Table of Confusion Matrix for classification}
 \label{cm:CM}
 \small
 \centering
+%\begin{tabular}{@{}|lllllc|@{}}
+%\begin{tabular}{c|c|*{8}{c|}}
+%\begin{tabular}{@{}|lllllc|@{}}
 \begin{tabular}{@{}lllllllll@{}}
 && \multicolumn{3}{c}{Predicted label}\\
 \toprule
  & H & GG & M & E & F \\ \midrule
  
-H & 7621 & 72 & 116 & 10 & 9 \\ 
-GG & 95 & 2838 & 19 & 1 & 33 \\ 
-M  & 488 & 39 & 10992 & 11 & 99 \\ 
-E  & 48 & 6 & 32 & 1880 & 15 \\ 
-F  & 29 & 72 & 41 & 6 & 5103 \\ \bottomrule
+H (Healthy) & 7621 & 72 & 116 & 10 & 9 \\ 
+GG (Ground galss) & 95 & 2838 & 19 & 1 & 33 \\ 
+M (Micronodules) & 488 & 39 & 10992 & 11 & 99 \\ 
+E (Emphysema) & 48 & 6 & 32 & 1880 & 15 \\ 
+F (Fibrosis) & 29 & 72 & 41 & 6 & 5103 \\ \bottomrule
 
 
 \end{tabular}
@@ -303,11 +348,11 @@ F  & 29 & 72 & 41 & 6 & 5103 \\ \bottomrule
 \begin{table}[tbh]
 \caption{Results}
 \label{cm:result}
+\small
 \centering
 \begin{tabular}{@{}lllllllll@{}}
 \toprule
-%&accuracy&recall  &precision & TN-rate &   AUC   &  F1-score \\ \midrule
-\multirow{0}{0.5cm}{} &  \multirow{1}{0.8cm}{\centering{{Accuracy}}} &  \multirow{1}{0.8cm}{Recall}&\multirow{1}{0.8cm}{Precision} &  \multirow{1}{1cm}{TN-rate} & \multirow{1}{0.8cm}{AUC} & \multirow{1}{1cm}{F1-score} \\  \midrule
+&accuracy&recall  &precision & TN-rate &   AUC   &  F1-score \\ \midrule
 
 H & 97.08\% & 97.36\% & 92.03\% & 96.98\% & 97.17\% & 94.62\% \\ 
 GG & 98.86\% & 95.04\% & 93.76\% & 99.29\% & 97.17\% & 94.4\% \\ 
@@ -315,58 +360,16 @@ M & 97.15\% & 94.52\% & 98.14\% & 98.85\% & 96.68\% & 96.3\% \\
 E & 99.57\% & 94.9\% & 98.53\% & 99.9\% & 97.4\% & 96.68\% \\ 
 F & 98.98\% & 97.18\% & 97.03\% & 99.36\% & 98.27\% & 97.11\% \\   \bottomrule
 \vspace{-0.25cm} \\ 
-Overal & 95.82\% & 95.9\% & 95.8\% & 98.88\% & \tab[1em]- & 95.82\% \\ 
+Overal & 95.82\% & 95.9\% & 95.8\% & 98.88\% & - & 95.82\% \\ 
 \vspace{-0.3cm} \\ 
 \bottomrule
 
+
 \end{tabular}
 \end{table}
 
 
-\subsection{\textbf{Comparison to previous work}}
-In this subsection, we compare our result with some of the recent performances on the ILD texture classification; table \ref{cm:compare} shows this comparison.
 
-
-
-
-
-
-
-\begin{table}[tbh]
-    \caption{\centering{\small{Comparison of ILD texture classification with the state-of-the-art performances.}}}
-    \label{cm:compare}
-    \centering
-    \scriptsize
-    \begin{tabular}{@{}lllllllll@{}}
-    \toprule
-    %&accuracy&recall  &precision & TN-rate &   AUC   &  F1-score \\ \midrule
-    \multirow{1}{0.8cm}{\textbf{Reference}} &  \multirow{1}{0.7cm}{\centering{\textbf{Accuracy}}}  & \multirow{1}{0.9cm}{\textbf{F1-score}} & \multirow{1}{2cm}{{\textbf{Method}}} \\  \midrule
-    
-%    Dudhane et al. \cite{acc934}  & \small93.41\% & - & GLCM, GLRLM, hist. of LBP\\ 
-%    Song et al. \cite{acc861}  & \small86.1\% & - & LMLE \\ 
-%    Depeursinge et al. \cite{acc86}  & \small86\% & - & CBIR, 3D localization\\ 
-%    Doddavarapu et al. \cite{acc9467}  & \small94.67\% & - & CNN model\\ 
-%    Gao et al.\cite{acc928}  & \small92.8\% & - & CNN model\\   
-%    Anthimopoulos et al. \cite{Fscore89}  & - & \small89\% & DCT filter bank,gray-level hist.\\   
-%    Guo et al. \cite{Fscore984}  & - & \small98.4\% & SK-DenseNet (CNN model)\\   
-%    Huang et al. \cite{Fscore96}  & - & \small96\% & CNN model \\   \bottomrule
-
-Dudhane et al. \cite{acc934}  & 93.41\% & - & GLCM, GLRLM, hist. of LBP\\ 
-Song et al. \cite{acc861}  & 86.1\% & - & LMLE \\ 
-Depeursinge et al. \cite{acc86}  & 86\% & - & CBIR, 3D localization\\ 
-Doddavarapu et al. \cite{acc9467}  & 94.67\% & - & CNN model\\ 
-Gao et al.\cite{acc928}  & 92.8\% & - & CNN model\\   
-Anthimopoulos et al. \cite{Fscore89}  & - & 89\% & DCT filter bank,gray-level hist.\\   
-Guo et al. \cite{Fscore984}  & - & 98.4\% & SK-DenseNet (CNN model)\\   
-Huang et al. \cite{Fscore96}  & - & 96\% & CNN model \\   \bottomrule
-
-    \vspace{-0.23cm} \\ 
-    \textbf{Our method} & \textbf{95.82\%} & \textbf{95.82\%} & \textbf{IVG, graph wavelet }\\ 
-    \vspace{-0.3cm} \\ 
-    \bottomrule
-    
-\end{tabular}
-\end{table}
 
 
 
@@ -375,10 +378,30 @@ Huang et al. \cite{Fscore96}  & - & 96\% & CNN model \\   \bottomrule
 \section{Conclusions}
 \vspace{1cm}
 
+
+
+
+
+%\begin{thebibliography}{00}
+%\bibitem{b1}
+%Laifan Pei, Zhaohui Li, and Jie Liu , "Texture classification based on image (natural and horizontal) visibility graph constructing methods", Chaos 31, 013128 (2021) https://doi.org/10.1063/5.0036933
+%\bibitem{b2}
+%Qiao, Y-L, Zhao, Y, Song, C-Y, Zhang, K-G, Xiang, X-Z. Graph wavelet transform for image texture classification. IET Image Process. 2021; 15: 2372– 2383. https://doi.org/10.1049/ipr2.12220
+%\end{thebibliography}
+
 \bibliographystyle{IEEEtran}
 \bibliography{allref.bib}
+
+
+
 \vspace{12pt}
+
 \end{document}
+
+
+
+
+
 
 
 

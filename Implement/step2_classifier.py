@@ -102,11 +102,11 @@ AUC=np.array(list((cm.AUC).values()))
 F1=np.array(list((cm.F1).values()))
 
 overall_accuracy=str(round(100*cm.Overall_ACC,2))
-overal_precision=str(round(100*cm.PPV_Micro,2))
-overal_recall=str(round(100*cm.TPR_Micro,2))
-overal_true_negative_rate=str(round(100*cm.TNR_Micro,2))
+overal_precision=str(round(100*cm.PPV_Macro,2))
+overal_recall=str(round(100*cm.TPR_Macro,2))
+overal_true_negative_rate=str(round(100*cm.TNR_Macro,2))
 overal_AUC='-'
-overal_F1=str(round(100*cm.F1_Micro,2))
+overal_F1=str(round(100*cm.F1_Macro,2))
 
 overal=[overall_accuracy , overal_precision , overal_recall 
         , overal_true_negative_rate , overal_AUC , overal_F1]

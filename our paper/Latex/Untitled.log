@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.18)  29 MAY 2022 20:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.18)  1 JUN 2022 17:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -639,42 +639,177 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count318
 \@thisrulewidth=\dimen312
 )
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2022-02-21 v7.00n Hypertext links for LaTeX
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen313
+\Hy@linkcounter=\count319
+\Hy@pagecounter=\count320
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2022-02-21 v7.00n Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count321
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2022-02-21 v7.00n Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4137.
+Package hyperref Info: Link nesting OFF on input line 4142.
+Package hyperref Info: Hyper index ON on input line 4145.
+Package hyperref Info: Plain pages OFF on input line 4152.
+Package hyperref Info: Backreferencing OFF on input line 4157.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4390.
+\c@Hy@tempcnt=\count322
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4749.
+\XeTeXLinkMargin=\dimen314
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count323
+\Field@Width=\dimen315
+\Fld@charsize=\dimen316
+Package hyperref Info: Hyper figures OFF on input line 6027.
+Package hyperref Info: Link nesting OFF on input line 6032.
+Package hyperref Info: Hyper index ON on input line 6035.
+Package hyperref Info: backreferencing OFF on input line 6042.
+Package hyperref Info: Link coloring OFF on input line 6047.
+Package hyperref Info: Link coloring with OCG OFF on input line 6052.
+Package hyperref Info: PDF/A mode OFF on input line 6057.
+LaTeX Info: Redefining \ref on input line 6097.
+LaTeX Info: Redefining \pageref on input line 6101.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count324
+\c@Item=\count325
+\c@Hfootnote=\count326
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2022-02-21 v7.00n Hyperref driver for pdfTeX
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count327
+\c@bookmark@seq@number=\count328
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/local/texlive/2022/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip61
+)
 (/usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count319
+\l__color_backend_stack_int=\count329
 \l__pdf_internal_box=\box66
 )
 (./Untitled.aux)
 \openout1 = `Untitled.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
 -- Lines per column: 56 (exact).
 (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count320
-\scratchdimen=\dimen313
+\scratchcounter=\count330
+\scratchdimen=\dimen317
 \scratchbox=\box67
-\nofMPsegments=\count321
-\nofMParguments=\count322
+\nofMPsegments=\count331
+\nofMParguments=\count332
 \everyMPshowfont=\toks35
-\MPscratchCnt=\count323
-\MPscratchDim=\dimen314
-\MPnumerator=\count324
-\makeMPintoPDFobject=\count325
+\MPscratchCnt=\count333
+\MPscratchDim=\dimen318
+\MPnumerator=\count334
+\makeMPintoPDFobject=\count335
 \everyMPtoPDFconversion=\toks36
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -686,73 +821,143 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 61.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 61.
+Package hyperref Info: Link coloring OFF on input line 26.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2022/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count336
+)
+LaTeX Info: Redefining \ref on input line 26.
+LaTeX Info: Redefining \pageref on input line 26.
+LaTeX Info: Redefining \nameref on input line 26.
+ (./Untitled.out) (./Untitled.out)
+\@outlinefile=\write4
+\openout4 = `Untitled.out'.
+
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 50.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
 
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 61.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
 
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<weibull1.jpg, id=4, 308.15125pt x 127.47626pt>
+<weibull1.jpg, id=99, 308.15125pt x 127.47626pt>
 File: weibull1.jpg Graphic file (type jpg)
 <use weibull1.jpg>
-Package pdftex.def Info: weibull1.jpg  used on input line 100.
+Package pdftex.def Info: weibull1.jpg  used on input line 87.
 (pdftex.def)             Requested size: 123.84283pt x 51.23079pt.
-<weibull2.jpg, id=5, 305.14pt x 126.4725pt>
+<weibull2.jpg, id=100, 305.14pt x 126.4725pt>
 File: weibull2.jpg Graphic file (type jpg)
 <use weibull2.jpg>
-Package pdftex.def Info: weibull2.jpg  used on input line 106.
+Package pdftex.def Info: weibull2.jpg  used on input line 93.
 (pdftex.def)             Requested size: 123.84283pt x 51.32915pt.
-<NVG.jpg, id=6, 464.73625pt x 378.41376pt>
-File: NVG.jpg Graphic file (type jpg)
-<use NVG.jpg>
-Package pdftex.def Info: NVG.jpg  used on input line 160.
-(pdftex.def)             Requested size: 232.19843pt x 189.06783pt.
-<HVG.jpg, id=7, 464.73625pt x 379.4175pt>
-File: HVG.jpg Graphic file (type jpg)
-<use HVG.jpg>
-Package pdftex.def Info: HVG.jpg  used on input line 167.
-(pdftex.def)             Requested size: 232.19843pt x 189.56934pt.
- [1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+<VG.png, id=104, 1124.2pt x 843.15pt>
+File: VG.png Graphic file (type png)
+<use VG.png>
+Package pdftex.def Info: VG.png  used on input line 129.
+(pdftex.def)             Requested size: 258.0pt x 193.49585pt.
+<HVG.png, id=105, 1124.2pt x 843.15pt>
+File: HVG.png Graphic file (type png)
+<use HVG.png>
+Package pdftex.def Info: HVG.png  used on input line 136.
+(pdftex.def)             Requested size: 258.0pt x 193.49585pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 127--140
+ [][] 
+ []
+
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 127--140
+ [] 
+ []
+
+[1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
  <./weibull1.jpg> <./weibull2.jpg>]
-<origianl_fibrosis.png, id=22, 4.62527pt x 4.62527pt>
+Underfull \hbox (badness 5417) in paragraph at lines 161--162
+[]$\OML/cmm/m/it/10 I[]$ \OT1/ptm/m/it/10 and $\OML/cmm/m/it/10 I[]$ \OT1/ptm/m
+/it/10 are con-nected in the se-quence
+ []
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 180.
+
+<origianl_fibrosis.png, id=134, 4.62527pt x 4.62527pt>
 File: origianl_fibrosis.png Graphic file (type png)
 <use origianl_fibrosis.png>
-Package pdftex.def Info: origianl_fibrosis.png  used on input line 199.
+Package pdftex.def Info: origianl_fibrosis.png  used on input line 187.
 (pdftex.def)             Requested size: 68.11392pt x 68.11746pt.
-<reversed_fibrosis.png, id=24, 4.62527pt x 4.62527pt>
+<reversed_fibrosis.png, id=136, 4.62527pt x 4.62527pt>
 File: reversed_fibrosis.png Graphic file (type png)
 <use reversed_fibrosis.png>
-Package pdftex.def Info: reversed_fibrosis.png  used on input line 206.
+Package pdftex.def Info: reversed_fibrosis.png  used on input line 194.
 (pdftex.def)             Requested size: 68.11392pt x 68.11746pt.
-<Lattice_IVG.png, id=25, 245.91875pt x 205.76875pt>
+<Lattice_IVG.png, id=138, 245.91875pt x 205.76875pt>
 File: Lattice_IVG.png Graphic file (type png)
 <use Lattice_IVG.png>
-Package pdftex.def Info: Lattice_IVG.png  used on input line 226.
+Package pdftex.def Info: Lattice_IVG.png  used on input line 214.
 (pdftex.def)             Requested size: 68.11392pt x 56.99316pt.
-<Nolattice_IVG.png, id=26, 253.94875pt x 213.79875pt>
+<Nolattice_IVG.png, id=139, 253.94875pt x 213.79875pt>
 File: Nolattice_IVG.png Graphic file (type png)
 <use Nolattice_IVG.png>
-Package pdftex.def Info: Nolattice_IVG.png  used on input line 233.
+Package pdftex.def Info: Nolattice_IVG.png  used on input line 221.
 (pdftex.def)             Requested size: 68.11392pt x 57.34474pt.
- [2 <./NVG.jpg> <./HVG.jpg> <./origianl_fibrosis.png> <./reversed_fibrosis.png>
- <./Lattice_IVG.png> <./Nolattice_IVG.png>]
-<PCA_piechart.png, id=34, 805.50937pt x 578.16pt>
+[2 <./VG.png (PNG copy)> <./HVG.png (PNG copy)> <./origianl_fibrosis.png> <./re
+versed_fibrosis.png> <./Lattice_IVG.png> <./Nolattice_IVG.png>]
+<PCA_piechart.png, id=156, 805.50937pt x 578.16pt>
 File: PCA_piechart.png Graphic file (type png)
 <use PCA_piechart.png>
-Package pdftex.def Info: PCA_piechart.png  used on input line 258.
+Package pdftex.def Info: PCA_piechart.png  used on input line 246.
 (pdftex.def)             Requested size: 252.0pt x 180.86864pt.
+ [3 <./PCA_piechart.png (PNG copy)>]
+Overfull \vbox (9.0pt too high) detected at line 310
+ []
 
-Overfull \hbox (30.65846pt too wide) in paragraph at lines 330--345
+
+Overfull \hbox (7.76556pt too wide) in paragraph at lines 310--310
+ []|\OT1/ptm/m/n/8 Accuracy| 
+ []
+
+
+Overfull \hbox (7.01332pt too wide) in paragraph at lines 310--310
+[]|\OT1/ptm/m/n/8 Precision|  
+ []
+
+
+Overfull \hbox (3.20934pt too wide) in paragraph at lines 307--323
+ [][] 
+ []
+
+
+Overfull \hbox (7.03638pt too wide) in paragraph at lines 343--343
+[]|\OT1/ptm/b/n/7 Reference|  
+ []
+
+
+Overfull \hbox (8.4609pt too wide) in paragraph at lines 343--343
+ []|\OT1/ptm/b/n/7 Accuracy| 
+ []
+
+
+Overfull \hbox (2.68095pt too wide) in paragraph at lines 340--369
  [][] 
  []
 
@@ -768,29 +973,36 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3 <./PCA_piechart.png (PNG copy)>] (./Untitled.aux) ) 
+[4] (./Untitled.aux)
+Package rerunfilecheck Info: File `Untitled.out' has not changed.
+(rerunfilecheck)             Checksum: 4FC0F8C0228E85E6ED3CE98FA2CCD002;3800.
+ ) 
 Here is how much of TeX's memory you used:
- 16707 strings out of 478268
- 334350 string characters out of 5846347
- 605944 words of memory out of 5000000
- 34617 multiletter control sequences out of 15000+600000
- 512069 words of font info for 116 fonts, out of 8000000 for 9000
+ 23498 strings out of 478268
+ 441375 string characters out of 5846347
+ 718564 words of memory out of 5000000
+ 41245 multiletter control sequences out of 15000+600000
+ 519272 words of font info for 126 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,11n,103p,913b,487s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/
-texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/u
-rw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/u
-tmbi8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
-></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Untitled.pdf (3 pages, 857674 bytes).
+ 99i,11n,103p,913b,509s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
+ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
+22/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-di
+st/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/
+type1/urw/times/utmr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/
+times/utmri8a.pfb>
+Output written on Untitled.pdf (4 pages, 785024 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 267 PDF objects out of 1000 (max. 8388607)
+ 219 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 234 words of extra memory for PDF output out of 10000 (max. 10000000)
 
