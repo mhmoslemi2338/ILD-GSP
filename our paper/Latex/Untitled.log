@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.18)  1 JUN 2022 17:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.18)  2 JUN 2022 16:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -928,40 +928,40 @@ File: PCA_piechart.png Graphic file (type png)
 Package pdftex.def Info: PCA_piechart.png  used on input line 246.
 (pdftex.def)             Requested size: 252.0pt x 180.86864pt.
  [3 <./PCA_piechart.png (PNG copy)>]
-Overfull \vbox (9.0pt too high) detected at line 310
+Overfull \vbox (9.0pt too high) detected at line 351
  []
 
 
-Overfull \hbox (7.76556pt too wide) in paragraph at lines 310--310
+Overfull \hbox (7.76556pt too wide) in paragraph at lines 351--351
  []|\OT1/ptm/m/n/8 Accuracy| 
  []
 
 
-Overfull \hbox (7.01332pt too wide) in paragraph at lines 310--310
+Overfull \hbox (7.01332pt too wide) in paragraph at lines 351--351
 []|\OT1/ptm/m/n/8 Precision|  
  []
 
 
-Overfull \hbox (3.20934pt too wide) in paragraph at lines 307--323
+Overfull \hbox (3.20934pt too wide) in paragraph at lines 349--364
  [][] 
  []
 
 
-Overfull \hbox (7.03638pt too wide) in paragraph at lines 343--343
+Overfull \hbox (7.03638pt too wide) in paragraph at lines 379--379
 []|\OT1/ptm/b/n/7 Reference|  
  []
 
 
-Overfull \hbox (8.4609pt too wide) in paragraph at lines 343--343
+Overfull \hbox (8.4609pt too wide) in paragraph at lines 379--379
  []|\OT1/ptm/b/n/7 Accuracy| 
  []
 
 
-Overfull \hbox (2.68095pt too wide) in paragraph at lines 340--369
+Overfull \hbox (2.68095pt too wide) in paragraph at lines 377--396
  [][] 
  []
 
-(./Untitled.bbl)
+(./Untitled.bbl [4])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -973,36 +973,41 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4] (./Untitled.aux)
+[5
+
+] (./Untitled.aux)
 Package rerunfilecheck Info: File `Untitled.out' has not changed.
-(rerunfilecheck)             Checksum: 4FC0F8C0228E85E6ED3CE98FA2CCD002;3800.
+(rerunfilecheck)             Checksum: CBDD2347AA2623B3D1EAAC07C7C70F06;3800.
  ) 
 Here is how much of TeX's memory you used:
- 23498 strings out of 478268
- 441375 string characters out of 5846347
- 718564 words of memory out of 5000000
- 41245 multiletter control sequences out of 15000+600000
+ 23509 strings out of 478268
+ 441505 string characters out of 5846347
+ 721670 words of memory out of 5000000
+ 41247 multiletter control sequences out of 15000+600000
  519272 words of font info for 126 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,11n,103p,913b,509s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,11n,103p,925b,509s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
 live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
-ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
-22/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
-2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2022/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/202
-2/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-di
-st/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/
-type1/urw/times/utmr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on Untitled.pdf (4 pages, 785024 bytes).
+ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive
+/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
+022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2022/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2022/texmf-dis
+t/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2022/texmf
+-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-dist/font
+s/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/u
+rw/times/utmr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/u
+tmri8a.pfb>
+Output written on Untitled.pdf (5 pages, 817790 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 299 PDF objects out of 1000 (max. 8388607)
+ 244 compressed objects within 3 object streams
+ 62 named destinations out of 1000 (max. 500000)
  234 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -131,7 +131,7 @@ print('\tF1_score on Test: ',overal_F1,'%')
 
 
 ##### LATEX result format
-CM_label=['H (Healthy)','GG (Ground galss)','M (Micronodules)','E (Emphysema)','F (Fibrosis)']
+CM_label=['H','GG','M','E','F']
 with open('result/CM_latex.txt', mode='w') as file_object:
     for j,row in enumerate(CM):
         print(CM_label[j]+' & ',end='', file=file_object)
