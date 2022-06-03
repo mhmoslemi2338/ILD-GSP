@@ -25,7 +25,7 @@
    
 \begin{document}
 
-\title{Lung Tissue Classification using Graph Signal Processing}
+\title{Lung Tissue Classification using Graph Signal Processing in ILD patients}
 \author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
 \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
 \textit{name of organization (of Aff.)}\\
@@ -52,16 +52,64 @@ email address or ORCID}
 \end{abstract}
 
 \begin{IEEEkeywords}
-Graph, Visibility graph, Textue, ILD
+ILD, Graph, Visibility graph, Textue classification
 \end{IEEEkeywords}
 
-\section{Introduction and related work}
-\vspace{0.5cm}
+\section{\large{Introduction}}
+The interstitial lung disease (ILD), also referred ad the diffuse parenchymal lung disease, is a diverse group of lung diseases that incorporates over 150 various diseases due to similar clinical symptoms and radiographic results \cite{ILD_intro1}. ILD causes scarring (fibrosis) of the lung tissue, which eventually leads to difficulty breathing and absorbing enough oxygen through the lungs for the patient \cite{ILD_intro2}. Despite the clinical similarity between different types of ILDs, their mechanisms and treatment of them are varied from each other, and this fact greatens the importance of precise diagnosis\cite{dataset}. Through the years, high-resolution computed tomography (HRCT) images, alongside the clinical history of the patients, have become the gold standard for diagnosis of the ILD \cite{dataset}. Texture understanding plays an undeniable role in human understanding of images, and it is essential to efficient biomedical tissue description \cite{ILD_intro3}. As a result, computer-aided diagnosis (CAD) with the aim of texture classification became an active research field in past years to provide a second opinion about the type of disease alongside the practitioners to reduce the errors \cite{ILD_intro4}.
+
+In this work, we are using a dataset that is collected at the University Hospitals of Geneva (HUG) \cite{dataset} consists of HRCT images of 125 patients with various ILD type diseases to evaluate our method of classification of the five most frequent ILD lung tissue categories which are Healthy (H), Emphysema (E), ground glass (GG), fibrosis (F) and micronodules (M). Figure \ref{fig:texture_example} shows an example for each lung tissue category.
+
+\begin{figure}[tbh]
+  \centering
+  \begin{subfigure}{0.092\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/micronodules.png}
+    \caption{M}
+  \end{subfigure}
+  \centering
+  \begin{subfigure}{0.092\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/healthy.png}
+    \caption{H}
+  \end{subfigure}
+  \centering
+  \begin{subfigure}{0.092\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/ground_glass.png}
+    \caption{GG}
+  \end{subfigure}
+  \centering
+  \begin{subfigure}{0.092\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/fibrosis.png}
+    \caption{F}
+  \end{subfigure}
+  \centering
+  \begin{subfigure}{0.092\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/emphysema.png}
+    \caption{E}
+  \end{subfigure}
+ 
+  \caption{An example for each lung tissue category}
+  \label{fig:texture_example}
+\end{figure}
 
 
 
+%\subsection{\textbf{Related work:}}
+The texture of more generally image classification can be performed with the deep learning methods or without them; without deep learning, we have two steps. First, we must develop and choose a feature extraction method and then train a classifier (e.g., SVM). On the other hand, the network learns the features with the deep learning method, and we do not need to extract them. 
 
-\section{Method}
+
+Previous work in the literature that has been done on this dataset can be divided into using deep learning methods or not.
+Guo et al. \cite{Fscore984} proposed a new version of DenseNet (SK-DenseNet) wich reaches the best F1-score of 98.4\% in the literature. Also Doddavarapu et al. \cite{acc9467} and Gao et al.\cite{acc928} used convolutional neural networks (CNN) to obtain the overall accuracy of 94.67\% and 92.8\% respectfully. Other not included deep learning methods used various feature extracting methods: gray-level co-occurrence matrices (GLCM) \cite{acc934},\cite{GLCM2} ,Grey level run length matrix (GLRLM)\cite{acc934}, histogram of Local Binary Patterns (LBP)\cite{acc934}, Large Margin Local Estimate(LMLE)\cite{acc861}, content–based image retrieval (CBIR) \cite{acc86} and local spectral analysis using a DCT-based filter bank \cite{Fscore89}.
+
+
+As far as our knowledge, there is no previous work done with the graph signal processing (i.e., GSP) approach on the HUG dataset. Iacovacci et al. \cite{IVG} proposed a new way to define graphs for images and showed excellent performance on various tasks like texture classification. We used this method with slightly modification alongside the method proposed in \cite{wavelet} to achieve the overall accuracy of 97.05\% and an overall F1-score of 96.93\% which are the best results among non-deep learning methods and the second-best F1-score in deep learning methods with only 1.5\% difference with the best result. This study shows the excellent potential of the GSP methods for defining features for images that can be used in various other tasks.
+
+
+\section{\large{Method}}
 \subsection{\textbf{Graph wavelet filter banks}}
 
 Wavelet filter banks are among the most popular methods for extracting features from images or textures. One of their variations is graph wavelet filter banks that consider the relation of different pixels in the texture. In this work, we used the method proposed by Qiao et al. at \cite{wavelet}. We used two-level decomposition for graph wavelet filters; after calculating the filter response with Meyer kernel on the texture as discussed in \cite{wavelet}, we moved a $4\times4$ window with the stride of 1 on the response of wavelet. For each window, we applied singular value decomposition. $F_1 , F_2, F_3$ sets as discussed in \cite{wavelet} are
@@ -84,13 +132,13 @@ Figure \ref{fig:weibull_fit} shows an example of weibull distribution fitting to
   \centering
   \begin{subfigure}{0.24\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{weibull1.jpg}
+    \includegraphics[width=\linewidth]{images/weibull1.jpg}
     \caption{}
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.24\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{weibull2.jpg}
+    \includegraphics[width=\linewidth]{images/weibull2.jpg}
     \caption{}
   \end{subfigure}
   \caption{Example of Weibull fitting to $F_i$ sets}
@@ -126,14 +174,14 @@ Figure \ref{fig:VG_example} is an example of HVG and NVG for a time-series signa
   \centering
   \begin{subfigure}{0.5\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{VG.png}
+    \includegraphics[width=\linewidth]{images/VG.png}
     \caption{Natural visibility graph}
     \label{fig:NVG_example}
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.5\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{HVG.png}
+    \includegraphics[width=\linewidth]{images/HVG.png}
     \caption{Horizontal visibility graph}
     \label{fig:HVG_example}
   \end{subfigure}
@@ -184,14 +232,14 @@ Figure \ref{fig:original_reversed_texture} shows an example of a texture and its
   \centering
   \begin{subfigure}{0.24\textwidth}
     \centering
-    \includegraphics[width=0.55\linewidth]{origianl_fibrosis.png}
+    \includegraphics[width=0.55\linewidth]{images/origianl_fibrosis.png}
     \caption{Original image}
     \label{fig:original_texture}
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.24\textwidth}
     \centering
-    \includegraphics[width=0.55\linewidth]{reversed_fibrosis.png}
+    \includegraphics[width=0.55\linewidth]{images/reversed_fibrosis.png}
     \caption{Reversed image}
     \label{fig:reversed_texture}
   \end{subfigure}
@@ -211,14 +259,14 @@ Figure \ref{fig:lattice_nolattice_example} is an artifial $3\times3$ image and I
   \centering
   \begin{subfigure}{0.24\textwidth}
     \centering
-    \includegraphics[width=0.55\linewidth]{Lattice_IVG.png}
+    \includegraphics[width=0.55\linewidth]{images/Lattice_IVG.png}
     \caption{With lattice}
     \label{fig:lattice_example}
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.24\textwidth}
     \centering
-    \includegraphics[width=0.55\linewidth]{Nolattice_IVG.png}
+    \includegraphics[width=0.55\linewidth]{images/Nolattice_IVG.png}
     \caption{Without lattice}
     \label{fig:nolattice_example}
   \end{subfigure}
@@ -243,13 +291,13 @@ Suppose we concatenate all of the possible choices for the final feature vector.
 Figure \ref{fig: PCA1} shows a pie chart that indicates part of the total variance of data for each possible feature vector component. We should mention that sum of the variance of all global feature extraction methods for visibility graph components was only 1.3\% of all variance. Hence, we decided to remove them from the final feature vector for training our classifier. We concatenate all possible feature vector components except three\: Image-IVG-Nolattice, Reversed-Image-HVG-Nolattice, and Reversed-Image-IVG-Nolattice, which will give us a 1376-dimensional feature vector for each texture.
 
 \begin{figure}[tbh]
- \includegraphics[width=1\linewidth]{PCA_piechart.png}
+ \includegraphics[width=1\linewidth]{images/PCA_piechart.png}
    \caption{Importance of each feature vector component based on the variance of all data}
  \label{fig: PCA1}
 \end{figure}
 
 
-\section{Experiments and results}
+\section{\large{Experiments and results}}
 \subsection{\textbf{Dataset}}
 We used a dataset of interstitial lung disease (ILD) \cite{dataset} cases containing HRCT images of 128 patients with the inter-slide distance of 10mm, slice thickness of 1mm, and in-plane resolution of $512\times 512$ pixels. In each 2D-single image of a patient, regions of interest (ROIs) are hand-drawn and labeled by two expert radiologists with 20 and 15 years of experience used as ground truth. 
 
@@ -265,7 +313,7 @@ Table \ref{cm:datadist} shows the distribution of textures among various classes
 
 
 \begin{table}[tbh]
-\caption{Confusion Matrix for texture classification}
+ \caption{\small{Distribution of patches among different tissue categories}}
 \label{cm:datadist}
 \small
 \centering
@@ -298,22 +346,22 @@ After extracting features and preprocessing the data, all data are randomly part
 
 
 \small \begin{equation}
-Accuracy = \frac{TP\,+\,TN}{TP\,+\,TN\,+\,FP\,+\,FN}
+Accuracy = \frac{TP\,+\,TN}{TP\,+\,TN\,+\,FP\,+\,FN} \nonumber
 \end{equation}
 \small \begin{equation}
-Recall = \frac{TP}{TP\,+\,FN}
+Recall = \frac{TP}{TP\,+\,FN} \nonumber
 \end{equation}
 \small \begin{equation}
-Precision = \frac{TP}{TP\,+\,FP}
+Precision = \frac{TP}{TP\,+\,FP} \nonumber
 \end{equation}
 \small \begin{equation}
-TN-rate = \frac{TN}{TN\,+\,FP}
+TN-rate = \frac{TN}{TN\,+\,FP} \nonumber
 \end{equation}
 \small \begin{equation}
-F1-score = \frac{2TP}{2TP\,+\,FP\,+\,FN}
+F1-score = \frac{2TP}{2TP\,+\,FP\,+\,FN}\nonumber
 \end{equation}
 \small \begin{equation}
-AUC = the\,area\,under\, the\, ROC\, curve 
+AUC = the\,area\,under\, the\, ROC\, curve  \nonumber
 \end{equation}
 
 Table \ref{cm:CM} shows the confusion matrix for the final classifier. In table \ref{cm:result}, we summarize the performance of our method for each class and also overall classification performance.
@@ -397,7 +445,7 @@ Huang et al. \cite{Fscore96} & - & 96\% & CNN model \\  \bottomrule
 
 
 
-\section{Conclusions}
+\section{\large{Conclusions}}
 Our study evaluated the performance of graph signal processing (i.e., GSP) methods to classify the five most frequently appeared lung tissues in ILD patients. Some of the previous works that have been done in the literature are only using the deep learning method for feature extraction. Generally, they get higher accuracy on this dataset. Although we insist on not using the deep learning method, we achieved higher performances than most of these methods and the best performance in the classic methods. We inspired our work by the success of \cite{chinaIVG}, and \cite{wavelet} using the image visibility graphs and graph wavelets for texture classification.
 
 The nature of the visibility graph differentiates between local minima and maxima in the signal, so we calculated the IVG for both the original and reverse image. This action improved the overall accuracy by almost five percent.
