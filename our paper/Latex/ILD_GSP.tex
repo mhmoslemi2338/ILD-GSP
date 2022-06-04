@@ -49,6 +49,7 @@ email address or ORCID}
 \maketitle
 
 \begin{abstract}
+Interstitial lung disease (ILD) is a group of more than 150 lung diseases, and each disease demands a different treatment. As a result, it is crucial to diagnose the type of the disease correctly. In the past years, HRCT images have become a standard protocol in the diagnosis process. Determining the lung tissue pattern in HRCT images is essential for accurate diagnosis. Thus several studies in recent years have been done for medical image texture classification. The overall performance is highly dependable on the method which defines feature vectors. Graph signal processing (GSP) is a new field of study that has been developed in recent years and shows excellent potential in solving different problems and defining complex systems. In this study, we used GSP methods for the first time to classify the five most common lung tissues in ILD patients and demonstrate astonishing results and outstanding capabilities of GSP methods.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -56,7 +57,7 @@ ILD, Graph, Visibility graph, Textue classification
 \end{IEEEkeywords}
 
 \section{\large{Introduction}}
-The interstitial lung disease (ILD), also referred ad the diffuse parenchymal lung disease, is a diverse group of lung diseases that incorporates over 150 various diseases due to similar clinical symptoms and radiographic results \cite{ILD_intro1}. ILD causes scarring (fibrosis) of the lung tissue, which eventually leads to difficulty breathing and absorbing enough oxygen through the lungs for the patient \cite{ILD_intro2}. Despite the clinical similarity between different types of ILDs, their mechanisms and treatment of them are varied from each other, and this fact greatens the importance of precise diagnosis\cite{dataset}. Through the years, high-resolution computed tomography (HRCT) images, alongside the clinical history of the patients, have become the gold standard for diagnosis of the ILD \cite{dataset}. Texture understanding plays an undeniable role in human understanding of images, and it is essential to efficient biomedical tissue description \cite{ILD_intro3}. As a result, computer-aided diagnosis (CAD) with the aim of texture classification became an active research field in past years to provide a second opinion about the type of disease alongside the practitioners to reduce the errors \cite{ILD_intro4}.
+Interstitial lung disease (ILD), also referred ad the diffuse parenchymal lung disease, is a diverse group of lung diseases that incorporates over 150 various diseases due to similar clinical symptoms and radiographic results \cite{ILD_intro1}. ILD causes scarring (fibrosis) of the lung tissue, which eventually leads to difficulty breathing and absorbing enough oxygen through the lungs for the patient \cite{ILD_intro2}. Despite the clinical similarity between different types of ILDs, their mechanisms and treatment of them are varied from each other, and this fact greatens the importance of precise diagnosis\cite{dataset}. Through the years, high-resolution computed tomography (HRCT) images, alongside the clinical history of the patients, have become the gold standard for diagnosis of the ILD \cite{dataset}. Texture understanding plays an undeniable role in human understanding of images, and it is essential to efficient biomedical tissue description \cite{ILD_intro3}. As a result, computer-aided diagnosis (CAD) with the aim of texture classification became an active research field in past years to provide a second opinion about the type of disease alongside the practitioners to reduce the errors \cite{ILD_intro4}.
 
 In this work, we are using a dataset that is collected at the University Hospitals of Geneva (HUG) \cite{dataset} consists of HRCT images of 125 patients with various ILD type diseases to evaluate our method of classification of the five most frequent ILD lung tissue categories which are Healthy (H), Emphysema (E), ground glass (GG), fibrosis (F) and micronodules (M). Figure \ref{fig:texture_example} shows an example for each lung tissue category. As it is evident in figure \ref{fig:texture_example}, the low between-class variance and high within-class variance of textures make this work very complicated.
 
@@ -172,14 +173,14 @@ Figure \ref{fig:VG_example} is an example of HVG and NVG for a time-series signa
 
 \begin{figure}[tbh]
   \centering
-  \begin{subfigure}{0.5\textwidth}
+  \begin{subfigure}{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/VG.png}
     \caption{Natural visibility graph}
     \label{fig:NVG_example}
   \end{subfigure}
   \hfill
-  \begin{subfigure}{0.5\textwidth}
+  \begin{subfigure}{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/HVG.png}
     \caption{Horizontal visibility graph}
